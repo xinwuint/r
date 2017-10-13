@@ -1,0 +1,265 @@
+/* 1.) Import Files */
+/*
+@font-face {
+    font-family: "Gill Light";
+    font-style: normal;
+    font-weight: 200;
+    src: url('../fonts/Gill Sans MT Light.ttf');
+}
+
+@font-face {
+    font-family: "Gill Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Gill Sans MT Regular.ttf');
+}
+
+*/
+/*//
+// Variables
+// --------------------------------------------------*/
+/* example
+$gray-base: rgb(0,0,0);                    
+$base-color: rgb(2,45,88);
+$light-color: rgb(255,255,255);               
+$dark-color: rgb(78, 54, 46);           
+$font-size: 20px;
+
+$darkest: #000;
+$whitest: #FFF;
+
+$primary-color: #022d58;
+$secondary-color: #eae8e0;
+$tertiary-color: #4e362e;
+
+$primary-font: 'Gill Regular';
+$secondary-font: 'Gill Light';
+*/
+/*//
+// All mixin functions
+// --------------------------------------------------*/
+/* Eric Meyer's CSS Reset
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+   This is a Sass partial
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1;
+  overflow: hidden; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none;
+  display: inline-block; }
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+/* http://sonspring.com/journal/clearing-floats */
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0; }
+
+/* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
+.clearfix:after {
+  clear: both;
+  content: ' ';
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0; }
+
+.clearfix {
+  display: inline-block; }
+
+* html .clearfix {
+  height: 1%; }
+
+.clearfix {
+  display: block; }
+
+body {
+  width: 1920px;
+  height: 1080px; }
+
+header {
+  width: 100%;
+  height: 120px;
+  background: url("../images/Kiosk_HeaderRyderLogo.png") no-repeat center top; }
+
+footer {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  border: 1px solid blue; }
+
+footer .uRss .uTitle1, footer .uRss .uTitle2 {
+  width: 200px;
+  display: inline-block; }
+
+footer .uRss .uContent1, footer .uRss .uContent2 {
+  border-left: 1px solid blue;
+  width: 300px;
+  display: inline-block; }
+
+footer .uRss[l10n-locale='fr-ca'] .uTitle1 {
+  width: 400px; }
+
+footer .uRss[l10n-locale='fr-ca'] .uTitle2 {
+  display: none; }
+
+footer .uRss[l10n-locale='fr-ca'] .uContent1, footer .uRss[l10n-locale='fr-ca'] .uContent2 {
+  width: 500px; }
+
+main {
+  width: 100%;
+  height: 840px;
+  background: url("../images/kiosk_bk_Image.png") no-repeat center top;
+  padding-top: 60px; }
+
+main section {
+  width: 1702px;
+  height: 720px;
+  margin: auto;
+  border: solid 1px red; }
+
+main .uAttractLoopSec video {
+  width: 1280px;
+  height: 100%; }
+
+main .uAttractLoopSec div {
+  float: right; }
+
+main .uVideoListSec {
+  display: none; }

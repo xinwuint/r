@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" >
+        <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+        <title>Ryder</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <!--link rel="localizations" type="application/vnd.oftn.l10n+json" href="assets/localization/languages.json" /-->
+        <!--link rel="localization" type="application/vnd.oftn.l10n+json" href="assets/localization/fr.json" hreflang="fr" /-->
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css" media="screen" />
+    </head>
+
+    <body>
+    	<header>
+            <div>
+                <div class="aTime"></div>
+                <div class="aDate"></div>
+            </div>
+        </header>
+
+    	<main>
+    		<section class='aAttractLoopSec uAttractLoopSec'>
+                <video l10n-attr="data-src:attract.videourl" autoplay="true"></video>
+                <div l10n-text="attract.desc"></div>
+                <div l10n-text="attract.start" class="aStart"></div>
+            </section>
+            <section class='aVideoListSec uVideoListSec'>
+                
+            </section>
+    	</main>
+
+    	<footer>
+            <section class="aRss uRss" l10n-locale>
+                <span class="uTitle1" l10n-text="rss.topnews"></span>
+                <span class="aContent1 uContent1">sample content 1</span>
+                <span class="uTitle2" l10n-text="rss.sportsnews"></span>
+                <span class="aContent2 uContent2">sample content 2</span>
+            </section>
+            <section class="aWarn">
+                
+            </section>
+        </footer>
+
+    	<article class='uPopup aVideoPopup'></article>
+
+        <!-- 3rd party lib -->
+        <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.bpopup-0.9.4.min.js"></script>
+        <script type="text/javascript" src="assets/js/l10n.min.js"></script>
+        <script type="text/javascript" src="assets/js/pn.core-0.9.js"></script>
+        <script type="text/javascript" src="assets/js/pn.ui-0.9.js"></script>
+        <script type="text/javascript" src="assets/js/pn.l10n-0.9.js"></script>
+        <script type="text/javascript" src="assets/js/pn.idle-0.9.js"></script>
+        <script type="text/javascript" src="assets/localization/localizations.js"></script>
+        <!-- ryder app -->
+        <script type="text/javascript" src="assets/js/ryder.app.js"></script>
+        <script type="text/javascript" src="assets/js/ryder.launch.js"></script>
+    </body>
+
+</html>

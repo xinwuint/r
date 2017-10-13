@@ -1,0 +1,23 @@
+# Logs
+*.log
+**/logs
+
+**/.metadata/**
+**/.classpath
+**/build
+**/bin
+**/.settings
+**/.project
+.gradle
+**/.idea/
+**/*.iml
+
+# UI
+**/node_modules/**
+**/build/**
+
+# Misc
+.sass-cache
+.DS_Store
+Gemfile.lock
+dump.rdb

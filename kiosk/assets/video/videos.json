@@ -1,0 +1,16 @@
+{
+	"list": [
+		{
+			"title": "hello!",
+			"desc": "this is the hello video",
+			"langCode": ["en"],
+			"url": "v1.mp4"
+		},
+		{
+			"title": "world!",
+			"desc": "this is the world video",
+			"langCode": ["fr"],
+			"url": "v2.mp4"
+		},
+	]
+}

@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Ryder</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <!--link rel="localizations" type="application/vnd.oftn.l10n+json" href="assets/localization/languages.json" />
+        <link rel="localization" type="application/vnd.oftn.l10n+json" href="assets/localization/en.json" hreflang="en" />
+        <link rel="localization" type="application/vnd.oftn.l10n+json" href="assets/localization/fr.json" hreflang="fr" /-->
+        <!--link rel="stylesheet" type="text/css" href="assets/css/main.css" media="screen" /-->
+
+    </head>
+
+    <body>
+
+        <input type='button' id='en' value='en'> <input type='button' id='fr' value='fr'> <input type='button' id='pop' value='pop'><br>
+        <br>
+        timeout: <span id='timeout'></span><br>
+        left time: <span id='left'></span><br>
+        callback hits: <span id='timeoutcallback'></span><br>
+        <br>
+        day1 (span): <span l10n-text='date.monday' l10n-classible></span><br>
+        day2 (link): <a l10n-text='date.tuesday' l10n-href='date.tuesday'></a><br>
+        day3 (key not found): <span l10n-text='date.wednesday'></span><br>
+        <br>
+        returned data from popup: <span id='returneddata'></span><br>
+        <div id='popup' style='width:200px;height:100px;border: 1px solid red;'><span l10n-text='helloworld'>Something u can not see.</span> <span class='aClose'>X</span><br>
+        </div>
+
+
+        <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.bpopup-0.9.4.min.js"></script>
+        <script type="text/javascript" src="assets/js/l10n.min.js"></script>
+        <script type="text/javascript" src="assets/js/pn.core-0.9.js"></script>
+        <script type="text/javascript" src="assets/js/pn.ui-0.9.js"></script>
+        <script type="text/javascript" src="assets/js/pn.l10n-0.9.js"></script>
+        <script type="text/javascript" src="assets/js/pn.idle-0.9.js"></script>
+        <script type="text/javascript" src="assets/localization/localizations.js"></script>
+        <script type="text/javascript" src="assets/js/ryder.app.js"></script>
+        <script type="text/javascript" src="assets/js/ryder.start.js"></script>
+
+        <script type="text/javascript">
+$(document).ready(function () {
+    "use strict";
+
+    Pn.init();
+    Pn.ui.init();
+    Pn.l10n.init();
+    Pn.idle.init();
+
+    // test idle
+    var timeoutcnt = 0;
+    var tout = function() {
+        $('#timeoutcallback').text(++timeoutcnt);
+    }
+    var show = function(left, timeout) {
+        $('#timeout').text(timeout);
+        $('#left').text(left);
+    }
+    Pn.idle.start(5, tout, show);   // 5 sec
+
+    // test l10n
+    Pn.l10n.locale('fr');
+
+    $('#en').click(function(){
+        Pn.l10n.locale('en');
+    });
+    $('#fr').click(function(){
+        Pn.l10n.locale('fr');
+    });
+
+    // test modal
+    $('#pop').click(function(){
+        Pn.ui.popupModal('#popup', {
+            closeButtonSelector: '.aClose',
+            overlayClose: false,
+            onLaunching: function() {return true;},
+            dataReturnedWhenDismiss: 999
+        }).done(function(data){
+            $('#returneddata').text(data);
+        });
+    });
+
+});
+        </script>
+    </body>
+
+</html>

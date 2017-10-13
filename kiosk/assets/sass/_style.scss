@@ -1,0 +1,81 @@
+// 0.) page ======================================================================
+body {
+    width: 1920px;
+    height: 1080px;
+}
+
+
+// 1.) header ======================================================================
+header {
+    width: 100%;
+    height: 120px;
+    background: url('../images/Kiosk_HeaderRyderLogo.png') no-repeat center top;
+}
+
+// 2.) footer ======================================================================
+footer {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    border: 1px solid blue;
+}
+
+footer .uRss {
+    .uTitle1, .uTitle2 {
+        width: 200px;
+        display: inline-block;
+    }
+
+    .uContent1, .uContent2 {
+        border-left: 1px solid blue;
+        width: 300px;
+        display: inline-block;
+    }
+
+    &[l10n-locale='fr-ca'] {
+        .uTitle1 {
+            width: 400px;
+        }
+        .uTitle2 {
+            display: none;
+        }
+        .uContent1, .uContent2 {
+            width: 500px;
+        }
+    }
+}
+
+
+// 3.) main ======================================================================
+main {
+    width: 100%;
+    height: 840px;
+    background: url('../images/kiosk_bk_Image.png') no-repeat center top;
+    padding-top: 60px;
+}
+
+main section {
+    width: 1702px;
+    height: 720px;
+    margin: auto;
+    border: solid 1px red;
+}
+
+// 4.) attract loop ======================================================================
+main .uAttractLoopSec video {
+    width: 1280px;
+    height: 100%;
+}
+
+main .uAttractLoopSec div {
+    float: right;
+}
+
+// 5.) video list ======================================================================
+main .uVideoListSec {
+    display: none;
+}
+
+// 6.) popups ======================================================================
+
+
