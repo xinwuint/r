@@ -6,7 +6,7 @@
 - Enter folder 'kiosk'
 - Execute 'npm install'
 
-## Comiple sass files
+## Compile sass files
 
 - Execute 'gulp sass' to compile scss files.
 - Execute 'gulp' to execute a gulp's watch daemon that will auto compile (and minify) sass files.
