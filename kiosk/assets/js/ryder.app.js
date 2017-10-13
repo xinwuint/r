@@ -23,6 +23,7 @@
         _optDefault = {
             locale: "en-us",    // default locale
             idleTimeout: 2*60,  // 2 min
+            rssStoryLen: 120,   // 120 characters
         };
 
     // state

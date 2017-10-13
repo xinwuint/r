@@ -1,8 +1,8 @@
-{
+﻿{
 	"list": [
 		{
 			"title": "hello!",
-			"desc": "this is the hello video",
+			"thumbnailUrl": "a.png",
 			"langCode": ["en"],
 			"url": "v1.mp4"
 		},

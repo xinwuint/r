@@ -22,6 +22,7 @@
         jqObj   createJqueryObjectWithOneElement((string|domObj|jqObj):obj);
         string  escapeRegex(string:text);
         string  fetch(string:text, (string|RegExp):regex, int:groupIdx);
+        string|null|undefined  trim(string:text);
         string  getParameterByName(string:name[, string:url]);
         string  newGuid();
         void    publish(obj[, string:namespace]);
@@ -124,6 +125,11 @@
         return (m && m.length > groupIdx) ? m[groupIdx] : null;
     }
 
+    // text related.
+    function util_trim(text) {
+        return !text ? text : text.trim();
+    }
+
     // text related
     function util_getParameterByName(name, url) {
         if (!name) return '';
@@ -153,6 +159,7 @@
         createJqueryObjectWithOneElement:   util_createJqueryObjectWithOneElement,
         escapeRegex:                        util_escapeRegex,
         fetch:                              util_fetch,
+        trim:                               util_trim,
         getParameterByName:                 util_getParameterByName,
         newGuid:                            util_newGuid
     };

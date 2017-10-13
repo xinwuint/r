@@ -50,11 +50,15 @@
 
     var _handlers = {
         'l10n-attr': function(jqObj, attrValue) {
+            // eg: l10n-attr="src:key1, href:key2"
             if(!attrValue) return;
-            var tmp = attrValue.split(':'); // eg: l10n-attr="src:key"
-            // can not be empty or reserved attr name
-            if(!tmp[0] || !tmp[1] || _handlers[tmp[0]]) return;
-            jqObj.attr(tmp[0], l10n_get(tmp[1]));
+            var arr = attrValue.split(',');
+            for(var i = 0; i < arr.length; i++) {
+                var ak = arr[i].split(':'),
+                    a = (ak[0] || '').trim(),
+                    k = (ak[1] || '').trim();
+                if(a && k && !_handlers[a]) jqObj.attr(a, l10n_get(k));
+            }
         },
 
         'l10n-text': function(jqObj, attrValue) {
@@ -97,7 +101,7 @@
         var targets = _findTargets(l10nAttrName, container, includeContainer);
         targets.each(function() {
             var $this = $(this);
-            var l10nAttrValue = $this.attr(l10nAttrName);
+            var l10nAttrValue = lib.util.trim($this.attr(l10nAttrName));
             _handlers[l10nAttrName]($this, l10nAttrValue);
         }); // end each
     }
