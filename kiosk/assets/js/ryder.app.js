@@ -35,11 +35,10 @@
     // state
     var _config,
         _langCode = '',
-        _countryCode = '',
-        _template;
+        _countryCode = '';
 
     function init(config) {
-        // deal with options
+        // deal with config
         _config = $.extend(true, {}, _confDefault, config);
         var tmp = _config.locale.split('-');
         _langCode = tmp[0] || '' ;
@@ -89,13 +88,21 @@
     function biz_loadVideosAsync() {
         var jsonfile = _config.videoRootUrl + '/' + _config.videoListFile.replace('{locale}', _config.locale);
         $.getJSON(jsonfile).done(function(data){
+            // check
+            var okSafety = data.safety && data.safety.length > 0;
+            var okWhyryder = data.whyryder && data.whyryder.length > 0;
+            if(!okSafety && !okWhyryder) return;
+
             // adjust url
             _adjustUrl(data);
 
+            // template
+            var template = Handlebars.compile($('#template-videolist').html());
+
             // mount html
-            if(data.safety && data.safety.length > 0) $('.aGridSafety').html(_template(data.safety));
+            if(okSafety) $('.aGridSafety').html(template(data.safety));
             else $('.aGridSafety').empty();
-            if(data.whyryder && data.whyryder.length > 0) $('.aGridWhyryder').html(_template(data.whyryder));
+            if(okWhyryder) $('.aGridWhyryder').html(template(data.whyryder));
             else $('.aGridWhyryder').empty();
         });
     }
@@ -115,6 +122,8 @@
             Pn.ui.selected(this, true);
         }).on('mouseup', function(){
             Pn.ui.selected(this, false);
+        }).on('click', function(){
+            alert('launch keyboard');
         });
 
         // click on video
@@ -135,14 +144,13 @@
 
         // email btn
         $('main .aVideoListSec .aEmailBtn').off('mousedown mouseup');
+
+        // TODO
     }
 
     function start() {
         // localize
         Pn.l10n.locale(_config.locale);
-
-        // template
-        _template = Handlebars.compile($('#template-videolist').html());
 
         // load video
         biz_loadVideosAsync();
