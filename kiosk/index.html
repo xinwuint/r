@@ -20,22 +20,31 @@
         </header>
 
     	<main>
-    		<section class='aAttractLoopSec uAttractLoopSec'>
-                <video l10n-attr="data-src:attract.videourl" autoplay="true"></video>
+    		<section class="aAttractLoopSec uAttractLoopSec">
+                <video autoplay="true" l10n-attr="data-src:attract.videourl"></video>
                 <div l10n-text="attract.desc"></div>
-                <div l10n-text="attract.start" class="aStart"></div>
+                <div class="aStart" l10n-text="attract.start"></div>
             </section>
-            <section class='aVideoListSec uVideoListSec'>
-                
+            <section class="aVideoListSec uVideoListSec">
+                <div class="uVideoListDiv">
+                    <div class="uCategory" l10n-text="videolist.cat.safety"></div>
+                    <div class="aGridSafety uGrid"></div>
+                    <div class="uCategory" l10n-text="videolist.cat.whyryder"></div>
+                    <div class="aGridWhyryder uGrid"></div>
+                </div>
+                <div class="uBtnDiv">
+                    <span class="aToggleBtn uToggleBtn" l10n-locale></span>
+                    <span class="aEmailBtn uEmailBtn" l10n-locale></span>
+                </div>
             </section>
     	</main>
 
     	<footer>
             <section class="aRss uRss" l10n-locale>
-                <span class="uTitle1" l10n-text="rss.topnews"></span>
-                <span class="aContent1 uContent1">sample content 1</span>
-                <span class="uTitle2" l10n-text="rss.sportsnews"></span>
-                <span class="aContent2 uContent2">sample content 2</span>
+                <span class="uTitle1" l10n-text="rss.cat.topnews"></span>
+                <span class="aContent1 uContent1">sample story 1</span>
+                <span class="uTitle2" l10n-text="rss.cat.sportsnews"></span>
+                <span class="aContent2 uContent2">sample story 2</span>
             </section>
             <section class="aWarn">
                 
@@ -44,10 +53,21 @@
 
     	<article class='uPopup aVideoPopup'></article>
 
+        <script id="template-videolist" type="text/x-handlebars-template">
+            {{#each this}}
+            <div class="aVideoTile uVideoTile" data-video-src="{{videoFile}}" data-video-2nd-src="{{videoSecondaryFile}}">
+                <div class="uThumb"><img src="video/{{thumbnailFile}}"></div>
+                <div class="aBalloon uBalloon"></div>
+                <div class="uTitle">{{title}}</div>
+            </div>
+            {{/each}}
+        </script>
+
         <!-- 3rd party lib -->
         <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.bpopup-0.9.4.min.js"></script>
         <script type="text/javascript" src="assets/js/l10n.min.js"></script>
+        <script type="text/javascript" src="assets/js/handlebars.min.js"></script>
         <script type="text/javascript" src="assets/js/pn.core-0.9.js"></script>
         <script type="text/javascript" src="assets/js/pn.ui-0.9.js"></script>
         <script type="text/javascript" src="assets/js/pn.l10n-0.9.js"></script>

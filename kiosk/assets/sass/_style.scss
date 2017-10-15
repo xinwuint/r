@@ -5,12 +5,15 @@ body {
 }
 
 
+
 // 1.) header ======================================================================
 header {
     width: 100%;
     height: 120px;
     background: url('../images/Kiosk_HeaderRyderLogo.png') no-repeat center top;
 }
+
+
 
 // 2.) footer ======================================================================
 footer {
@@ -46,6 +49,7 @@ footer .uRss {
 }
 
 
+
 // 3.) main ======================================================================
 main {
     width: 100%;
@@ -61,6 +65,8 @@ main section {
     border: solid 1px red;
 }
 
+
+
 // 4.) attract loop ======================================================================
 main .uAttractLoopSec video {
     width: 1280px;
@@ -71,10 +77,100 @@ main .uAttractLoopSec div {
     float: right;
 }
 
-// 5.) video list ======================================================================
+
+
+// 5.) video ======================================================================
+// video list
 main .uVideoListSec {
     display: none;
+    padding: 20px;
+
+    .uVideoListDiv {
+        height: 580px;
+        overflow-y: scroll;
+        border: 1px solid green;
+
+        .uCategory {
+            border-bottom: 1px dotted grey;
+        }
+    }
+
+    .uBtnDiv {
+        height: 100px;
+        border: 1px solid green;
+        text-align: right;
+    }
+
+    .uEmailBtn, .uToggleBtn {
+        display: inline-block;
+        width: 110px;
+        height: 38px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .uEmailBtn {
+        background-image: url('../images/kiosk_Email_Bth_UP.png');
+        &[selected] {
+            background-image: url('../images/kiosk_Email_Bth_RL-DN.png');
+        }
+    }
+
+    .uToggleBtn {
+        &[l10n-locale='en-us'] {
+            background-image: url('../images/kiosk_Spanish_Btn_UP.png');
+            &[selected] {
+                background-image: url('../images/kiosk_Spanish_Btn_RL-DN.png');
+            }
+        }
+
+        &[l10n-locale='en-ca'] {
+            background-image: url('../images/kiosk_French_Btn_UP.png');
+            &[selected] {
+                background-image: url('../images/kiosk_French_Btn_RL-DN.png');
+            }
+        }
+
+        &[l10n-locale='fr-ca'] {
+            background-image: url('../images/kiosk_English_Btn_UP.png');
+            &[selected] {
+                background-image: url('../images/kiosk_English_Btn_RL-DN.png');
+            }
+        }
+    }
 }
+
+// video tile =====
+main .uVideoListSec .uVideoTile {
+    display: block;
+    width: 300px;
+    height: 100px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #333;
+
+    .uThumb {
+        width: 120px;
+        height: 90px;
+        border: 1px solid red;
+        float: left;
+    }
+
+    .uBalloon {
+        height: 30px;
+        background: url('../images/balloon.png') right top no-repeat;
+        background-size: 30px 30px;
+        visibility: hidden;
+    }
+}
+
+// video tile toggled =====
+main .uVideoListSec.uAudioToggled .uVideoTile:not([data-video-2nd-src='']) .uBalloon {
+    visibility: inherit;
+}
+
+
 
 // 6.) popups ======================================================================
 

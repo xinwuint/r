@@ -88,7 +88,7 @@
         var c = lib.util.isJqueryObject(container) ? container : $(container);
         var rst = c.find('[' + l10nAttrName + ']');
         if(!!includeContainer) {
-            c.each(function(){
+            c.each(function() {
                 var $this = $(this);
                 if($this.is('[' + l10nAttrName + ']')) rst = rst.add($this);
             });

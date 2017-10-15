@@ -22,6 +22,10 @@
         Promise     popupModalAjax((string|domObj|jqObj):eleToPopup, (string|object):ajaxOpt, (string|object):mountOpt, (string|object):launchOpt);
         Promise     popupModalAir((string|object):ajaxOpt, (string|object):mountOpt, (string|object):launchOpt);
         Promise     loadAjax((string|object):ajaxOpt, (string|object):mountOpt);
+        boolean     selected((string|domObj|jqObj):element, [boolean:isSelected]);      // get or set 'selected' attribute to element
+        boolean     toggleSelected((string|domObj|jqObj):element);                      // reverse 'selected' attribute to element
+        boolean     disabled((string|domObj|jqObj):element, [boolean:isDisabled]);      // get or set 'disabled' attribute to element
+        boolean     toggleDisabled((string|domObj|jqObj):element);                      // reverse 'disabled' attribute to element
 */
 
 ;(function (lib, $, window, undefined) {
@@ -329,6 +333,40 @@
         return lib.flow.execPipe([f1, [f2], f3]);
     }
 
+    function _hasAttr(jqObj, attrName) {
+        return jqObj.is('[' + attrName + ']');
+    }
+
+    function _getSetFlagAttr(element, attrName, isSet) {
+        var ele = lib.util.isJqueryObject(element) ? element : $(element);
+        if (isSet === undefined) return _hasAttr(ele, attrName);
+        if (isSet) ele.attr(attrName, '');
+        else ele.removeAttr(attrName);
+        return !!isSet;
+    }
+
+    function _toggleFlagAttr(element, attrName) {
+        var rst = _getSetFlagAttr(element, attrName);
+        _getSetFlagAttr(element, attrName, !rst);
+        return !rst;
+    }
+
+    function ui_selected(element, isSelected) {
+        return _getSetFlagAttr(element, 'selected', isSelected);
+    }
+
+    function ui_toggleSelected(element) {
+        return _toggleFlagAttr(element, 'selected');
+    }
+
+    function ui_disabled(element, isDisabled) {
+        return _getSetFlagAttr(element, 'disabled', isDisabled);
+    }
+
+    function ui_toggleDisabled(element) {
+        return _toggleFlagAttr(element, 'disabled');
+    }
+
     var ui = {
         init:                ui_init,
         newline:             ui_newline,
@@ -342,7 +380,11 @@
         popupModal:          ui_popupModal,
         popupModalAjax:      ui_popupModalAjax,
         popupModalAir:       ui_popupModalAir,
-        loadAjax:            ui_loadAjax
+        loadAjax:            ui_loadAjax,
+        selected:            ui_selected,
+        toggleSelected:      ui_toggleSelected,
+        disabled:            ui_disabled,
+        toggleDisabled:      ui_toggleDisabled
     };
 
 
