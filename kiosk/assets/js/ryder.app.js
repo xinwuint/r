@@ -18,7 +18,7 @@
         void    init();
 */
 
-;(function (lib, $, window, undefined) {
+;(function (Pn, $, window, undefined) {
     "use strict";
 
     // const =====================================================================================
@@ -45,7 +45,8 @@
         _countryCode = tmp[1] || '';
     }
 
-    function infra_displayDateTime(dateObj) {
+    function infra_displayDateTime() {
+        var dateObj = new Date();
         // https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
         $('header .aTime').text(dateObj.toLocaleTimeString(_langCode, _timeFormat));    // fr and fr-CA have different output
         // https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date
@@ -53,7 +54,7 @@
     }
 
     function infra_displayRss() {
-        
+        // TODO
     }
 
     function infra_playAtrractLoopVideo() {
@@ -82,10 +83,10 @@
     }
 
     function _adjustUrl(data) {
-        // correct video/image url based on root url.
+        // TODO: correct video/image url based on root url.
     }
 
-    function biz_loadVideosAsync() {
+    function biz_loadVideoListAsync() {
         var jsonfile = _config.videoRootUrl + '/' + _config.videoListFile.replace('{locale}', _config.locale);
         $.getJSON(jsonfile).done(function(data){
             // check
@@ -104,6 +105,27 @@
             else $('.aGridSafety').empty();
             if(okWhyryder) $('.aGridWhyryder').html(template(data.whyryder));
             else $('.aGridWhyryder').empty();
+        });
+    }
+
+    function biz_playVideo(url) {
+        Pn.ui.popupModal('.aVideoPopup', {
+            blockUi: true,
+            overlayClose: true,
+            onLaunching: function(){
+                $(this).find('video').attr('src', url);
+                return true;
+            },
+            onLaunched: function(){
+                try {
+                    $(this).find('video')[0].play();
+                } catch(err) {}
+                return true;
+            }
+        }).done(function(){
+            var v = $('.aVideoPopup').find('video');
+            v[0].pause();
+            v.attr('src', '');
         });
     }
 
@@ -131,7 +153,7 @@
             var $this = $(this);
             var needSecond = $this.find('.aBalloon').css('visibility') !== 'hidden';
             var videoUrl = $this.attr(needSecond ? 'data-video-2nd-src' : 'data-video-src');
-            alert('video Url = ' + videoUrl);
+            biz_playVideo(videoUrl);
         });
     }
 
@@ -152,23 +174,22 @@
         // localize
         Pn.l10n.locale(_config.locale);
 
-        // load video
-        biz_loadVideosAsync();
+        // display datetime
+        infra_displayDateTime();
+        window.setInterval(infra_displayDateTime, 10*1000);    // every 10 sec
 
         _hookEventHandlers();
+
+        // load video list
+        biz_loadVideoListAsync();
 
         //showAtrractLoop();
         biz_showVideoList();
     }
 
-    function stop() {
-        _unhookEventHandlers();
-    }
-
     var app = {
         init:               init,
-        start:              start,
-        loadVideos:     biz_loadVideosAsync,
+        start:              start
     };
 
 

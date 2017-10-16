@@ -79,8 +79,7 @@ main .uAttractLoopSec div {
 
 
 
-// 5.) video ======================================================================
-// video list
+// 5.) video list ======================================================================
 main .uVideoListSec {
     display: none;
     padding: 20px;
@@ -141,7 +140,9 @@ main .uVideoListSec {
     }
 }
 
-// video tile =====
+
+
+// 6.) video tile ======================================================================
 main .uVideoListSec .uVideoTile {
     display: block;
     width: 300px;
@@ -165,13 +166,25 @@ main .uVideoListSec .uVideoTile {
     }
 }
 
-// video tile toggled =====
 main .uVideoListSec.uAudioToggled .uVideoTile:not([data-video-2nd-src='']) .uBalloon {
     visibility: inherit;
 }
 
 
 
-// 6.) popups ======================================================================
+// 7.) video player ======================================================================
+article.uVideoPopup {
+    width: 960px;
+    height: 720px;
+    display: none;
+
+    video {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+// 8.) popups ======================================================================
 
 

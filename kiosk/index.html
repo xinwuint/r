@@ -51,12 +51,14 @@
             </section>
         </footer>
 
-    	<article class='uPopup aVideoPopup'></article>
+        <article class='aVideoPopup uVideoPopup'>
+            <video autoplay="true" controls></video>
+        </article>
 
         <script id="template-videolist" type="text/x-handlebars-template">
             {{#each this}}
             <div class="aVideoTile uVideoTile" data-video-src="{{videoFile}}" data-video-2nd-src="{{videoSecondaryFile}}">
-                <div class="uThumb"><img src="video/{{thumbnailFile}}"></div>
+                <div class="uThumb"><img src="{{thumbnailFile}}"></div>
                 <div class="aBalloon uBalloon"></div>
                 <div class="uTitle">{{title}}</div>
             </div>
