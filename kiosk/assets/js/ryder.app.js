@@ -183,8 +183,8 @@
         // load video list
         biz_loadVideoListAsync();
 
-        //showAtrractLoop();
-        biz_showVideoList();
+        biz_showAtrractLoop();
+        //biz_showVideoList();
     }
 
     var app = {

@@ -1,8 +1,8 @@
 ﻿String.toLocaleString({
 
 	"en": {
-		"attract.start": "start",
-		"attract.desc": "asdf akuyg kuygh adsjh<br>g kggtg kjgaug gasdget",
+		"attract.start": "START",
+		"attract.desc": "<- To begin session, clike on it.",
 		"attract.videourl": "assets/video/attract.mp4",
 	    "rss.cat.topnews": "TOP NEWS",
 	    "rss.cat.sportsnews": "SPORTS NEWS",
