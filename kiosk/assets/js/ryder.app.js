@@ -27,15 +27,19 @@
         _confDefault = {
             locale: 'en-us',    // default locale
             idleTimeout: 2*60,  // 2 min
+            rssInterval: 3600*1000,  // 1h
             rssStoryLen: 120,   // 120 characters
             videoRootUrl: 'assets/video/',
-            videoManifestFile: 'videos_{locale}.json'
+            videoManifestFile: 'videos_{locale}.json',
+            emailFrom: 'no-reply@ryder-digit.com',
+            videoSiteAbsUrl: 'http://ryder-digit.com/videos/',
         };
 
     // state
     var _config,
         _langCode = '',
-        _countryCode = '';
+        _countryCode = '',
+        _sportsNewsCat = 0; // indicate next cat (rss1 or rss2)
 
     function init(config) {
         // deal with config
@@ -45,25 +49,29 @@
         _countryCode = tmp[1] || '';
     }
 
-    function infra_displayDateTime() {
-        var dateObj = new Date();
-        // https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
-        $('header .aTime').text(dateObj.toLocaleTimeString(_langCode, _timeFormat));    // fr and fr-CA have different output
-        // https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date
-        $('header .aDate').text(dateObj.toLocaleDateString(_langCode, _dateFormat));
-    }
+    //=========================== infra start ==============================
 
-    function infra_displayRss() {
-        // TODO
+    function infra_fetch2RssStories(url) {
+        return Pn.ajax.get(url).then(function(data) {
+            // this is a filter, not just callback
+            if(data && data.channel && data.channel.item && data.channel.item.length) {
+                return [
+                    data.channel.item[0].description,
+                    data.channel.item[1] ? data.channel.item[1].description : ''
+                ];
+            }
+            return ['', ''];
+        });
     }
 
     function infra_email(addr) {
-        var from = "asdf@asdf.com";
-        var d = $.Deferred();
+        var videoSiteUrl = _config.videoSiteAbsUrl;
+        var from = _config.emailFrom;
+        var body = Pn.l10n.get('email.body').replace('{url}', videoSiteUrl);
 
+        var d = $.Deferred();
         // fack code for success
         d.resolve();
-
         // fack code for failure
         //d.reject();
         return d;
@@ -147,6 +155,89 @@
         kb.reveal();
     }
 
+    // in json, videoFile has no path. So add it.
+    function _adjustUrl(data, rootUrl) {
+        if(data) {
+            for(var cat in data) {
+                var l = data[cat];
+                if(l && l.length) {
+                    for(var i=0; i<l.length; i++) {
+                        var v = l[i];
+                        if(v) {
+                            if(v.thumbnailFile) v.thumbnailFile = rootUrl + v.thumbnailFile;
+                            if(v.videoFile) v.videoFile = rootUrl + v.videoFile;
+                            if(v.videoSecondaryFile) v.videoSecondaryFile = rootUrl + v.videoSecondaryFile;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    function infra_loadVideoListAsync() {
+        var jsonfile = _config.videoRootUrl + _config.videoManifestFile.replace('{locale}', _config.locale);
+        $.getJSON(jsonfile).done(function(data){
+            // check
+            var okSafety = data.safety && data.safety.length > 0;
+            var okWhyryder = data.whyryder && data.whyryder.length > 0;
+            if(!okSafety && !okWhyryder) return;
+
+            // adjust url
+            data.__proto__ = undefined;
+            _adjustUrl(data, _config.videoRootUrl);
+
+            // template
+            var template = Handlebars.compile($('#template-videolist').html());
+
+            // mount html
+            if(okSafety) $('.aGridSafety').html(template(data.safety));
+            else $('.aGridSafety').empty();
+            if(okWhyryder) $('.aGridWhyryder').html(template(data.whyryder));
+            else $('.aGridWhyryder').empty();
+        });
+    }
+
+    //=========================== infra end ==============================
+
+    function biz_displayDateTime() {
+        var dateObj = new Date();
+        // https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
+        $('header .aTime').text(dateObj.toLocaleTimeString(_langCode, _timeFormat));    // fr and fr-CA have different output
+        // https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date
+        $('header .aDate').text(dateObj.toLocaleDateString(_langCode, _dateFormat));
+    }
+
+    function biz_displayRss() {
+        var rssUrls = _config.rssUrls[_config.locale];
+        var set1;
+
+        // story 1
+        var pRss1 = infra_fetch2RssStories(rssUrls[0]).done(function(data){
+            set1 = data;
+            $('footer .aContent1').text(Pn.util.ellipsis(data[0], _config.rssStoryLen));
+        });
+
+        // story 2
+        if(!rssUrls[1] && !rssUrls[2]) {
+            // display top news
+            $.when(pRss1).done(function(){
+                $('footer .aContent2').text(Pn.util.ellipsis(set1[1], _config.rssStoryLen));
+            });
+        } else {
+            var url;
+            if(rssUrls[2]) {
+                // pick url between 2
+                url = _sportsNewsCat === 0 ? rssUrls[1] : rssUrls[2];
+                _sportsNewsCat = _sportsNewsCat++ % 2;
+            } else {
+                url = rssUrls[1];
+            }
+            infra_fetch2RssStories(url).done(function(data){
+                $('footer .aContent2').text(Pn.util.ellipsis(data[0], _config.rssStoryLen));
+            });
+        }
+    }
+
     function biz_showAtrractLoop() {
         // put transition here
         $('main section').hide();
@@ -172,32 +263,6 @@
         $('main section.aLayerSec').hide();
         $('main section.aKeyboardSec').hide();
         infra_clearEmailInput();
-    }
-
-    function _adjustUrl(data) {
-        // TODO: correct video/image url based on root url.
-    }
-
-    function biz_loadVideoListAsync() {
-        var jsonfile = _config.videoRootUrl + _config.videoManifestFile.replace('{locale}', _config.locale);
-        $.getJSON(jsonfile).done(function(data){
-            // check
-            var okSafety = data.safety && data.safety.length > 0;
-            var okWhyryder = data.whyryder && data.whyryder.length > 0;
-            if(!okSafety && !okWhyryder) return;
-
-            // adjust url
-            _adjustUrl(data);
-
-            // template
-            var template = Handlebars.compile($('#template-videolist').html());
-
-            // mount html
-            if(okSafety) $('.aGridSafety').html(template(data.safety));
-            else $('.aGridSafety').empty();
-            if(okWhyryder) $('.aGridWhyryder').html(template(data.whyryder));
-            else $('.aGridWhyryder').empty();
-        });
     }
 
     function biz_playVideo(url) {
@@ -254,7 +319,6 @@
             });
         });
 
-
         // click on video
         $('main .aVideoListSec').on('click', '.aVideoTile', function(){
             var $this = $(this);
@@ -281,26 +345,32 @@
         // localize
         Pn.l10n.locale(_config.locale);
 
-        // keyboard
+        // init keyboard
         infra_initKeyboard(_langCode);
 
         // events
         _hookEventHandlers();
 
         // display datetime
-        infra_displayDateTime();
-        window.setInterval(infra_displayDateTime, 10*1000);    // every 10 sec
+        biz_displayDateTime();
+        window.setInterval(biz_displayDateTime, 10*1000);    // every 10 sec
+
+        // display rss
+        biz_displayRss();
+        window.setInterval(biz_displayRss, _config.rssInterval);
+        
 
         // play attract loop
         biz_showAtrractLoop();
 
         // load video list
-        biz_loadVideoListAsync();
+        infra_loadVideoListAsync();
     }
 
     var app = {
         init:               init,
-        start:              start
+        start:              start,
+        infra_fetch2RssStories: infra_fetch2RssStories
     };
 
 

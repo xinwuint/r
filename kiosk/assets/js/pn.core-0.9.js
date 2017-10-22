@@ -23,6 +23,7 @@
         string  escapeRegex(string:text);
         string  fetch(string:text, (string|RegExp):regex, int:groupIdx);
         string|null|undefined  trim(string:text);
+        string  ellipsis(obj, int:max);      // truncate string and append ellipsis
         string  getParameterByName(string:name[, string:url]);
         string  newGuid();
         void    publish(obj[, string:namespace]);
@@ -130,6 +131,14 @@
         return !text ? text : text.trim();
     }
 
+    // text related.
+    function util_ellipsis(text, max) {
+        if(!text) return '';
+        text = text.toString();
+        if(text.length <= max) return text;
+        return text.substr(0, max-3) + '...';
+    }
+
     // text related
     function util_getParameterByName(name, url) {
         if (!name) return '';
@@ -160,6 +169,7 @@
         escapeRegex:                        util_escapeRegex,
         fetch:                              util_fetch,
         trim:                               util_trim,
+        ellipsis:                           util_ellipsis,
         getParameterByName:                 util_getParameterByName,
         newGuid:                            util_newGuid
     };
