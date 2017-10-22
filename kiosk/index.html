@@ -20,23 +20,34 @@
         </header>
 
     	<main>
-    		<section class="aAttractLoopSec uAttractLoopSec">
-                <video autoplay="true" loop="true" l10n-attr="data-src:attract.videourl"></video>
-                <div l10n-text="attract.desc"></div>
-                <div class="aStart" l10n-text="attract.start"></div>
-            </section>
-            <section class="aVideoListSec uVideoListSec">
-                <div class="uVideoListDiv">
-                    <div class="uCategory" l10n-text="videolist.cat.safety"></div>
-                    <div class="aGridSafety uGrid"></div>
-                    <div class="uCategory" l10n-text="videolist.cat.whyryder"></div>
-                    <div class="aGridWhyryder uGrid"></div>
-                </div>
-                <div class="uBtnDiv">
-                    <span class="aToggleBtn uToggleBtn" l10n-locale></span>
-                    <span class="aEmailBtn uEmailBtn" l10n-locale></span>
-                </div>
-            </section>
+            <div class="uSectionsWrap">
+        		<section class="aAttractLoopSec uAttractLoopSec">
+                    <video autoplay="true" loop="true" l10n-attr="data-src:attract.videourl"></video>
+                    <div l10n-text="attract.desc"></div>
+                    <div class="aStart" l10n-text="attract.start"></div>
+                </section>
+                <section class="aVideoListSec uVideoListSec">
+                    <div class="uVideoListDiv">
+                        <div class="uCategory" l10n-text="videolist.cat.safety"></div>
+                        <div class="aGridSafety uGrid"></div>
+                        <div class="uCategory" l10n-text="videolist.cat.whyryder"></div>
+                        <div class="aGridWhyryder uGrid"></div>
+                    </div>
+                    <div class="uBtnDiv">
+                        <span class="aToggleBtn uToggleBtn" l10n-locale></span>
+                        <span class="aEmailBtn uEmailBtn" l10n-locale></span>
+                    </div>
+                </section>
+                <section class="aLayerSec uLayerSec"></section>
+                <section class="aKeyboardSec uKeyboardSec">
+                    <div>Ryder is .......</div>
+                    <div>ENTER EMAIL ADDRESS:</div>
+                    <div>
+                        <input type="text" class="aEmailField uEmailField" />
+                    </div>
+                    <div class="uBackToVideoDiv"><span class="aBackBtn" l10n-text="email.backtovideo"></span></div>
+                </section>
+            </div>
     	</main>
 
     	<footer>
@@ -68,6 +79,7 @@
         <!-- 3rd party lib -->
         <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.bpopup-0.9.4.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.keyboard.js"></script>
         <script type="text/javascript" src="assets/js/l10n.min.js"></script>
         <script type="text/javascript" src="assets/js/handlebars.min.js"></script>
         <script type="text/javascript" src="assets/js/pn.core-0.9.js"></script>

@@ -56,18 +56,24 @@ main {
     height: 840px;
     background: url('../images/kiosk_bk_Image.png') no-repeat center top;
     padding-top: 60px;
-}
-
-main section {
-    width: 1702px;
-    height: 720px;
-    margin: auto;
     border: solid 1px red;
+
+    .uSectionsWrap {
+        width: 1702px;
+        height: 720px;
+        margin: auto;
+        position: relative;
+
+        section {
+            height: 100%;
+            border: solid 1px blue;
+        }
+    }
 }
 
 
 
-// 4.) attract loop ======================================================================
+// 4.) attract section =================================================================
 main .uAttractLoopSec video {
     width: 1280px;
     height: 100%;
@@ -79,7 +85,7 @@ main .uAttractLoopSec div {
 
 
 
-// 5.) video list ======================================================================
+// 5.) video list section ==============================================================
 main .uVideoListSec {
     display: none;
     padding: 20px;
@@ -172,7 +178,33 @@ main .uVideoListSec.uAudioToggled .uVideoTile:not([data-video-2nd-src='']) .uBal
 
 
 
-// 7.) video player ======================================================================
+// 7.) cover section ======================================================================
+main .uLayerSec {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: #000;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+
+// 8.) keyboard section ======================================================================
+main .uKeyboardSec {
+    margin-left: 540px;
+    position: relative;
+    top: -720px;
+    background-color: #2b2b2b;
+
+    .uBackToVideoDiv {
+        text-align: right;
+    }
+}
+
+
+// 9.) video player ======================================================================
 article.uVideoPopup {
     width: 960px;
     height: 720px;
@@ -185,6 +217,7 @@ article.uVideoPopup {
 }
 
 
-// 8.) popups ======================================================================
+
+// 10.) popups ======================================================================
 
 

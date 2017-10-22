@@ -34,7 +34,7 @@
 
     function idle_init() {
         // on user's interaction.
-        $(document).on('mousemove keyup keydown mousedown click', function() {
+        $(document).on('mousedown mouseup mousemove keydown keyup touchstart touchend touchmove', function() {
             if(!_enabled) return;
             _lastTime = new Date();
             if(!_obj) _obj = window.setInterval(idle_check, _checkInterval * 1000);

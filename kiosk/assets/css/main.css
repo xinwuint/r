@@ -246,13 +246,16 @@ main {
   width: 100%;
   height: 840px;
   background: url("../images/kiosk_bk_Image.png") no-repeat center top;
-  padding-top: 60px; }
-
-main section {
-  width: 1702px;
-  height: 720px;
-  margin: auto;
+  padding-top: 60px;
   border: solid 1px red; }
+  main .uSectionsWrap {
+    width: 1702px;
+    height: 720px;
+    margin: auto;
+    position: relative; }
+    main .uSectionsWrap section {
+      height: 100%;
+      border: solid 1px blue; }
 
 main .uAttractLoopSec video {
   width: 1280px;
@@ -319,6 +322,24 @@ main .uVideoListSec .uVideoTile {
 main .uVideoListSec.uAudioToggled .uVideoTile:not([data-video-2nd-src='']) .uBalloon {
   visibility: inherit; }
 
+main .uLayerSec {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: #000;
+  opacity: 0.3;
+  filter: alpha(opacity=30); }
+
+main .uKeyboardSec {
+  margin-left: 540px;
+  position: relative;
+  top: -720px;
+  background-color: #2b2b2b; }
+  main .uKeyboardSec .uBackToVideoDiv {
+    text-align: right; }
+
 article.uVideoPopup {
   width: 960px;
   height: 720px;
@@ -326,3 +347,60 @@ article.uVideoPopup {
   article.uVideoPopup video {
     width: 100%;
     height: 100%; }
+
+/* ryder keyboard - jQuery UI Widget */
+.ui-keyboard {
+  padding: .3em;
+  border: 1px solid blue;
+  text-align: center;
+  /* see issue #484 */
+  -ms-touch-action: manipulation;
+  touch-action: manipulation; }
+
+.ui-keyboard div {
+  text-align: right; }
+
+.ui-keyboard-button {
+  height: 65px;
+  width: 65px;
+  min-width: 2em;
+  margin: .4em;
+  cursor: pointer;
+  overflow: hidden;
+  line-height: 2em;
+  background-color: #555555;
+  color: #ffffff;
+  -moz-user-focus: ignore;
+  text-transform: uppercase;
+  border: 0px; }
+  .ui-keyboard-button span {
+    font-size: large; }
+  .ui-keyboard-button.ui-state-hover {
+    background-color: #000000; }
+
+.ui-keyboard-button.ui-keyboard-bksp span {
+  font-size: small; }
+
+.ui-keyboard-button.ui-keyboard-accept, .ui-keyboard-button.ui-keyboard-normal, .ui-keyboard-button.ui-keyboard-meta1, .ui-keyboard-button.ui-keyboard-meta2 {
+  width: 100px; }
+
+.ui-keyboard-button.ui-keyboard-accept.ui-keyboard-valid-input {
+  background-color: #aaaaaa;
+  color: #333333; }
+  .ui-keyboard-button.ui-keyboard-accept.ui-keyboard-valid-input.ui-state-hover {
+    background-color: #000000;
+    color: #ffffff; }
+
+.ui-keyboard-button.ui-keyboard-accept.ui-keyboard-invalid-input {
+  background-color: #aaaaaa;
+  color: #333333;
+  opacity: 0.5;
+  filter: alpha(opacity=50); }
+  .ui-keyboard-button.ui-keyboard-accept.ui-keyboard-invalid-input.ui-state-hover {
+    background-color: #aaaaaa;
+    color: #333333;
+    opacity: 0.5;
+    filter: alpha(opacity=50); }
+
+.ui-keyboard-button.ui-keyboard-space {
+  width: 560px; }

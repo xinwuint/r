@@ -9,7 +9,6 @@
 	Pn.ui.init();
 	Pn.l10n.init();
 	Pn.idle.init();
-	app.init();
 
 	// config
 	var promiseConfig = $.getJSON('config/config.json');
@@ -18,7 +17,8 @@
 	$(document).ready(function () {
 
 		$.when(promiseConfig).done(function(conf){
-			app.start(conf);
+			app.init(conf);
+			app.start();
 		});
 	});
 

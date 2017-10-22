@@ -10,6 +10,7 @@
 	    "footer.noconn.desc": "we can't send ab email right now. please blahblah",
 	    "videolist.cat.safety": "SAFETY",
 	    "videolist.cat.whyryder": "WHY RYDER",
+	    "email.backtovideo": "BACK TO VIDEO",
 	},
 
 	"fr": {
