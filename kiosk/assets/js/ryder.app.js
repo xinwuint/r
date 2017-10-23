@@ -31,7 +31,7 @@
         _timeFormat = { hour: 'numeric', minute:'numeric', hour12: true },
         _confDefault = {
             locale: 'en-us',    // default locale
-            idleTimeout: 15,//2*60,  // 2 min
+            idleTimeout: 2*60,  // 2 min
             rssInterval: 3600*1000,  // 1h
             rssStoryLen: 120,   // 120 characters
             videoRootUrl: 'assets/video/',
