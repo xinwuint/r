@@ -249,7 +249,7 @@
             if(rssUrls[2]) {
                 // pick url between 2
                 url = _sportsNewsCat === 0 ? rssUrls[1] : rssUrls[2];
-                _sportsNewsCat = _sportsNewsCat++ % 2;
+                _sportsNewsCat = (_sportsNewsCat + 1) % 2;
             } else {
                 url = rssUrls[1];
             }
@@ -297,14 +297,14 @@
                 return true;
             },
             onLaunched: function(){
+                var $this = $(this);
+                $this.find('video').on('ended', function(){
+                    // close popup when done
+                    Pn.ui.fireReturnEvent($this);
+                });
+                Pn.idle.pause();
                 try {
-                    var $this = $(this);
-                    $this.find('video').on('ended', function(){
-                        // close popup when done
-                        Pn.ui.fireReturnEvent($this);
-                    });
                     $this.find('video')[0].play();
-                    Pn.idle.pause();
                 } catch(err) {}
                 return true;
             }
