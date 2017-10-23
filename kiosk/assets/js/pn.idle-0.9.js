@@ -12,6 +12,8 @@
         void    init();
         void    start(seconds, callbackTimeout, callbackProgress);
         void    stop();
+        void    pause();
+        void    resume(bool:continueOldCycle);  // continueOldCycle=true means take into account the idle time before pause 
 
     Mode details:
         This is only for a scenario of idle, it is not a simple timer.
@@ -37,11 +39,11 @@
         $(document).on('mousedown mouseup mousemove keydown keyup touchstart touchend touchmove', function() {
             if(!_enabled) return;
             _lastTime = new Date();
-            if(!_obj) _obj = window.setInterval(idle_check, _checkInterval * 1000);
+            if(!_obj) _obj = window.setInterval(_check, _checkInterval * 1000);
         });
     }
 
-    function idle_check() {
+    function _check() {
         if(!_enabled) return;
         var elapsed = (new Date() - _lastTime)/1000;
         // not timeout, invoke progress callback
@@ -52,11 +54,15 @@
             return;
         };
         // timeout. clear obj and invoke timeout callback
+        _removeTimer();
+        _cbTimeout();
+    }
+
+    function _removeTimer() {
         if(_obj) {
             window.clearInterval(_obj);
             _obj = null;
         }
-        _cbTimeout();
     }
 
     function idle_start(seconds, callbackTimeout, callbackProgress) {
@@ -65,19 +71,30 @@
         _timeout = seconds;
         _cbTimeout = callbackTimeout;
         _cbProgress = callbackProgress;
-        _enabled = true;        // set flag
+        _enabled = true;
     }
 
     function idle_stop() {
-        _enabled = false;       // clear flag
-        if(_obj) window.clearInterval(_obj);
-        _cbTimeout = _cbProgress = _lastTime = _obj = null;
-    };
+        _enabled = false;
+        _removeTimer();
+        _cbTimeout = _cbProgress = _lastTime = null;
+    }
+
+    function idle_pause() {
+        _enabled = false;
+    }
+
+    function idle_resume(continueOldCycle) {
+        if(!continueOldCycle) _lastTime = new Date();
+        _enabled = true;
+    }
 
     var idle = {
         init:   idle_init,
         start:  idle_start,
-        stop:   idle_stop
+        stop:   idle_stop,
+        pause:  idle_pause,
+        resume: idle_resume
     };
 
 

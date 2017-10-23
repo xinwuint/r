@@ -10,14 +10,15 @@
 	Pn.l10n.init();
 	Pn.idle.init();
 
-	// config
-	var promiseConfig = $.getJSON('config/config.json');
+	// load config
+	var promiseConfig = $.getJSON('config/config.ajax').done(function(conf) {
+		app.init(conf);
+	});
 
 
 	$(document).ready(function () {
 
-		$.when(promiseConfig).done(function(conf){
-			app.init(conf);
+		$.when(promiseConfig).done(function() {
 			app.start();
 		});
 	});

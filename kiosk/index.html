@@ -40,10 +40,21 @@
                 </section>
                 <section class="aLayerSec uLayerSec"></section>
                 <section class="aKeyboardSec uKeyboardSec">
-                    <div>Ryder is .......</div>
-                    <div>ENTER EMAIL ADDRESS:</div>
-                    <div>
-                        <input type="text" class="aEmailField uEmailField" />
+                    <div class="uKeyboardDiv">
+                        <div class="uKeyboardWrap">
+                            <div>Ryder is .......</div>
+                            <div>ENTER EMAIL ADDRESS:</div>
+                            <div>
+                                <input type="text" class="aEmailField uEmailField" />
+                            </div>
+                        </div>
+                        <div class="aCoverWrap uCoverWrap"></div>
+                        <div class="aErrWrap uErrWrap">
+                            <img src="assets/images/kiosk_LRG_Warning_Icon.png">
+                            <div l10n-text="err.title"></div>
+                            <div l10n-text="err.text1"></div>
+                            <div l10n-text="err.text2"></div>
+                        </div>
                     </div>
                     <div class="uBackToVideoDiv"><span class="aBackBtn" l10n-text="keyboard.backtovideo"></span></div>
                 </section>
@@ -57,8 +68,11 @@
                 <span class="uTitle2" l10n-text="rss.cat.sportsnews"></span>
                 <span class="aContent2 uContent2"></span>
             </section>
-            <section class="aWarn">
-                
+            <section class="aErr uErr">
+                <img src="assets/images/kiosk_LRG_Warning_Icon.png">
+                <span l10n-text="err.title"></span>
+                <span l10n-text="err.text1"></span>
+                <span l10n-text="err.text2"></span>
             </section>
         </footer>
 

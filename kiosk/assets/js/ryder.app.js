@@ -7,6 +7,9 @@
     Dependency:
         jQuery 1.8+
         handlebars.js
+        jquery.keyboard.js
+        jquery.bpopup-0.9.4.min.js
+        l10n.min.js
         pn.core.js
         pn.ui.js
         pn.idle.js
@@ -14,8 +17,10 @@
 */
 
 /*
-    app
-        void    init();
+    CONVENTION
+        _func :         private/util/helper function, which is used by infra/biz;
+        infra_func:     atomic functionality for ryder app;
+        biz_func:       facade functionality, which is triggered by user or timer, and may have transition effect;
 */
 
 ;(function (Pn, $, window, undefined) {
@@ -30,7 +35,7 @@
             rssInterval: 3600*1000,  // 1h
             rssStoryLen: 120,   // 120 characters
             videoRootUrl: 'assets/video/',
-            videoManifestFile: 'videos_{locale}.json',
+            videoManifestFile: 'videos_{locale}.ajax',
             emailFrom: 'no-reply@ryder-digit.com',
             videoSiteAbsUrl: 'http://ryder-digit.com/videos/',
         };
@@ -39,7 +44,7 @@
     var _config,
         _langCode = '',
         _countryCode = '',
-        _sportsNewsCat = 0; // indicate next cat (rss1 or rss2)
+        _sportsNewsCat = 0; // indicate next rss sports category
 
     function init(config) {
         // deal with config
@@ -65,15 +70,15 @@
     }
 
     function infra_email(addr) {
-        var videoSiteUrl = _config.videoSiteAbsUrl;
+        var videoSiteUrl = _config.videoSiteAbsUrl + '?locale=' + _config.locale;
         var from = _config.emailFrom;
         var body = Pn.l10n.get('email.body').replace('{url}', videoSiteUrl);
 
         var d = $.Deferred();
         // fack code for success
-        d.resolve();
+        //d.resolve();
         // fack code for failure
-        //d.reject();
+        d.reject();
         return d;
     }
 
@@ -86,6 +91,22 @@
 
     function infra_stopAtrractLoopVideo() {
         $('main section.aAttractLoopSec video').attr('src', '');
+    }
+
+    function infra_showErrMsg() {
+        $('footer .aRss').hide();
+        $('footer .aErr').show();
+
+        $('main .aKeyboardSec .aCoverWrap').show();
+        $('main .aKeyboardSec .aErrWrap').show();
+    }
+
+    function infra_hideErrMsg() {
+        $('footer .aRss').show();
+        $('footer .aErr').hide();
+
+        $('main .aKeyboardSec .aCoverWrap').hide();
+        $('main .aKeyboardSec .aErrWrap').hide();
     }
 
     function infra_initKeyboard(langCode) {
@@ -199,7 +220,7 @@
 
     //=========================== infra end ==============================
 
-    function biz_displayDateTime() {
+    function biz_populateDateTime() {
         var dateObj = new Date();
         // https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
         $('header .aTime').text(dateObj.toLocaleTimeString(_langCode, _timeFormat));    // fr and fr-CA have different output
@@ -207,21 +228,21 @@
         $('header .aDate').text(dateObj.toLocaleDateString(_langCode, _dateFormat));
     }
 
-    function biz_displayRss() {
+    function biz_populateRss() {
         var rssUrls = _config.rssUrls[_config.locale];
         var set1;
 
         // story 1
         var pRss1 = infra_fetch2RssStories(rssUrls[0]).done(function(data){
             set1 = data;
-            $('footer .aContent1').text(Pn.util.ellipsis(data[0], _config.rssStoryLen));
+            $('footer .aRss .aContent1').text(Pn.util.ellipsis(data[0], _config.rssStoryLen));
         });
 
         // story 2
         if(!rssUrls[1] && !rssUrls[2]) {
             // display top news
             $.when(pRss1).done(function(){
-                $('footer .aContent2').text(Pn.util.ellipsis(set1[1], _config.rssStoryLen));
+                $('footer .aRss .aContent2').text(Pn.util.ellipsis(set1[1], _config.rssStoryLen));
             });
         } else {
             var url;
@@ -233,7 +254,7 @@
                 url = rssUrls[1];
             }
             infra_fetch2RssStories(url).done(function(data){
-                $('footer .aContent2').text(Pn.util.ellipsis(data[0], _config.rssStoryLen));
+                $('footer .aRss .aContent2').text(Pn.util.ellipsis(data[0], _config.rssStoryLen));
             });
         }
     }
@@ -263,8 +284,10 @@
         $('main section.aLayerSec').hide();
         $('main section.aKeyboardSec').hide();
         infra_clearEmailInput();
+        infra_hideErrMsg();
     }
 
+    // video popup
     function biz_playVideo(url) {
         Pn.ui.popupModal('.aVideoPopup', {
             blockUi: true,
@@ -275,8 +298,13 @@
             },
             onLaunched: function(){
                 try {
-                    $(this).find('video')[0].play();
-                    // TODO $(this).find('video').on('ended', function(){alert('video ended!')});
+                    var $this = $(this);
+                    $this.find('video').on('ended', function(){
+                        // close popup when done
+                        Pn.ui.fireReturnEvent($this);
+                    });
+                    $this.find('video')[0].play();
+                    Pn.idle.pause();
                 } catch(err) {}
                 return true;
             }
@@ -284,6 +312,8 @@
             var v = $('.aVideoPopup').find('video');
             v[0].pause();
             v.attr('src', '');
+            v.off('ended');
+            Pn.idle.resume();
         });
     }
 
@@ -316,7 +346,7 @@
             var addr = el.value;
             infra_email(addr).done(function(){
                 biz_hideKeyboard();
-            });
+            }).fail(infra_showErrMsg);
         });
 
         // click on video
@@ -328,22 +358,23 @@
         });
     }
 
-    function _unhookEventHandlers() {
-        // start btn
-        $('main .aAttractLoopSec .aStart').off('click');
-
-        // toggle audio btn
-        $('main .aVideoListSec .aToggleBtn').off('click');
-
-        // email btn
-        $('main .aVideoListSec .aEmailBtn').off('mousedown mouseup');
-
-        // TODO
+    function biz_startSession() {
+        biz_hideKeyboard();
+        biz_showAtrractLoop();
+        // TODO: add tracking
     }
 
     function start() {
         // localize
         Pn.l10n.locale(_config.locale);
+
+        // populate datetime
+        biz_populateDateTime();
+        window.setInterval(biz_populateDateTime, 10*1000);    // every 10 sec
+
+        // populate rss story
+        biz_populateRss();
+        window.setInterval(biz_populateRss, _config.rssInterval);
 
         // init keyboard
         infra_initKeyboard(_langCode);
@@ -351,26 +382,18 @@
         // events
         _hookEventHandlers();
 
-        // display datetime
-        biz_displayDateTime();
-        window.setInterval(biz_displayDateTime, 10*1000);    // every 10 sec
-
-        // display rss
-        biz_displayRss();
-        window.setInterval(biz_displayRss, _config.rssInterval);
-        
-
-        // play attract loop
-        biz_showAtrractLoop();
-
         // load video list
         infra_loadVideoListAsync();
+
+        // idle timer
+        Pn.idle.start(_config.idleTimeout, biz_startSession);
+
+        biz_startSession();
     }
 
     var app = {
         init:               init,
-        start:              start,
-        infra_fetch2RssStories: infra_fetch2RssStories
+        start:              start
     };
 
 

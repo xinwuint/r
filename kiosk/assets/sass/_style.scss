@@ -48,6 +48,14 @@ footer .uRss {
     }
 }
 
+footer .uErr {
+    display: none;
+    img {
+        width: 72px;
+        height: 62px;
+    }
+}
+
 
 
 // 3.) main ======================================================================
@@ -166,8 +174,8 @@ main .uVideoListSec .uVideoTile {
 
     .uBalloon {
         height: 30px;
-        background: url('../images/balloon.png') right top no-repeat;
-        background-size: 30px 30px;
+        background: url('../images/kiosk_Language_Icon.png') right top no-repeat;
+        background-size: 24px 23px;
         visibility: hidden;
     }
 }
@@ -200,6 +208,24 @@ main .uKeyboardSec {
 
     .uBackToVideoDiv {
         text-align: right;
+    }
+
+    .uKeyboardDiv {
+        position: relative;
+
+        .uErrWrap, .uCoverWrap {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            top: 0px;
+            display: none;
+        }
+
+        .uCoverWrap {
+            background-color: #2b2b2b;
+            opacity: 0.8;
+        }
     }
 }
 
