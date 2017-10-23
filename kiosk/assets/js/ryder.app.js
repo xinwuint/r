@@ -31,7 +31,7 @@
         _timeFormat = { hour: 'numeric', minute:'numeric', hour12: true },
         _confDefault = {
             locale: 'en-us',    // default locale
-            idleTimeout: 2*60,  // 2 min
+            idleTimeout: 15,//2*60,  // 2 min
             rssInterval: 3600*1000,  // 1h
             rssStoryLen: 120,   // 120 characters
             videoRootUrl: 'assets/video/',
@@ -107,6 +107,18 @@
 
         $('main .aKeyboardSec .aCoverWrap').hide();
         $('main .aKeyboardSec .aErrWrap').hide();
+    }
+
+    function infra_showPointer() {
+    	$('main .aVideoListSec .aPointerBtn').show();
+    }
+
+    function infra_hidePointer() {
+    	$('main .aVideoListSec .aPointerBtn').hide();
+    }
+
+    function infra_clearVideoTileSelection() {
+    	Pn.ui.selected('main .aVideoListSec .aVideoTile', false);
     }
 
     function infra_initKeyboard(langCode) {
@@ -270,6 +282,8 @@
         // put transition here
         $('main section').hide();
         infra_stopAtrractLoopVideo();
+        infra_clearVideoTileSelection();
+        infra_showPointer();
         $('main section.aVideoListSec').show();
     }
 
@@ -349,9 +363,18 @@
             }).fail(infra_showErrMsg);
         });
 
-        // click on video
+        // video tile
         $('main .aVideoListSec').on('click', '.aVideoTile', function(){
             var $this = $(this);
+
+            // select this tile
+            infra_clearVideoTileSelection();
+            Pn.ui.selected($this, true);
+
+            // hide pointer
+            infra_hidePointer();
+
+            // popup
             var needSecond = $this.find('.aBalloon').css('visibility') !== 'hidden';
             var videoUrl = $this.attr(needSecond ? 'data-video-2nd-src' : 'data-video-src');
             biz_playVideo(videoUrl);

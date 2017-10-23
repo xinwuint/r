@@ -282,30 +282,39 @@ main .uVideoListSec {
   main .uVideoListSec .uBtnDiv {
     height: 100px;
     border: 1px solid green;
-    text-align: right; }
-  main .uVideoListSec .uEmailBtn, main .uVideoListSec .uToggleBtn {
-    display: inline-block;
-    width: 110px;
-    height: 38px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center; }
-  main .uVideoListSec .uEmailBtn {
-    background-image: url("../images/kiosk_Email_Bth_UP.png"); }
-    main .uVideoListSec .uEmailBtn[selected] {
-      background-image: url("../images/kiosk_Email_Bth_RL-DN.png"); }
-  main .uVideoListSec .uToggleBtn[l10n-locale='en-us'] {
-    background-image: url("../images/kiosk_Spanish_Btn_UP.png"); }
-    main .uVideoListSec .uToggleBtn[l10n-locale='en-us'][selected] {
-      background-image: url("../images/kiosk_Spanish_Btn_RL-DN.png"); }
-  main .uVideoListSec .uToggleBtn[l10n-locale='en-ca'] {
-    background-image: url("../images/kiosk_French_Btn_UP.png"); }
-    main .uVideoListSec .uToggleBtn[l10n-locale='en-ca'][selected] {
-      background-image: url("../images/kiosk_French_Btn_RL-DN.png"); }
-  main .uVideoListSec .uToggleBtn[l10n-locale='fr-ca'] {
-    background-image: url("../images/kiosk_English_Btn_UP.png"); }
-    main .uVideoListSec .uToggleBtn[l10n-locale='fr-ca'][selected] {
-      background-image: url("../images/kiosk_English_Btn_RL-DN.png"); }
+    text-align: right;
+    position: relative; }
+    main .uVideoListSec .uBtnDiv .uEmailBtn, main .uVideoListSec .uBtnDiv .uToggleBtn {
+      display: inline-block;
+      width: 110px;
+      height: 38px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center; }
+    main .uVideoListSec .uBtnDiv .uEmailBtn {
+      background-image: url("../images/kiosk_Email_Bth_UP.png"); }
+      main .uVideoListSec .uBtnDiv .uEmailBtn[selected] {
+        background-image: url("../images/kiosk_Email_Bth_RL-DN.png"); }
+    main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-us'] {
+      background-image: url("../images/kiosk_Spanish_Btn_UP.png"); }
+      main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-us'][selected] {
+        background-image: url("../images/kiosk_Spanish_Btn_RL-DN.png"); }
+    main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca'] {
+      background-image: url("../images/kiosk_French_Btn_UP.png"); }
+      main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca'][selected] {
+        background-image: url("../images/kiosk_French_Btn_RL-DN.png"); }
+    main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca'] {
+      background-image: url("../images/kiosk_English_Btn_UP.png"); }
+      main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca'][selected] {
+        background-image: url("../images/kiosk_English_Btn_RL-DN.png"); }
+    main .uVideoListSec .uBtnDiv .uPointerBtn {
+      display: block;
+      position: absolute;
+      left: 840px;
+      top: 0px;
+      width: 109px;
+      height: 121px;
+      background-image: url("../images/kiosk_Swipe_icon.png"); }
 
 main .uVideoListSec .uVideoTile {
   display: block;
@@ -314,6 +323,8 @@ main .uVideoListSec .uVideoTile {
   margin: 5px;
   padding: 5px;
   background-color: #333; }
+  main .uVideoListSec .uVideoTile[selected] {
+    border: 1px solid yellow; }
   main .uVideoListSec .uVideoTile .uThumb {
     width: 120px;
     height: 90px;
