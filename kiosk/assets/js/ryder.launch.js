@@ -4,25 +4,25 @@
 ;(function (Pn, $, window, undefined) {
     "use strict";
 
-	// init
-	Pn.init();
-	Pn.ui.init();
-	Pn.l10n.init();
-	Pn.idle.init();
+    // init
+    Pn.init();
+    Pn.ui.init();
+    Pn.l10n.init();
+    Pn.idle.init();
 
-	// load config
-	var promiseConfig = $.getJSON('config/config.ajax').done(function(conf) {
-		// get locale from somewhere
-		//conf.locale = 'fr-ca';
-		app.init(conf);
-	});
+    // load config
+    var promiseConfig = $.getJSON('config/config.ajax').done(function(conf) {
+        // get locale from somewhere
+        //conf.locale = 'fr-ca';
+        app.init(conf);
+    });
 
 
-	$(document).ready(function () {
+    $(document).ready(function () {
 
-		$.when(promiseConfig).done(function() {
-			app.start();
-		});
-	});
+        $.when(promiseConfig).done(function() {
+            app.start();
+        });
+    });
 
 }(Pn, jQuery, this));

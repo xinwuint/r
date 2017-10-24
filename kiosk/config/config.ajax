@@ -1,27 +1,27 @@
 {
-    "idleTimeout": 			120,
-    "rssInterval": 			3600,
-    "rssStoryLen": 			120,
-    "videoRootUrl": 		"assets/video/",
-    "videoManifestFile": 	"videos_{locale}.ajax",
-    "emailFrom": 			"no-reply@ryder-digit.com",
-    "videoSiteAbsUrl": 		"http://ryder-digit.com/videos/",
+    "idleTimeout":          120,
+    "rssInterval":          3600,
+    "rssStoryLen":          120,
+    "videoRootUrl":         "assets/video/",
+    "videoManifestFile":    "videos_{locale}.ajax",
+    "emailFrom":            "no-reply@ryder-digit.com",
+    "videoSiteAbsUrl":      "http://ryder-digit.com/videos/",
 
-	"rssUrls": {
-		"en-us": [
-			"https://dlm.datacall.tech/pr/DXXGx-ioPKirm6uJQy2lct5OMAxRDaePlD3k3IV-c20%3D/file.json",
-			"https://dlm.datacall.tech/pr/SvQTYvgOMfaEkJSZxcCA6oy2j9bBdWYUlP7c4F52ocI%3D/file.json",
-			""
-		],
-		"en-ca":  [
-			"https://dlm.datacall.tech/pr/mLYnIdo79u-EtW0yzHTg613W1s0oJWIWJRyHvn2GvNc%3D/file.json",
-			"https://dlm.datacall.tech/pr/k-LfoNE_IjBw-qY3ibxudTEjGkkqjo9OE803RK54gYs%3D/file.json",
-			"https://dlm.datacall.tech/pr/bMD0rVYp2TSLWDTX7XcUg62I3QfFv1xqr1Xb6jSlogI%3D/file.json"
-		],
-		"fr-ca":  [
-			"https://dlm.datacall.tech/pr/-8Z_QbGpdpbGNapKNXkJmktP5xc3v-K9blcXFN-6QgE%3D/file.json",
-			"",
-			""
-		]
-	}
+    "rssUrls": {
+        "en-us": [
+            "https://dlm.datacall.tech/pr/DXXGx-ioPKirm6uJQy2lct5OMAxRDaePlD3k3IV-c20%3D/file.json",
+            "https://dlm.datacall.tech/pr/SvQTYvgOMfaEkJSZxcCA6oy2j9bBdWYUlP7c4F52ocI%3D/file.json",
+            ""
+        ],
+        "en-ca":  [
+            "https://dlm.datacall.tech/pr/mLYnIdo79u-EtW0yzHTg613W1s0oJWIWJRyHvn2GvNc%3D/file.json",
+            "https://dlm.datacall.tech/pr/k-LfoNE_IjBw-qY3ibxudTEjGkkqjo9OE803RK54gYs%3D/file.json",
+            "https://dlm.datacall.tech/pr/bMD0rVYp2TSLWDTX7XcUg62I3QfFv1xqr1Xb6jSlogI%3D/file.json"
+        ],
+        "fr-ca":  [
+            "https://dlm.datacall.tech/pr/-8Z_QbGpdpbGNapKNXkJmktP5xc3v-K9blcXFN-6QgE%3D/file.json",
+            "",
+            ""
+        ]
+    }
 }

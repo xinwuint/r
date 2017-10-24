@@ -110,15 +110,15 @@
     }
 
     function infra_showPointer() {
-    	$('main .aVideoListSec .aPointerBtn').show();
+        $('main .aVideoListSec .aPointerBtn').show();
     }
 
     function infra_hidePointer() {
-    	$('main .aVideoListSec .aPointerBtn').hide();
+        $('main .aVideoListSec .aPointerBtn').hide();
     }
 
     function infra_clearVideoTileSelection() {
-    	Pn.ui.selected('main .aVideoListSec .aVideoTile', false);
+        Pn.ui.selected('main .aVideoListSec .aVideoTile', false);
     }
 
     function infra_initKeyboard(langCode) {
