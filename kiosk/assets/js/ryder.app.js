@@ -311,19 +311,19 @@
                 return true;
             },
             onLaunched: function(){
-                var $this = $(this);
-                $this.find('video').on('ended', function(){
+                var v = $(this).find('video');
+                v.on('ended', function(){
                     // close popup when done
-                    Pn.ui.fireReturnEvent($this);
+                    Pn.ui.fireReturnEvent(v);
                 });
                 Pn.idle.pause();
                 try {
-                    $this.find('video')[0].play();
+                    v[0].play();
                 } catch(err) {}
                 return true;
             }
         }).done(function(){
-            var v = $('.aVideoPopup').find('video');
+            var v = $(this).find('video');
             v[0].pause();
             v.attr('src', '');
             v.off('ended');

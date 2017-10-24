@@ -41,8 +41,8 @@
         if(options) $.extend(true, _settings, options);
     }
 
-    function ui_newline() {
-        if(arguments.length > 0) _settings.newline = arguments[0];
+    function ui_newline(char) {
+        if(char || char === '') _settings.newline = char;
         return _settings.newline;
     }
 
@@ -143,7 +143,7 @@
         var ele = lib.util.createJqueryObjectWithOneElement(eleToPopup);
         var d = $.Deferred();
         if(ele.length == 0) {
-            d.reject();
+            d.rejectWith(null);
             return d.promise();
         }
         var hasCloseBtn = !!launchOpt.closeButtonSelector;
@@ -171,8 +171,8 @@
         var _cleanup = function() {
             if(hasCloseBtn) ele.off('click', launchOpt.closeButtonSelector, _dismissHandler);
             ele.off(_eventtype_return, _returnHandler);
-            if(dismissed) d.resolve(launchOpt.dataReturnedWhenDismiss);
-            else d.resolve(returnedData);
+            if(dismissed) d.resolveWith(ele[0], launchOpt.dataReturnedWhenDismiss);
+            else d.resolveWith(ele[0], returnedData);
         };
 
         // onLaunched
@@ -191,7 +191,8 @@
         };
 
         lib.flow.execPipe([[f1], f2]).fail(function() {
-            d.reject.apply(d, arguments);
+            // only need to handle fail
+            d.rejectWith.apply(d, $.merge([ele[0]], arguments));
         });
 
         // return promise
@@ -214,7 +215,7 @@
         var tContainer = !tmp ? ele : lib.util.isJqueryObject(tmp) ? tmp : ele.find(tmp);
         var d = $.Deferred();
         if(ele.length == 0 || tContainer.length == 0) {
-            d.reject();
+            d.rejectWith(null);
             return d.promise();
         }
         var hasCloseBtn = !!launchOpt.closeButtonSelector;
@@ -243,8 +244,8 @@
             if(hasCloseBtn) ele.off('click', launchOpt.closeButtonSelector, _dismissHandler);
             ele.off(_eventtype_return, _returnHandler);
             tContainer.empty();
-            if(dismissed) d.resolve(launchOpt.dataReturnedWhenDismiss);
-            else d.resolve(returnedData);
+            if(dismissed) d.resolveWith(ele[0], launchOpt.dataReturnedWhenDismiss);
+            else d.resolveWith(ele[0], returnedData);
         };
 
         // onLaunched
@@ -278,7 +279,7 @@
         };
 
         lib.flow.execPipe([f1, [f2], f3, [f4], f5]).fail(function() {
-            d.reject.apply(d, arguments);
+            d.rejectWith.apply(d, $.merge([ele[0]], arguments));
         });
 
         // return promise
@@ -309,9 +310,11 @@
 
         // init and validate
         var tmp = mountOpt.targetContainer;
+        var d = $.Deferred();
         var tContainer = lib.util.isJqueryObject(tmp) ? tmp : $(tmp);
         if(tContainer.length == 0) {
-            return $.Deferred().reject().promise();
+            d.rejectWith(null);
+            return d.promise();
         }
 
         // ajax
@@ -330,7 +333,11 @@
             } else tContainer.html(data);
         };
 
-        return lib.flow.execPipe([f1, [f2], f3]);
+        lib.flow.execPipe([f1, [f2], f3]).fail(function() {
+            d.rejectWith.apply(d, $.merge([tContainer[0]], arguments));
+        });
+
+        return d.promise();
     }
 
     function _hasAttr(jqObj, attrName) {
