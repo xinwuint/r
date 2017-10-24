@@ -12,6 +12,8 @@
 
 	// load config
 	var promiseConfig = $.getJSON('config/config.ajax').done(function(conf) {
+		// get locale from somewhere
+		//conf.locale = 'fr-ca';
 		app.init(conf);
 	});
 

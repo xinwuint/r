@@ -32,7 +32,7 @@
         _confDefault = {
             locale: 'en-us',    // default locale
             idleTimeout: 2*60,  // 2 min
-            rssInterval: 3600*1000,  // 1h
+            rssInterval: 3600,  // 1h
             rssStoryLen: 120,   // 120 characters
             videoRootUrl: 'assets/video/',
             videoManifestFile: 'videos_{locale}.ajax',
@@ -397,7 +397,7 @@
 
         // populate rss story
         biz_populateRss();
-        window.setInterval(biz_populateRss, _config.rssInterval);
+        window.setInterval(biz_populateRss, _config.rssInterval*1000);
 
         // init keyboard
         infra_initKeyboard(_langCode);

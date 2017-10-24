@@ -1,6 +1,12 @@
 {
-	"videoRootUrl" : "assets/video/",
-	"emailFrom": "no-reply@ryder-digit.com",
+    "idleTimeout": 			120,
+    "rssInterval": 			3600,
+    "rssStoryLen": 			120,
+    "videoRootUrl": 		"assets/video/",
+    "videoManifestFile": 	"videos_{locale}.ajax",
+    "emailFrom": 			"no-reply@ryder-digit.com",
+    "videoSiteAbsUrl": 		"http://ryder-digit.com/videos/",
+
 	"rssUrls": {
 		"en-us": [
 			"https://dlm.datacall.tech/pr/DXXGx-ioPKirm6uJQy2lct5OMAxRDaePlD3k3IV-c20%3D/file.json",

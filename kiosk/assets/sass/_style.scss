@@ -116,21 +116,35 @@ main .uVideoListSec {
 
         .uEmailBtn, .uToggleBtn {
             display: inline-block;
-            width: 110px;
-            height: 38px;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center center;
         }
 
         .uEmailBtn {
-            background-image: url('../images/kiosk_Email_Bth_UP.png');
-            &[selected] {
-                background-image: url('../images/kiosk_Email_Bth_RL-DN.png');
+            &[l10n-locale='en-us'], &[l10n-locale='en-ca'] {
+                width: 109px;
+                height: 40px;
+                background-image: url('../images/kiosk_Email_Bth_UP.png');
+                &[selected] {
+                    background-image: url('../images/kiosk_Email_Bth_RL-DN.png');
+                }
+            }
+
+            &[l10n-locale='fr-ca'] {
+                width: 127px;
+                height: 40px;
+                background-image: url('../images/kiosk_French_Email_Bth_UP.png');
+                &[selected] {
+                    background-image: url('../images/kiosk_French_Email_Bth_RL-DN.png');
+                }
             }
         }
 
         .uToggleBtn {
+            width: 110px;
+            height: 38px;
+
             &[l10n-locale='en-us'] {
                 background-image: url('../images/kiosk_Spanish_Btn_UP.png');
                 &[selected] {
@@ -160,7 +174,14 @@ main .uVideoListSec {
             top: 0px;
             width: 109px;
             height: 121px;
-            background-image: url('../images/kiosk_Swipe_icon.png');
+
+            &[l10n-locale='en-us'], &[l10n-locale='en-ca'] {
+                background-image: url('../images/kiosk_Swipe_icon.png');
+            }
+
+            &[l10n-locale='fr-ca'] {
+                background-image: url('../images/kiosk_FrenchSwipe_icon.png');
+            }
         }
 
     }
