@@ -2,6 +2,10 @@
 body {
     width: 1920px;
     height: 1080px;
+    font-size: 16px;
+    font-family: $textBase;
+    background-color: $darkGrey;
+    color: $midGrey;
 }
 
 
@@ -11,6 +15,26 @@ header {
     width: 100%;
     height: 120px;
     background: url('../images/Kiosk_HeaderRyderLogo.png') no-repeat center top;
+
+    .uTime {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      text-align: right;
+      font-size: 24px;
+      font-weight: normal;
+      color: $black;
+      //font-family: 'HelveticaNeue LT 47 LightCn';
+      font-family: 'HelveticaNeue LT 45';
+
+      div:first-child {
+        font-size: 42px;
+        font-weight: normal;
+        font-family: 'HelveticaNeue LT 107 XBlkCn';
+      }
+
+    }
+
 }
 
 
@@ -20,19 +44,27 @@ footer {
     width: 100%;
     height: 120px;
     padding: 10px;
-    border: 1px solid blue;
 }
 
 footer .uRss {
     .uTitle1, .uTitle2 {
         width: 200px;
+        color: $midGrey;
         display: inline-block;
+        font-size: 40px;
+        font-family: "Helvetica LT 107 Extra Black Condensed Oblique_0";//_0
+        //font-family: "HelveticalNeue LT 107 XBlkCn";
+        font-weight: bold;
+        font-style: oblique;
+        text-align: right;
     }
 
     .uContent1, .uContent2 {
-        border-left: 1px solid blue;
+        border-left: 1px solid $red;
         width: 300px;
+        padding-left: 30px;
         display: inline-block;
+        color: $lightGrey;
     }
 
     &[l10n-locale='fr-ca'] {
@@ -64,18 +96,29 @@ main {
     height: 840px;
     background: url('../images/kiosk_bk_Image.png') no-repeat center top;
     padding-top: 60px;
-    border: solid 1px red;
+    //border: solid 1px red;
 
     .uSectionsWrap {
+      background-color: $darkGrey;
         width: 1702px;
         height: 720px;
         margin: auto;
         position: relative;
+        color: $white;
 
         section {
             height: 100%;
-            border: solid 1px blue;
             display: none;
+        }
+
+        h3{
+          border-bottom: 1px dotted $midGrey;
+          //border-top: 3px solid $midGrey;
+          padding-top: 30px;
+          padding-bottom: 5px;
+          margin-bottom: 10px;
+          color: $midGrey;
+          font-size: 2.4em;
         }
     }
 }
@@ -85,6 +128,7 @@ main {
 // 4.) attract section =================================================================
 main .uAttractLoopSec {
     display: block;
+    position: relative;
 
     video {
         width: 1280px;
@@ -92,7 +136,47 @@ main .uAttractLoopSec {
     }
 
     div {
-        float: right;
+        //float: right;
+    }
+
+    .uWelcome{
+      background-color: $darkGrey;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 422px;
+      height: calc(100% - 96px);
+      display: table;
+      div{
+        display: table-cell;
+        vertical-align: middle;
+        border-top: 1px solid $darkGrey;
+        border-bottom: 1px solid $darkGrey;
+        font-size: 1.8em;
+        padding:20px;
+        margin: 0 auto;
+        width: 80%;
+      }
+    }
+
+    .uStart{
+      font-family: "HelveticalNeue LT 107 XBlkCn Olbique";
+      font-size: 40px;
+      background: $red;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 422px;
+      height: 96px;
+      color: $white;
+      text-align: left;
+      padding-left: 20px;
+      line-height: 100px;
+
+      @include fade(background);
+      &:hover, &:active {
+        background: $black;
+      }
     }
 }
 
@@ -106,7 +190,10 @@ main .uVideoListSec {
     .uVideoListDiv {
         height: 580px;
         overflow-y: scroll;
-        border: 1px solid green;
+        -webkit-overflow-scrolling: touch;
+        border: 3px solid $midGrey;
+        border-left: none;
+        border-right: none;
 
         .uCategory {
             border-bottom: 1px dotted grey;
@@ -115,7 +202,6 @@ main .uVideoListSec {
 
     .uBtnDiv {
         height: 100px;
-        border: 1px solid green;
         text-align: right;
         position: relative;
 
@@ -130,6 +216,7 @@ main .uVideoListSec {
             &[l10n-locale='en-us'], &[l10n-locale='en-ca'] {
                 width: 109px;
                 height: 40px;
+                @include fade(background-image);
                 background-image: url('../images/kiosk_Email_Bth_UP.png');
                 &[selected] {
                     background-image: url('../images/kiosk_Email_Bth_RL-DN.png');
@@ -139,6 +226,7 @@ main .uVideoListSec {
             &[l10n-locale='fr-ca'] {
                 width: 127px;
                 height: 40px;
+                @include fade(background-image);
                 background-image: url('../images/kiosk_French_Email_Bth_UP.png');
                 &[selected] {
                     background-image: url('../images/kiosk_French_Email_Bth_RL-DN.png');
@@ -151,6 +239,7 @@ main .uVideoListSec {
             height: 38px;
 
             &[l10n-locale='en-us'] {
+                @include fade(background-image);
                 background-image: url('../images/kiosk_Spanish_Btn_UP.png');
                 &[selected] {
                     background-image: url('../images/kiosk_Spanish_Btn_RL-DN.png');
@@ -158,6 +247,7 @@ main .uVideoListSec {
             }
 
             &[l10n-locale='en-ca'] {
+                @include fade(background-image);
                 background-image: url('../images/kiosk_French_Btn_UP.png');
                 &[selected] {
                     background-image: url('../images/kiosk_French_Btn_RL-DN.png');
@@ -165,6 +255,7 @@ main .uVideoListSec {
             }
 
             &[l10n-locale='fr-ca'] {
+                @include fade(background-image);
                 background-image: url('../images/kiosk_English_Btn_UP.png');
                 &[selected] {
                     background-image: url('../images/kiosk_English_Btn_RL-DN.png');
@@ -174,11 +265,16 @@ main .uVideoListSec {
 
         .uPointerBtn {
             display: block;
+            opacity: 0;
             position: absolute;
             left: 840px;
             top: 0px;
             width: 109px;
             height: 121px;
+            animation-name: handmove;
+            animation-duration: 1s;
+            animation-iteration-count: 4;
+            user-select: none;
 
             &[l10n-locale='en-us'], &[l10n-locale='en-ca'] {
                 background-image: url('../images/kiosk_Swipe_icon.png');
@@ -186,6 +282,14 @@ main .uVideoListSec {
 
             &[l10n-locale='fr-ca'] {
                 background-image: url('../images/kiosk_FrenchSwipe_icon.png');
+            }
+
+            @keyframes handmove {
+              0%   { transform: translateY(0px); opacity: 0;}
+              5%   { transform: translateY(0px); opacity: .3;}
+          		80%  { transform: translateY(20px); opacity: 1; }
+              94%  { transform: translateY(0px); opacity: .3; }
+          		100% { transform: translateY(0px); opacity: 0;}
             }
         }
 
@@ -197,22 +301,27 @@ main .uVideoListSec {
 
 // 6.) video tile ======================================================================
 main .uVideoListSec .uVideoTile {
-    display: block;
+    display: inline-block;
     width: 300px;
     height: 100px;
     margin: 5px;
     padding: 5px;
     background-color: #333;
 
+    transition: 	border $time ease-in-out;
+    -moz-transition: 	border $time ease-in-out;
+    -webkit-transition: border $time ease-in-out;
+
     &[selected] {
-        border: 1px solid yellow;
+        border: 1px solid $yellow;
     }
 
     .uThumb {
         width: 120px;
         height: 90px;
-        border: 1px solid red;
+        box-shadow: 0px 0px 5px $darkGrey;
         float: left;
+        margin-right: 10px;
     }
 
     .uBalloon {
@@ -253,6 +362,12 @@ main .uKeyboardSec {
         text-align: right;
     }
 
+    .uBackBtn {
+      //font-family:
+      border-left: 1px solid;
+      padding-left:30px;
+    }
+
     .uKeyboardDiv {
         position: relative;
 
@@ -288,5 +403,3 @@ article.uVideoPopup {
 
 
 // 10.) popups ======================================================================
-
-

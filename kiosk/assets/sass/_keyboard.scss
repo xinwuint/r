@@ -2,7 +2,7 @@
 
 .ui-keyboard {
     padding: .3em;
-    border: 1px solid blue;
+    //border: 1px solid blue;
     text-align: center;
     /* see issue #484 */
     -ms-touch-action: manipulation;
@@ -14,10 +14,10 @@
 }
 
 .ui-keyboard-button {
-    height: 65px;
-    width: 65px;
+    height: 69px;
+    width: 69px;
     min-width: 2em;
-    margin: .4em;
+    margin: 9px;
     cursor: pointer;
     overflow: hidden;
     line-height: 2em;
@@ -26,11 +26,13 @@
     -moz-user-focus: ignore;
     text-transform: uppercase;
     border: 0px;
+    font-size: 28px;
 
     span {
         font-size: large;
     }
 
+    @include fade(background-color);
     &.ui-state-hover {
         background-color: #000000;
     }
@@ -74,4 +76,23 @@
     &.ui-keyboard-space {
         width: 560px;
     }
+}
+
+.uKeyboardText {
+  font-family: 'HelveticaNeue LT 67 MdCn';
+  //color: #303030;
+  font-size: 18px;
+  text-align: center;
+}
+
+.uEmailField {
+  width: 1005px;
+  height: 84px;
+  line-height: 84px;
+  font-family: 'HelveticaNeue LT 45';
+  color: $white;
+  font-size: 45px;
+  background-color: $fieldGrey;
+      border: none;
+      padding-left: 30px;
 }

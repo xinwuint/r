@@ -1,28 +1,53 @@
 /* 1.) Import Files */
-/*
 @font-face {
-    font-family: "Gill Light";
-    font-style: normal;
-    font-weight: 200;
-    src: url('../fonts/Gill Sans MT Light.ttf');
-}
+  font-family: 'HelveticaNeue LT 47 LightCn';
+  src: url("./../assets/fonts/HelveticaNeueLT-LightCond.eot");
+  src: url("./../assets/fonts/HelveticaNeueLT-LightCond.eot?#iefix") format("embedded-opentype"), url("./../assets/fonts/HelveticaNeueLT-LightCond.woff") format("woff"), url("./../assets/fonts/HelveticaNeueLT-LightCond.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal; }
 
 @font-face {
-    font-family: "Gill Regular";
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/Gill Sans MT Regular.ttf');
-}
+  font-family: 'HelveticaNeue LT 107 XBlkCn';
+  src: url("./../assets/fonts/HelveticaNeueLT-ExtBlackCond.eot");
+  src: url("./../assets/fonts/HelveticaNeueLT-ExtBlackCond.eot?#iefix") format("embedded-opentype"), url("./../assets/fonts/HelveticaNeueLT-ExtBlackCond.woff") format("woff"), url("./../assets/fonts/HelveticaNeueLT-ExtBlackCond.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal; }
 
-*/
+@font-face {
+  font-family: 'HelveticaNeue LT 67 MdCn';
+  src: url("./../assets/fonts/HelveticaNeueLT-MediumCond.eot");
+  src: url("./../assets/fonts/HelveticaNeueLT-MediumCond.eot?#iefix") format("embedded-opentype"), url("./../assets/fonts/HelveticaNeueLT-MediumCond.woff") format("woff"), url("./../assets/fonts/HelveticaNeueLT-MediumCond.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'HelveticaNeue LT 107 XBlkCn';
+  src: url("./../assets/fonts/HelveticaNeueLT-ExtBlackCondObl.eot");
+  src: url("./../assets/fonts/HelveticaNeueLT-ExtBlackCondObl.eot?#iefix") format("embedded-opentype"), url("./../assets/fonts/HelveticaNeueLT-ExtBlackCondObl.woff") format("woff"), url("./../assets/fonts/HelveticaNeueLT-ExtBlackCondObl.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'HelveticaNeue LT 45';
+  src: url("./../assets/fonts/HelveticaNeueLT-Light.eot");
+  src: url("./../assets/fonts/HelveticaNeueLT-Light.eot?#iefix") format("embedded-opentype"), url("./../assets/fonts/HelveticaNeueLT-Light.woff") format("woff"), url("./../assets/fonts/HelveticaNeueLT-Light.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Helvetica LT 107 Extra Black Condensed Oblique_0';
+  src: url("./../assets/fonts/Helvetica%20LT%20107%20Extra%20Black%20Condensed%20Oblique_0.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic; }
+
 /*//
 // Variables
 // --------------------------------------------------*/
 /* example
-$gray-base: rgb(0,0,0);                    
+$gray-base: rgb(0,0,0);
 $base-color: rgb(2,45,88);
-$light-color: rgb(255,255,255);               
-$dark-color: rgb(78, 54, 46);           
+$light-color: rgb(255,255,255);
+$dark-color: rgb(78, 54, 46);
 $font-size: 20px;
 
 $darkest: #000;
@@ -38,6 +63,15 @@ $secondary-font: 'Gill Light';
 /*//
 // All mixin functions
 // --------------------------------------------------*/
+.fontTime {
+  font: 42px 'HelveticaNeue LT 107 XBlkCn','comic sans'; }
+
+.fontDatt {
+  font: 24pt 'HelveticaNeue LT 45 Light','comic sans'; }
+
+.fontWeclome {
+  font: 30pt 'HelveticaNeue LT 67 MdCn','comic sans'; }
+
 /* Eric Meyer's CSS Reset
    http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -211,27 +245,51 @@ a {
 
 body {
   width: 1920px;
-  height: 1080px; }
+  height: 1080px;
+  font-size: 16px;
+  font-family: "Helvetica Neue", sans-serif;
+  background-color: #2b2b2b;
+  color: #555; }
 
 header {
   width: 100%;
   height: 120px;
   background: url("../images/Kiosk_HeaderRyderLogo.png") no-repeat center top; }
+  header .uTime {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    text-align: right;
+    font-size: 24px;
+    font-weight: normal;
+    color: #000;
+    font-family: 'HelveticaNeue LT 45'; }
+    header .uTime div:first-child {
+      font-size: 42px;
+      font-weight: normal;
+      font-family: 'HelveticaNeue LT 107 XBlkCn'; }
 
 footer {
   width: 100%;
   height: 120px;
-  padding: 10px;
-  border: 1px solid blue; }
+  padding: 10px; }
 
 footer .uRss .uTitle1, footer .uRss .uTitle2 {
   width: 200px;
-  display: inline-block; }
+  color: #555;
+  display: inline-block;
+  font-size: 40px;
+  font-family: "Helvetica LT 107 Extra Black Condensed Oblique_0";
+  font-weight: bold;
+  font-style: oblique;
+  text-align: right; }
 
 footer .uRss .uContent1, footer .uRss .uContent2 {
-  border-left: 1px solid blue;
+  border-left: 1px solid #ce1126;
   width: 300px;
-  display: inline-block; }
+  padding-left: 30px;
+  display: inline-block;
+  color: #C2C2C2; }
 
 footer .uRss[l10n-locale='fr-ca'] .uTitle1 {
   width: 400px; }
@@ -252,25 +310,66 @@ main {
   width: 100%;
   height: 840px;
   background: url("../images/kiosk_bk_Image.png") no-repeat center top;
-  padding-top: 60px;
-  border: solid 1px red; }
+  padding-top: 60px; }
   main .uSectionsWrap {
+    background-color: #2b2b2b;
     width: 1702px;
     height: 720px;
     margin: auto;
-    position: relative; }
+    position: relative;
+    color: #fff; }
     main .uSectionsWrap section {
       height: 100%;
-      border: solid 1px blue;
       display: none; }
+    main .uSectionsWrap h3 {
+      border-bottom: 1px dotted #555;
+      padding-top: 30px;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      color: #555;
+      font-size: 2.4em; }
 
 main .uAttractLoopSec {
-  display: block; }
+  display: block;
+  position: relative; }
   main .uAttractLoopSec video {
     width: 1280px;
     height: 100%; }
-  main .uAttractLoopSec div {
-    float: right; }
+  main .uAttractLoopSec .uWelcome {
+    background-color: #2b2b2b;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 422px;
+    height: calc(100% - 96px);
+    display: table; }
+    main .uAttractLoopSec .uWelcome div {
+      display: table-cell;
+      vertical-align: middle;
+      border-top: 1px solid #2b2b2b;
+      border-bottom: 1px solid #2b2b2b;
+      font-size: 1.8em;
+      padding: 20px;
+      margin: 0 auto;
+      width: 80%; }
+  main .uAttractLoopSec .uStart {
+    font-family: "HelveticalNeue LT 107 XBlkCn Olbique";
+    font-size: 40px;
+    background: #ce1126;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 422px;
+    height: 96px;
+    color: #fff;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 100px;
+    transition: background 0.2s ease-in-out;
+    -moz-transition: background 0.2s ease-in-out;
+    -webkit-transition: background 0.2s ease-in-out; }
+    main .uAttractLoopSec .uStart:hover, main .uAttractLoopSec .uStart:active {
+      background: #000; }
 
 main .uVideoListSec {
   display: none;
@@ -278,12 +377,14 @@ main .uVideoListSec {
   main .uVideoListSec .uVideoListDiv {
     height: 580px;
     overflow-y: scroll;
-    border: 1px solid green; }
+    -webkit-overflow-scrolling: touch;
+    border: 3px solid #555;
+    border-left: none;
+    border-right: none; }
     main .uVideoListSec .uVideoListDiv .uCategory {
       border-bottom: 1px dotted grey; }
   main .uVideoListSec .uBtnDiv {
     height: 100px;
-    border: 1px solid green;
     text-align: right;
     position: relative; }
     main .uVideoListSec .uBtnDiv .uEmailBtn, main .uVideoListSec .uBtnDiv .uToggleBtn {
@@ -294,12 +395,18 @@ main .uVideoListSec {
     main .uVideoListSec .uBtnDiv .uEmailBtn[l10n-locale='en-us'], main .uVideoListSec .uBtnDiv .uEmailBtn[l10n-locale='en-ca'] {
       width: 109px;
       height: 40px;
+      transition: background-image 0.2s ease-in-out;
+      -moz-transition: background-image 0.2s ease-in-out;
+      -webkit-transition: background-image 0.2s ease-in-out;
       background-image: url("../images/kiosk_Email_Bth_UP.png"); }
       main .uVideoListSec .uBtnDiv .uEmailBtn[l10n-locale='en-us'][selected], main .uVideoListSec .uBtnDiv .uEmailBtn[l10n-locale='en-ca'][selected] {
         background-image: url("../images/kiosk_Email_Bth_RL-DN.png"); }
     main .uVideoListSec .uBtnDiv .uEmailBtn[l10n-locale='fr-ca'] {
       width: 127px;
       height: 40px;
+      transition: background-image 0.2s ease-in-out;
+      -moz-transition: background-image 0.2s ease-in-out;
+      -webkit-transition: background-image 0.2s ease-in-out;
       background-image: url("../images/kiosk_French_Email_Bth_UP.png"); }
       main .uVideoListSec .uBtnDiv .uEmailBtn[l10n-locale='fr-ca'][selected] {
         background-image: url("../images/kiosk_French_Email_Bth_RL-DN.png"); }
@@ -307,43 +414,78 @@ main .uVideoListSec {
       width: 110px;
       height: 38px; }
       main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-us'] {
+        transition: background-image 0.2s ease-in-out;
+        -moz-transition: background-image 0.2s ease-in-out;
+        -webkit-transition: background-image 0.2s ease-in-out;
         background-image: url("../images/kiosk_Spanish_Btn_UP.png"); }
         main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-us'][selected] {
           background-image: url("../images/kiosk_Spanish_Btn_RL-DN.png"); }
       main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca'] {
+        transition: background-image 0.2s ease-in-out;
+        -moz-transition: background-image 0.2s ease-in-out;
+        -webkit-transition: background-image 0.2s ease-in-out;
         background-image: url("../images/kiosk_French_Btn_UP.png"); }
         main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca'][selected] {
           background-image: url("../images/kiosk_French_Btn_RL-DN.png"); }
       main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca'] {
+        transition: background-image 0.2s ease-in-out;
+        -moz-transition: background-image 0.2s ease-in-out;
+        -webkit-transition: background-image 0.2s ease-in-out;
         background-image: url("../images/kiosk_English_Btn_UP.png"); }
         main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca'][selected] {
           background-image: url("../images/kiosk_English_Btn_RL-DN.png"); }
     main .uVideoListSec .uBtnDiv .uPointerBtn {
       display: block;
+      opacity: 0;
       position: absolute;
       left: 840px;
       top: 0px;
       width: 109px;
-      height: 121px; }
+      height: 121px;
+      animation-name: handmove;
+      animation-duration: 1s;
+      animation-iteration-count: 4;
+      user-select: none; }
       main .uVideoListSec .uBtnDiv .uPointerBtn[l10n-locale='en-us'], main .uVideoListSec .uBtnDiv .uPointerBtn[l10n-locale='en-ca'] {
         background-image: url("../images/kiosk_Swipe_icon.png"); }
       main .uVideoListSec .uBtnDiv .uPointerBtn[l10n-locale='fr-ca'] {
         background-image: url("../images/kiosk_FrenchSwipe_icon.png"); }
 
+@keyframes handmove {
+  0% {
+    transform: translateY(0px);
+    opacity: 0; }
+  5% {
+    transform: translateY(0px);
+    opacity: .3; }
+  80% {
+    transform: translateY(20px);
+    opacity: 1; }
+  94% {
+    transform: translateY(0px);
+    opacity: .3; }
+  100% {
+    transform: translateY(0px);
+    opacity: 0; } }
+
 main .uVideoListSec .uVideoTile {
-  display: block;
+  display: inline-block;
   width: 300px;
   height: 100px;
   margin: 5px;
   padding: 5px;
-  background-color: #333; }
+  background-color: #333;
+  transition: border 0.2s ease-in-out;
+  -moz-transition: border 0.2s ease-in-out;
+  -webkit-transition: border 0.2s ease-in-out; }
   main .uVideoListSec .uVideoTile[selected] {
-    border: 1px solid yellow; }
+    border: 1px solid #faa919; }
   main .uVideoListSec .uVideoTile .uThumb {
     width: 120px;
     height: 90px;
-    border: 1px solid red;
-    float: left; }
+    box-shadow: 0px 0px 5px #2b2b2b;
+    float: left;
+    margin-right: 10px; }
   main .uVideoListSec .uVideoTile .uBalloon {
     height: 30px;
     background: url("../images/kiosk_Language_Icon.png") right top no-repeat;
@@ -370,6 +512,9 @@ main .uKeyboardSec {
   background-color: #2b2b2b; }
   main .uKeyboardSec .uBackToVideoDiv {
     text-align: right; }
+  main .uKeyboardSec .uBackBtn {
+    border-left: 1px solid;
+    padding-left: 30px; }
   main .uKeyboardSec .uKeyboardDiv {
     position: relative; }
     main .uKeyboardSec .uKeyboardDiv .uErrWrap, main .uKeyboardSec .uKeyboardDiv .uCoverWrap {
@@ -394,7 +539,6 @@ article.uVideoPopup {
 /* ryder keyboard - jQuery UI Widget */
 .ui-keyboard {
   padding: .3em;
-  border: 1px solid blue;
   text-align: center;
   /* see issue #484 */
   -ms-touch-action: manipulation;
@@ -404,10 +548,10 @@ article.uVideoPopup {
   text-align: right; }
 
 .ui-keyboard-button {
-  height: 65px;
-  width: 65px;
+  height: 69px;
+  width: 69px;
   min-width: 2em;
-  margin: .4em;
+  margin: 9px;
   cursor: pointer;
   overflow: hidden;
   line-height: 2em;
@@ -415,7 +559,11 @@ article.uVideoPopup {
   color: #ffffff;
   -moz-user-focus: ignore;
   text-transform: uppercase;
-  border: 0px; }
+  border: 0px;
+  font-size: 28px;
+  transition: background-color 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out; }
   .ui-keyboard-button span {
     font-size: large; }
   .ui-keyboard-button.ui-state-hover {
@@ -447,3 +595,19 @@ article.uVideoPopup {
 
 .ui-keyboard-button.ui-keyboard-space {
   width: 560px; }
+
+.uKeyboardText {
+  font-family: 'HelveticaNeue LT 67 MdCn';
+  font-size: 18px;
+  text-align: center; }
+
+.uEmailField {
+  width: 1005px;
+  height: 84px;
+  line-height: 84px;
+  font-family: 'HelveticaNeue LT 45';
+  color: #fff;
+  font-size: 45px;
+  background-color: #343434;
+  border: none;
+  padding-left: 30px; }

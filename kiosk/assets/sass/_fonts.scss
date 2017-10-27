@@ -1,17 +1,59 @@
-/*
+$fontPath: './../assets/fonts/';
+
 @font-face {
-    font-family: "Gill Light";
-    font-style: normal;
-    font-weight: 200;
-    src: url('../fonts/Gill Sans MT Light.ttf');
+  font-family: 'HelveticaNeue LT 47 LightCn';
+  src: 	url('#{$fontPath}HelveticaNeueLT-LightCond.eot');
+  src: 	url('#{$fontPath}HelveticaNeueLT-LightCond.eot?#iefix') format('embedded-opentype'),
+    	url('#{$fontPath}HelveticaNeueLT-LightCond.woff') format('woff'),
+    	url('#{$fontPath}HelveticaNeueLT-LightCond.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Gill Regular";
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/Gill Sans MT Regular.ttf');
+  font-family: 'HelveticaNeue LT 107 XBlkCn';
+  src: 	url('#{$fontPath}HelveticaNeueLT-ExtBlackCond.eot');
+  src: 	url('#{$fontPath}HelveticaNeueLT-ExtBlackCond.eot?#iefix') format('embedded-opentype'),
+    	url('#{$fontPath}HelveticaNeueLT-ExtBlackCond.woff') format('woff'),
+    	url('#{$fontPath}HelveticaNeueLT-ExtBlackCond.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
 }
 
-*/
+@font-face {
+  font-family: 'HelveticaNeue LT 67 MdCn';
+  src: 	url('#{$fontPath}HelveticaNeueLT-MediumCond.eot');
+  src: 	url('#{$fontPath}HelveticaNeueLT-MediumCond.eot?#iefix') format('embedded-opentype'),
+    	url('#{$fontPath}HelveticaNeueLT-MediumCond.woff') format('woff'),
+    	url('#{$fontPath}HelveticaNeueLT-MediumCond.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'HelveticaNeue LT 107 XBlkCn';
+  src: 	url('#{$fontPath}HelveticaNeueLT-ExtBlackCondObl.eot');
+  src: 	url('#{$fontPath}HelveticaNeueLT-ExtBlackCondObl.eot?#iefix') format('embedded-opentype'),
+    	url('#{$fontPath}HelveticaNeueLT-ExtBlackCondObl.woff') format('woff'),
+    	url('#{$fontPath}HelveticaNeueLT-ExtBlackCondObl.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'HelveticaNeue LT 45';
+  src: 	url('#{$fontPath}HelveticaNeueLT-Light.eot');
+  src: 	url('#{$fontPath}HelveticaNeueLT-Light.eot?#iefix') format('embedded-opentype'),
+    	url('#{$fontPath}HelveticaNeueLT-Light.woff') format('woff'),
+    	url('#{$fontPath}HelveticaNeueLT-Light.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+////extra
+@font-face {
+  font-family: 'Helvetica LT 107 Extra Black Condensed Oblique_0';
+  src: url('#{$fontPath}Helvetica%20LT%20107%20Extra%20Black%20Condensed%20Oblique_0.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}

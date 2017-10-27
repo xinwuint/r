@@ -13,7 +13,7 @@
 
     <body>
         <header>
-            <div>
+            <div class="uTime">
                 <div class="aTime"></div>
                 <div class="aDate"></div>
             </div>
@@ -23,14 +23,14 @@
             <div class="uSectionsWrap">
                 <section class="aAttractLoopSec uAttractLoopSec">
                     <video autoplay="true" loop="true" l10n-attr="data-src:attract.videourl"></video>
-                    <span l10n-text="attract.desc"></span>
-                    <span class="aStart" l10n-text="attract.start"></span>
+                    <div class="uWelcome"><div l10n-text="attract.desc"></div></div>
+                    <div class="aStart uStart" l10n-text="attract.start"></div>
                 </section>
                 <section class="aVideoListSec uVideoListSec">
                     <div class="uVideoListDiv">
-                        <div class="uCategory" l10n-text="videolist.cat.safety"></div>
+                        <h3 class="uCategory" l10n-text="videolist.cat.safety"></h3>
                         <div class="aGridSafety uGrid"></div>
-                        <div class="uCategory" l10n-text="videolist.cat.whyryder"></div>
+                        <h3 class="uCategory" l10n-text="videolist.cat.whyryder"></h3>
                         <div class="aGridWhyryder uGrid"></div>
                     </div>
                     <div class="uBtnDiv">
@@ -43,8 +43,10 @@
                 <section class="aKeyboardSec uKeyboardSec">
                     <div class="uKeyboardDiv">
                         <div class="uKeyboardWrap">
-                            <div l10n-text="keyboard.desc"></div>
-                            <div l10n-text="keyboard.title"></div>
+                            <div class="uKeyboardText">
+                              <div l10n-text="keyboard.desc"></div>
+                              <div l10n-text="keyboard.title"></div>
+                            </div>
                             <div>
                                 <input type="text" class="aEmailField uEmailField" />
                             </div>
@@ -57,7 +59,7 @@
                             <div l10n-text="err.text2"></div>
                         </div>
                     </div>
-                    <div class="uBackToVideoDiv"><span class="aBackBtn" l10n-text="keyboard.backtovideo"></span></div>
+                    <div class="uBackToVideoDiv"><div class="aBackBtn uBackBtn" l10n-text="keyboard.backtovideo"></div></div>
                 </section>
             </div>
         </main>

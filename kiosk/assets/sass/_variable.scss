@@ -2,11 +2,31 @@
 // Variables
 // --------------------------------------------------*/
 
+
+$black: #000;
+$red: #ce1126;
+$white: #fff;
+$lightGrey: #C2C2C2;
+$darkGrey: #2b2b2b;
+$fieldGrey: #343434;
+$midGrey: #555;
+$fontGrey: #696969;
+$yellow: #faa919;
+
+$backgroundColor: $white;
+$menuBackgroundColor: $darkGrey;
+
+$time: .2s;
+
+$imagePath: "./../assets/images/";
+$textHeader: 'ObjektivMk2' sans-serif;
+$textBase: 'Helvetica Neue', sans-serif;
+
 /* example
-$gray-base: rgb(0,0,0);                    
+$gray-base: rgb(0,0,0);
 $base-color: rgb(2,45,88);
-$light-color: rgb(255,255,255);               
-$dark-color: rgb(78, 54, 46);           
+$light-color: rgb(255,255,255);
+$dark-color: rgb(78, 54, 46);
 $font-size: 20px;
 
 $darkest: #000;
