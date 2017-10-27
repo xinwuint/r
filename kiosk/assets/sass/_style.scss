@@ -75,6 +75,7 @@ main {
         section {
             height: 100%;
             border: solid 1px blue;
+            display: none;
         }
     }
 }
@@ -82,13 +83,17 @@ main {
 
 
 // 4.) attract section =================================================================
-main .uAttractLoopSec video {
-    width: 1280px;
-    height: 100%;
-}
+main .uAttractLoopSec {
+    display: block;
 
-main .uAttractLoopSec div {
-    float: right;
+    video {
+        width: 1280px;
+        height: 100%;
+    }
+
+    div {
+        float: right;
+    }
 }
 
 

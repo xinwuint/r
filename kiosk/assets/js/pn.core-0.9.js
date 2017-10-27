@@ -25,6 +25,7 @@
         string|null|undefined  trim(string:text);
         string  ellipsis(obj, int:max);      // truncate string and append ellipsis
         string  getParameterByName(string:name[, string:url]);
+        array   createArray([int]:lengths, any:value);  // create multi-dimensional array which is defined by length of each dimension. value is init value for elements.
         string  newGuid();
         void    publish(obj[, string:namespace]);
     ajax
@@ -148,6 +149,25 @@
         return rst ? decodeURIComponent(rst[1].replace(/\+/g, ' ')) : '';
     };
 
+    // collection related
+    function _newArray(lengths, dimensionIdx, value) {
+        var arr = [];
+        var lastDim = dimensionIdx === lengths.length - 1;
+        for(var i = 0; i < lengths[dimensionIdx]; i++) arr.push(lastDim ? value : _newArray(lengths, dimensionIdx+1, value));
+        return arr;
+    }
+
+    // collection related
+    function util_createArray(lengths, value) {
+        return !lengths || !lengths.length ? _newArray([0], 0, value) : _newArray(lengths, 0, value);
+    }
+
+    function util_copyArray(srcArr, srcOffset, dstArr, dstOffset, count) {
+        if(srcArr && srcArr.length && srcOffset >= 0 && srcOffset < srcArr.length && dstArr && dstArr.length && dstOffset >= 0 && dstOffset < dstArr.length && count > 0) {
+            for(var i = 0; i < count; i++) dstArr[dstOffset + i] = srcArr[srcOffset + i];
+        }
+    }
+
     function util_newGuid() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
             var r = Math.random() * 16 | 0,
@@ -171,6 +191,8 @@
         trim:                               util_trim,
         ellipsis:                           util_ellipsis,
         getParameterByName:                 util_getParameterByName,
+        createArray:                        util_createArray,
+        copyArray:                          util_copyArray,
         newGuid:                            util_newGuid
     };
 

@@ -32,7 +32,8 @@
         _confDefault = {
             locale: 'en-us',    // default locale
             idleTimeout: 2*60,  // 2 min
-            rssInterval: 3600,  // 1h
+            rssUpdateInterval: 3600,  // 1h
+            rssDisplayInterval: 20,     // 20 sec
             rssStoryLen: 120,   // 120 characters
             videoRootUrl: 'assets/video/',
             videoManifestFile: 'videos_{locale}.ajax',
@@ -43,8 +44,13 @@
     // state
     var _config,
         _langCode = '',
-        _countryCode = '',
-        _sportsNewsCat = 0; // indicate next rss sports category
+        _countryCode = '';
+
+    // rss related
+    var _rssStories = Pn.util.createArray([2, 5], ''),       // 2x5: 2 rows (top and sports). each row has 5 stories.
+        _rssLoopIdx = -1,        // which story is shown?
+        _rssLoopLen = 5,
+        _rssWaitLoad = $.Deferred();    // indicate if rss is loaded
 
     function init(config) {
         // deal with config
@@ -56,16 +62,19 @@
 
     //=========================== infra start ==============================
 
-    function infra_fetch2RssStories(url) {
+    // return 10 stories
+    function infra_fetchRssStories(url) {
         return Pn.ajax.get(url).then(function(data) {
-            // this is a filter, not just callback
+            // this is a filter, not just callback. Need use '.then()'
             if(data && data.channel && data.channel.item && data.channel.item.length) {
-                return [
-                    data.channel.item[0].description,
-                    data.channel.item[1] ? data.channel.item[1].description : ''
-                ];
+                var rst = [];
+                for(var i=0; i<_rssLoopLen*2; i++) {
+                    var s = data.channel.item[i] && data.channel.item[i].description ? data.channel.item[i].description : '';
+                    rst.push(Pn.util.ellipsis(s, _config.rssStoryLen));
+                }
+                return rst;
             }
-            return ['', ''];
+            return Pn.util.createArray([_rssLoopLen*2], '');
         });
     }
 
@@ -240,39 +249,85 @@
         $('header .aDate').text(dateObj.toLocaleDateString(_langCode, _dateFormat));
     }
 
-    function biz_populateRss() {
+    function biz_updateStories() {
         var rssUrls = _config.rssUrls[_config.locale];
         var set1;
 
-        // story 1
-        var pRss1 = infra_fetch2RssStories(rssUrls[0]).done(function(data){
+        // wait for ajax calls
+        var waitCall1 = $.Deferred(),
+            waitCall2 = $.Deferred(),
+            waitCall3 = $.Deferred();
+
+        // stories on left
+        var pRss1 = infra_fetchRssStories(rssUrls[0]).done(function(data){
             set1 = data;
-            $('footer .aRss .aContent1').text(Pn.util.ellipsis(data[0], _config.rssStoryLen));
+            Pn.util.copyArray(set1, 0, _rssStories[0], 0, _rssLoopLen);
+        }).always(function(){
+            waitCall1.resolve();
         });
 
-        // story 2
+        // stories on right
         if(!rssUrls[1] && !rssUrls[2]) {
-            // display top news
+            // take from set1
             $.when(pRss1).done(function(){
-                $('footer .aRss .aContent2').text(Pn.util.ellipsis(set1[1], _config.rssStoryLen));
+                Pn.util.copyArray(set1, 5, _rssStories[1], 0, _rssLoopLen);
             });
+            waitCall2.resolve();
+            waitCall3.resolve();
+        } else if(!rssUrls[2]) {
+            infra_fetchRssStories(rssUrls[1]).done(function(data){
+                Pn.util.copyArray(data, 0, _rssStories[1], 0, _rssLoopLen);
+            }).always(function(){
+                waitCall2.resolve();
+            });
+            waitCall3.resolve();
         } else {
-            var url;
-            if(rssUrls[2]) {
-                // pick url between 2
-                url = _sportsNewsCat === 0 ? rssUrls[1] : rssUrls[2];
-                _sportsNewsCat = (_sportsNewsCat + 1) % 2;
-            } else {
-                url = rssUrls[1];
-            }
-            infra_fetch2RssStories(url).done(function(data){
-                $('footer .aRss .aContent2').text(Pn.util.ellipsis(data[0], _config.rssStoryLen));
+            // half half
+            infra_fetchRssStories(rssUrls[1]).done(function(data){
+                // even idx
+                for(var i=0, j=0; i<_rssLoopLen; i+=2, j++) _rssStories[1][i] = data[j];
+            }).always(function(){
+                waitCall2.resolve();
+            });
+            infra_fetchRssStories(rssUrls[2]).done(function(data){
+                // odd idx
+                for(var i=1, j=0; i<_rssLoopLen; i+=2, j++) _rssStories[1][i] = data[j];
+            }).always(function(){
+                waitCall3.resolve();
             });
         }
+
+        // set signal
+        $.when(waitCall1, waitCall2, waitCall3).done(function(){
+            // no harm to call it again and again.
+            _rssWaitLoad.resolve();
+        });
+    }
+
+    function biz_switchStory() {
+        // wait until stories are loaded
+        $.when(_rssWaitLoad).done(function(){
+            biz_hideStory();
+            _rssLoopIdx = (_rssLoopIdx + 1) % _rssLoopLen;
+            $('footer .aRss .aContent1Story').text(_rssStories[0][_rssLoopIdx]);
+            $('footer .aRss .aContent2Story').text(_rssStories[1][_rssLoopIdx]);
+            biz_showStory();
+        });
+    }
+
+    function biz_hideStory() {
+        // put transition here
+        $('footer .aRss .aContent1Story').hide();
+        $('footer .aRss .aContent2Story').hide();
+    }
+
+    function biz_showStory() {
+        // put transition here
+        $('footer .aRss .aContent1Story').show();
+        $('footer .aRss .aContent2Story').show();
     }
 
     function biz_showAtrractLoop() {
-        // put transition here
         $('main section').hide();
         infra_playAtrractLoopVideo();
         $('main section.aAttractLoopSec').show();
@@ -391,13 +446,13 @@
         // localize
         Pn.l10n.locale(_config.locale);
 
+        // update rss story
+        biz_updateStories();
+        window.setInterval(biz_updateStories, _config.rssUpdateInterval*1000);
+
         // populate datetime
         biz_populateDateTime();
         window.setInterval(biz_populateDateTime, 10*1000);    // every 10 sec
-
-        // populate rss story
-        biz_populateRss();
-        window.setInterval(biz_populateRss, _config.rssInterval*1000);
 
         // init keyboard
         infra_initKeyboard(_langCode);
@@ -410,6 +465,10 @@
 
         // idle timer
         Pn.idle.start(_config.idleTimeout, biz_startSession);
+
+        // display rss story
+        biz_switchStory();
+        window.setInterval(biz_switchStory, _config.rssDisplayInterval*1000);
 
         biz_startSession();
     }

@@ -261,14 +261,16 @@ main {
     position: relative; }
     main .uSectionsWrap section {
       height: 100%;
-      border: solid 1px blue; }
+      border: solid 1px blue;
+      display: none; }
 
-main .uAttractLoopSec video {
-  width: 1280px;
-  height: 100%; }
-
-main .uAttractLoopSec div {
-  float: right; }
+main .uAttractLoopSec {
+  display: block; }
+  main .uAttractLoopSec video {
+    width: 1280px;
+    height: 100%; }
+  main .uAttractLoopSec div {
+    float: right; }
 
 main .uVideoListSec {
   display: none;

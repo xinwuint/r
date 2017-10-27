@@ -1,6 +1,7 @@
 {
     "idleTimeout":          120,
-    "rssInterval":          3600,
+    "rssUpdateInterval":    3600,
+    "rssDisplayInterval":   20,
     "rssStoryLen":          120,
     "videoRootUrl":         "assets/video/",
     "videoManifestFile":    "videos_{locale}.ajax",
