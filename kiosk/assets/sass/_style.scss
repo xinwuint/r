@@ -58,6 +58,7 @@ footer .uRss {
     }
 
     .uContent1, .uContent2 {
+        font-family: 'HelveticaNeue LT 45';
         border-left: 1px solid $red;
         width: 700px;
         padding-left: 30px;
@@ -103,13 +104,14 @@ main {
         margin: auto;
         position: relative;
         color: $white;
-
+        overflow: hidden;
         section {
             height: 100%;
             display: none;
         }
 
         h3{
+          font-family: 'Helvetica LT 107 Extra Black Condensed Oblique_0';//_0
           border-bottom: 1px dotted $midGrey;
           //border-top: 3px solid $midGrey;
           padding-top: 30px;
@@ -345,17 +347,29 @@ main .uLayerSec {
     bottom: 0px;
     left: 0px;
     background-color: #000;
-    opacity: 0.3;
-    filter: alpha(opacity=30);
+    opacity: 0.6;
+    filter: alpha(opacity=60);
 }
 
 
 // 8.) keyboard section ======================================================================
 main .uKeyboardSec {
-    margin-left: 540px;
-    position: relative;
-    top: -720px;
+    //margin-left: 540px;
+    //position: relative;
+    //top: -720px;
+    position: absolute;
+    top: 0;
+    right: 0;//-1140px;
+    width: 1144px;
     background-color: #2b2b2b;
+    animation: keyboardIn $time;
+    -moz-animation:keyboardIn $time; /* Firefox */
+    -webkit-animation:keyboardIn $time; /* Safari and Chrome */
+
+    @keyframes keyboardIn {
+      0%   { transform: translateX(1140px); opacity: 0;}
+      100% { transform: translateX(0); opacity: 1;}
+    }
 
     .uBackToVideoDiv {
         text-align: right;

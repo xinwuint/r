@@ -318,6 +318,7 @@ footer .uRss .uTitle1, footer .uRss .uTitle2 {
   text-align: right; }
 
 footer .uRss .uContent1, footer .uRss .uContent2 {
+  font-family: 'HelveticaNeue LT 45';
   border-left: 1px solid #ce1126;
   width: 700px;
   padding-left: 30px;
@@ -350,11 +351,13 @@ main {
     height: 720px;
     margin: auto;
     position: relative;
-    color: #fff; }
+    color: #fff;
+    overflow: hidden; }
     main .uSectionsWrap section {
       height: 100%;
       display: none; }
     main .uSectionsWrap h3 {
+      font-family: 'Helvetica LT 107 Extra Black Condensed Oblique_0';
       border-bottom: 1px dotted #555;
       padding-top: 30px;
       padding-bottom: 5px;
@@ -536,14 +539,28 @@ main .uLayerSec {
   bottom: 0px;
   left: 0px;
   background-color: #000;
-  opacity: 0.3;
-  filter: alpha(opacity=30); }
+  opacity: 0.6;
+  filter: alpha(opacity=60); }
 
 main .uKeyboardSec {
-  margin-left: 540px;
-  position: relative;
-  top: -720px;
-  background-color: #2b2b2b; }
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1144px;
+  background-color: #2b2b2b;
+  animation: keyboardIn 0.2s;
+  -moz-animation: keyboardIn 0.2s;
+  /* Firefox */
+  -webkit-animation: keyboardIn 0.2s;
+  /* Safari and Chrome */ }
+
+@keyframes keyboardIn {
+  0% {
+    transform: translateX(1140px);
+    opacity: 0; }
+  100% {
+    transform: translateX(0);
+    opacity: 1; } }
   main .uKeyboardSec .uBackToVideoDiv {
     text-align: right; }
   main .uKeyboardSec .uBackBtn {
