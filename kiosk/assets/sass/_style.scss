@@ -8,8 +8,6 @@ body {
     color: $midGrey;
 }
 
-
-
 // 1.) header ======================================================================
 header {
     width: 100%;
@@ -30,7 +28,7 @@ header {
       div:first-child {
         font-size: 42px;
         font-weight: normal;
-        font-family: 'HelveticaNeue LT 107 XBlkCn';
+        font-family: 'Helvetica LT 107 Extra Black Condensed_0';
       }
 
     }
@@ -52,7 +50,7 @@ footer .uRss {
         color: $midGrey;
         display: inline-block;
         font-size: 40px;
-        font-family: "Helvetica LT 107 Extra Black Condensed Oblique_0";//_0
+        font-family: 'Helvetica LT 107 Extra Black Condensed Oblique_0';//_0
         //font-family: "HelveticalNeue LT 107 XBlkCn";
         font-weight: bold;
         font-style: oblique;
@@ -61,7 +59,7 @@ footer .uRss {
 
     .uContent1, .uContent2 {
         border-left: 1px solid $red;
-        width: 300px;
+        width: 700px;
         padding-left: 30px;
         display: inline-block;
         color: $lightGrey;
@@ -150,6 +148,7 @@ main .uAttractLoopSec {
       div{
         display: table-cell;
         vertical-align: middle;
+        font-family: 'HelveticaNeueLT-LightCond';
         border-top: 1px solid $darkGrey;
         border-bottom: 1px solid $darkGrey;
         font-size: 1.8em;
@@ -160,7 +159,7 @@ main .uAttractLoopSec {
     }
 
     .uStart{
-      font-family: "HelveticalNeue LT 107 XBlkCn Olbique";
+      font-family: "Helvetica LT 107 Extra Black Condensed Oblique_0";
       font-size: 40px;
       background: $red;
       position: absolute;
