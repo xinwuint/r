@@ -37,14 +37,15 @@
             rssStoryLen: 120,   // 120 characters
             videoRootUrl: 'assets/video/',
             videoManifestFile: 'videos_{locale}.ajax',
-            emailFrom: 'no-reply@ryder-digit.com',
-            videoSiteAbsUrl: 'http://ryder-digit.com/videos/',
+            emailFrom: 'do-not-reply@ryder-digital.com',
+            videoSiteAbsUrl: 'http://ryder-digital.com/videos/',
         };
 
     // state
     var _config,
         _langCode = '',
-        _countryCode = '';
+        _countryCode = '',
+        _sessionId;
 
     // rss related
     var _rssStories = Pn.util.createArray([2, 5], ''),       // 2x5: 2 rows (top and sports). each row has 5 stories.
@@ -102,20 +103,24 @@
         $('main section.aAttractLoopSec video').attr('src', '');
     }
 
-    function infra_showErrMsg() {
-        $('footer .aRss').hide();
-        $('footer .aErr').show();
-
+    function infra_showErrMsgOnKeyboard() {
         $('main .aKeyboardSec .aCoverWrap').show();
         $('main .aKeyboardSec .aErrWrap').show();
     }
 
-    function infra_hideErrMsg() {
-        $('footer .aRss').show();
-        $('footer .aErr').hide();
-
+    function infra_hideErrMsgOnKeyboard() {
         $('main .aKeyboardSec .aCoverWrap').hide();
         $('main .aKeyboardSec .aErrWrap').hide();
+    }
+
+    function infra_showErrMsgOnFooter() {
+        $('footer .aRss').hide();
+        $('footer .aErr').show();
+    }
+
+    function infra_hideErrMsgOnFooter() {
+        $('footer .aRss').show();
+        $('footer .aErr').hide();
     }
 
     function infra_showPointer() {
@@ -249,6 +254,12 @@
         $('header .aDate').text(dateObj.toLocaleDateString(_langCode, _dateFormat));
     }
 
+    function biz_sendEmail(addr) {
+        infra_email(addr)
+            .done(biz_hideKeyboard)
+            .fail(infra_showErrMsgOnKeyboard);
+    }
+
     function biz_updateStories() {
         var rssUrls = _config.rssUrls[_config.locale];
         var set1;
@@ -353,7 +364,7 @@
         $('main section.aLayerSec').hide();
         $('main section.aKeyboardSec').hide();
         infra_clearEmailInput();
-        infra_hideErrMsg();
+        infra_hideErrMsgOnKeyboard();
     }
 
     // video popup
@@ -386,6 +397,20 @@
         });
     }
 
+    function biz_checkConnectivity() {
+        Pn.util.checkConnectivity().done(function(online){
+            if(online) infra_hideErrMsgOnFooter();
+            else infra_showErrMsgOnFooter();
+        });
+    }
+
+    function biz_startSession() {
+        _sessionId = Pn.util.newGuid();
+        biz_hideKeyboard();
+        biz_showAtrractLoop();
+        // TODO: add tracking
+    }
+
     function _hookEventHandlers() {
         // start btn
         $('main .aAttractLoopSec .aStart').on('click', biz_showVideoList);
@@ -401,21 +426,15 @@
             Pn.ui.selected(this, true);
         }).on('mouseup', function(){
             Pn.ui.selected(this, false);
-        }).on('click', function(){
-            biz_showKeyboard();
-        });
+        }).on('click', biz_showKeyboard);
 
         // back to video btn
-        $('main .aKeyboardSec .aBackBtn').on('click', function(){
-            biz_hideKeyboard();
-        });
+        $('main .aKeyboardSec .aBackBtn').on('click', biz_hideKeyboard);
 
         // on email input ok
         $('main .aKeyboardSec .aEmailField').on('accepted', function(e, keyboard, el) {
             var addr = el.value;
-            infra_email(addr).done(function(){
-                biz_hideKeyboard();
-            }).fail(infra_showErrMsg);
+            biz_sendEmail(addr);
         });
 
         // video tile
@@ -436,15 +455,13 @@
         });
     }
 
-    function biz_startSession() {
-        biz_hideKeyboard();
-        biz_showAtrractLoop();
-        // TODO: add tracking
-    }
-
     function start() {
         // localize
         Pn.l10n.locale(_config.locale);
+
+        // check connectivity
+        biz_checkConnectivity();
+        window.setInterval(biz_checkConnectivity, 30*1000);     // 30 sec
 
         // update rss story
         biz_updateStories();

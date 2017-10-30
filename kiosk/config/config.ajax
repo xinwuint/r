@@ -5,8 +5,8 @@
     "rssStoryLen":          120,
     "videoRootUrl":         "assets/video/",
     "videoManifestFile":    "videos_{locale}.ajax",
-    "emailFrom":            "no-reply@ryder-digit.com",
-    "videoSiteAbsUrl":      "http://ryder-digit.com/videos/",
+    "emailFrom":            "do-not-reply@ryder-digital.com",
+    "videoSiteAbsUrl":      "http://ryder-digital.com/videos/",
 
     "rssUrls": {
         "en-us": [

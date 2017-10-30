@@ -27,6 +27,7 @@
         string  getParameterByName(string:name[, string:url]);
         array   createArray([int]:lengths, any:value);  // create multi-dimensional array which is defined by length of each dimension. value is init value for elements.
         string  newGuid();
+        promise checkConnectivity();                    // check internet connectivity. eg: checkConnectivity().done(function(isOnline){...})
         void    publish(obj[, string:namespace]);
     ajax
         jqXHR   ajax();   // same as $.ajax()
@@ -168,12 +169,60 @@
         }
     }
 
+    // alg related
     function util_newGuid() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
             var r = Math.random() * 16 | 0,
                 v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
         });
+    }
+
+    // net related
+    function util_checkUrlAvail(url) {
+        var d = $.Deferred();
+        ajax_ajax({
+            url: url,
+            method: "HEAD",
+            cache: false
+        }).done(function(){
+            d.resolve(true);
+        }).fail(function(){
+            d.resolve(false);
+        });
+        return d.promise();
+    }
+
+    // net related
+    function util_checkConnectivity() {
+        var landmarks = ["https://www.google.com/", "https://www.bing.com/", "https://search.yahoo.com/"];
+        var d = $.Deferred();
+        var handles = [];
+        var failureCnt = 0;
+
+        var _done = function(avail) {
+            if(!handles) return;    // already settled down
+            if(avail) {
+                for(var i = 0; i < landmarks.length; i++) {
+                    try {
+                        handles[i].abort();
+                    } catch(err) {}
+                }
+                handles = null;
+                d.resolve(true);
+            } else {
+                failureCnt++;
+                if(failureCnt === landmarks.length) {
+                    handles = null;
+                    d.resolve(false);
+                }
+            }
+        };
+
+        for(var i = 0; i < landmarks.length; i++) {
+            handles.push(util_checkUrlAvail(landmarks[i]).done(_done));
+        }
+        return d.promise();
     }
 
     var util = {
@@ -193,7 +242,8 @@
         getParameterByName:                 util_getParameterByName,
         createArray:                        util_createArray,
         copyArray:                          util_copyArray,
-        newGuid:                            util_newGuid
+        newGuid:                            util_newGuid,
+        checkConnectivity:                  util_checkConnectivity
     };
 
 
