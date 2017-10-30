@@ -183,7 +183,7 @@
             usePreview: false,
             alwaysOpen: true,
             restrictInput: true,
-            acceptValid: true,  // if invalid input, accept btn is disabled 
+            acceptValid: true,  // if invalid input, accept btn is disabled
             keyBinding: 'mousedown touchstart',
             appendLocally: true,
             layout: 'custom',
