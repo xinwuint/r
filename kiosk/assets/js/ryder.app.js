@@ -245,6 +245,75 @@
         });
     }
 
+    //VIDEOS
+    var mediaPlayer;
+    var progressBar;
+    var btn;
+
+    function initialiseMediaPlayer() {
+      mediaPlayer = document.getElementById('video');
+      progressBar = document.getElementById('progress-bar');
+      btn = document.getElementById('play-pause-button');
+      mediaPlayer.controls = false;
+      videoControls();
+    }
+
+    function videoControls() {
+      $('#play-pause-button').off("click").on("click", function(event) {
+        togglePlayPause();
+      });
+      $('#volume-inc-button').off("click").on("click", function(event) {
+        changeVolume("+")
+      });
+      $('#volume-dec-button').off("click").on("click", function(event) {
+        changeVolume("-")
+      });
+      //$('#media-video').bind('timeupdate', updateProgressBar);
+      mediaPlayer.addEventListener('timeupdate', updateProgressBar, false);
+    }
+
+    function togglePlayPause() {
+      if (mediaPlayer.paused || mediaPlayer.ended) {
+        btn.className = 'pause';
+        mediaPlayer.play();
+      } else {
+        btn.className = 'play';
+        mediaPlayer.pause();
+      }
+    }
+
+    function changeButtonType(btn, value) {
+      btn.title = value;
+      btn.innerHTML = value;
+      btn.className = value;
+    }
+
+    function updateProgressBar() {
+      var percentage = Math.floor((100 / mediaPlayer.duration) *
+        mediaPlayer.currentTime);
+      progressBar.value = percentage;
+      progressBar.innerHTML = percentage + '% played';
+    }
+
+    function changeVolume(direction) {
+      if (direction === '+') mediaPlayer.volume += mediaPlayer.volume == 1 ? 0 : 0.1;
+      else mediaPlayer.volume -= (mediaPlayer.volume == 0 ? 0 : 0.1);
+    }
+
+    function replayMedia() {
+      resetPlayer();
+      mediaPlayer.play();
+    }
+
+    function fullscreenMedia() {
+      mediaPlayer.webkitRequestFullScreen();
+    }
+
+    function resetPlayer() {
+      progressBar.value = 0;
+      mediaPlayer.currentTime = 0;
+      changeButtonType(playPauseBtn, 'play');
+    }
     //=========================== infra end ==============================
 
     function biz_populateDateTime() {
@@ -378,6 +447,7 @@
                 return true;
             },
             onLaunched: function(){
+                initialiseMediaPlayer();
                 var v = $(this).find('video');
                 v.on('ended', function(){
                     // close popup when done

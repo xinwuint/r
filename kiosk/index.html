@@ -57,7 +57,7 @@
                         <div class="aCoverWrap uCoverWrap"></div>
                         <div class="aErrWrap uErrWrap">
                             <img src="assets/images/kiosk_LRG_Warning_Icon.png">
-                            <div l10n-text="err.title"></div>
+                            <h3 l10n-text="err.title"></h3>
                             <div l10n-text="err.text1"></div>
                             <div l10n-text="err.text2"></div>
                         </div>
@@ -79,15 +79,32 @@
                 </span>
             </section>
             <section class="aErr uErr">
-                <img src="assets/images/kiosk_LRG_Warning_Icon.png">
-                <span l10n-text="err.title"></span>
-                <span l10n-text="err.text1"></span>
-                <span l10n-text="err.text2"></span>
+                <div>
+                  <div>
+                    <img src="assets/images/kiosk_LRG_Warning_Icon.png">
+                  </div>
+                  <div>
+                    <h3 l10n-text="err.title"></h3>
+                  </div>
+                  <div>
+                    <span l10n-text="err.text1"></span>
+                    <span l10n-text="err.text2"></span>
+                  </div>
+                </div>
             </section>
         </footer>
 
         <article class='aVideoPopup uVideoPopup'>
-            <video autoplay="true" controls></video>
+            <video id="video" autoplay="true" controls></video>
+            <div id='media-controls'>
+    					<div><div id='play-pause-button' class='play' title='play'></div></div>
+    					<div class="uProgressBar"><progress id='progress-bar' min='0' max='100' value='0'></progress></div>
+    					<div class="uVolumeInc"><div id='volume-inc-button' class='volume-plus' title='increase volume'></div></div>
+              <div><div id='volume-mute-button' class='volume-mute' title='mute volume'></div></div>
+    					<div><div id='volume-dec-button' class='volume-minus' title='decrease volume'></div></div>
+    					<!--<div id='replay-button' class='replay' title='replay'></div>
+    					<div id='fullscreen-button' class='fullscreen' title='fullscreen'></div>-->
+    				</div>
         </article>
 
         <script id="template-videolist" type="text/x-handlebars-template">

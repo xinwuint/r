@@ -238,7 +238,8 @@ footer{
 #media-video{
 	//max-width: 100%;
 	width: 100%;
-	position: relative
+	position: relative;
+	background-color: $555;
 }
 #media-controls {
 	background: rgba(0, 0, 0, .4);

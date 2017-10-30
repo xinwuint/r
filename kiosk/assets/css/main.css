@@ -277,17 +277,20 @@ a {
   display: block; }
 
 body {
+  margin: 0 auto;
   width: 1920px;
   height: 1080px;
   font-size: 16px;
   font-family: "Helvetica Neue", sans-serif;
   background-color: #2b2b2b;
-  color: #555; }
+  color: #555;
+  font-family: 'HelveticaNeue LT 67 MdCn'; }
 
 header {
   width: 100%;
   height: 120px;
-  background: url("../images/Kiosk_HeaderRyderLogo.png") no-repeat center top; }
+  background: url("./../images//Kiosk_HeaderRyderLogo.png") no-repeat center top;
+  position: relative; }
   header .uTime {
     position: absolute;
     right: 54px;
@@ -341,14 +344,42 @@ footer .uRss {
 
 footer .uErr {
   display: none; }
+  footer .uErr > div {
+    display: table;
+    width: 100%;
+    height: 100px; }
+    footer .uErr > div > div {
+      display: table-cell;
+      vertical-align: middle;
+      position: relative; }
+      footer .uErr > div > div:nth-of-type(3):before {
+        content: "";
+        display: block;
+        height: 95px;
+        width: 2px;
+        position: absolute;
+        background: #c2c2c2;
+        top: 0px;
+        left: -35px; }
   footer .uErr img {
     width: 72px;
     height: 62px; }
+  footer .uErr h3 {
+    font-family: 'Helvetica LT 107 Extra Black Condensed_0';
+    font-size: 37px;
+    width: 409px;
+    display: inline-block;
+    text-align: right; }
+  footer .uErr span {
+    font-family: 'HelveticaNeue LT 67 MdCn';
+    display: block;
+    font-size: 24px;
+    color: #c2c2c2; }
 
 main {
   width: 100%;
   height: 840px;
-  background: url("../images/kiosk_bk_Image.png") no-repeat center top;
+  background: url("./../images//kiosk_bk_Image.png") no-repeat center top;
   padding-top: 60px; }
   main .uSectionsWrap {
     background-color: #2b2b2b;
@@ -446,18 +477,18 @@ main .uVideoListSec {
         transition: background-image 0.2s ease-in-out;
         -moz-transition: background-image 0.2s ease-in-out;
         -webkit-transition: background-image 0.2s ease-in-out;
-        background-image: url("../images/kiosk_Email_Bth_UP.png"); }
+        background-image: url("./../images//kiosk_Email_Bth_UP.png"); }
         main .uVideoListSec .uBtnDiv .uEmailBtn[l10n-locale='en-us'][selected], main .uVideoListSec .uBtnDiv .uEmailBtn[l10n-locale='en-ca'][selected] {
-          background-image: url("../images/kiosk_Email_Bth_RL-DN.png"); }
+          background-image: url("./../images//kiosk_Email_Bth_RL-DN.png"); }
       main .uVideoListSec .uBtnDiv .uEmailBtn[l10n-locale='fr-ca'] {
         width: 127px;
         height: 40px;
         transition: background-image 0.2s ease-in-out;
         -moz-transition: background-image 0.2s ease-in-out;
         -webkit-transition: background-image 0.2s ease-in-out;
-        background-image: url("../images/kiosk_French_Email_Bth_UP.png"); }
+        background-image: url("./../images//kiosk_French_Email_Bth_UP.png"); }
         main .uVideoListSec .uBtnDiv .uEmailBtn[l10n-locale='fr-ca'][selected] {
-          background-image: url("../images/kiosk_French_Email_Bth_RL-DN.png"); }
+          background-image: url("./../images//kiosk_French_Email_Bth_RL-DN.png"); }
     main .uVideoListSec .uBtnDiv .uToggleBtn {
       width: 110px;
       height: 38px;
@@ -466,23 +497,23 @@ main .uVideoListSec {
         transition: background-image 0.2s ease-in-out;
         -moz-transition: background-image 0.2s ease-in-out;
         -webkit-transition: background-image 0.2s ease-in-out;
-        background-image: url("../images/kiosk_Spanish_Btn_UP.png"); }
+        background-image: url("./../images//kiosk_Spanish_Btn_UP.png"); }
         main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-us'][selected] {
-          background-image: url("../images/kiosk_Spanish_Btn_RL-DN.png"); }
+          background-image: url("./../images//kiosk_Spanish_Btn_RL-DN.png"); }
       main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca'] {
         transition: background-image 0.2s ease-in-out;
         -moz-transition: background-image 0.2s ease-in-out;
         -webkit-transition: background-image 0.2s ease-in-out;
-        background-image: url("../images/kiosk_French_Btn_UP.png"); }
+        background-image: url("./../images//kiosk_French_Btn_UP.png"); }
         main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca'][selected] {
-          background-image: url("../images/kiosk_French_Btn_RL-DN.png"); }
+          background-image: url("./../images//kiosk_French_Btn_RL-DN.png"); }
       main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca'] {
         transition: background-image 0.2s ease-in-out;
         -moz-transition: background-image 0.2s ease-in-out;
         -webkit-transition: background-image 0.2s ease-in-out;
-        background-image: url("../images/kiosk_English_Btn_UP.png"); }
+        background-image: url("./../images//kiosk_English_Btn_UP.png"); }
         main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca'][selected] {
-          background-image: url("../images/kiosk_English_Btn_RL-DN.png"); }
+          background-image: url("./../images//kiosk_English_Btn_RL-DN.png"); }
     main .uVideoListSec .uBtnDiv .uPointerBtn {
       display: block;
       opacity: 0;
@@ -496,9 +527,9 @@ main .uVideoListSec {
       animation-iteration-count: 4;
       user-select: none; }
       main .uVideoListSec .uBtnDiv .uPointerBtn[l10n-locale='en-us'], main .uVideoListSec .uBtnDiv .uPointerBtn[l10n-locale='en-ca'] {
-        background-image: url("../images/kiosk_Swipe_icon.png"); }
+        background-image: url("./../images//kiosk_Swipe_icon.png"); }
       main .uVideoListSec .uBtnDiv .uPointerBtn[l10n-locale='fr-ca'] {
-        background-image: url("../images/kiosk_FrenchSwipe_icon.png"); }
+        background-image: url("./../images//kiosk_FrenchSwipe_icon.png"); }
 
 @keyframes handmove {
   0% {
@@ -525,7 +556,7 @@ main .uVideoListSec .uVideoTile {
   width: 393px;
   height: 111px;
   margin: 10px 8px;
-  padding: 10px;
+  padding: 8px;
   background-color: #1f1f1f;
   transition: border 0.2s ease-in-out;
   -moz-transition: border 0.2s ease-in-out;
@@ -540,7 +571,7 @@ main .uVideoListSec .uVideoTile {
     background-color: lightgrey; }
   main .uVideoListSec .uVideoTile .uBalloon {
     height: 30px;
-    background: url("../images/kiosk_Language_Icon.png") right top no-repeat;
+    background: url("./../images//kiosk_Language_Icon.png") right top no-repeat;
     background-size: 24px 23px;
     visibility: hidden; }
   main .uVideoListSec .uVideoTile .uTitle {
@@ -605,6 +636,18 @@ main .uKeyboardSec {
     left: 28px;
     border-left: none;
     border-right: none; }
+    main .uKeyboardSec .uKeyboardDiv .uErrWrap h3 {
+      font-family: 'Helvetica LT 107 Extra Black Condensed_0';
+      font-size: 37px;
+      text-align: center; }
+    main .uKeyboardSec .uKeyboardDiv .uErrWrap img {
+      display: block;
+      margin: 123px auto 0; }
+    main .uKeyboardSec .uKeyboardDiv .uErrWrap div {
+      margin: 36px auto;
+      color: #c2c2c2;
+      font-size: 24px;
+      text-align: center; }
     main .uKeyboardSec .uKeyboardDiv .uErrWrap, main .uKeyboardSec .uKeyboardDiv .uCoverWrap {
       position: absolute;
       left: 0px;
@@ -642,12 +685,94 @@ main .uKeyboardSec {
     margin-left: 12px; }
 
 article.uVideoPopup {
-  width: 960px;
+  width: 1280px;
   height: 720px;
   display: none; }
   article.uVideoPopup video {
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    background: #000;
+    position: relative; }
+
+#media-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  display: table;
+  width: 100%;
+  height: 97px;
+  background: rgba(0, 0, 0, 0.6);
+  /*
+  progress { color: $red;}
+  progress::-webkit-progress-value {background: $red; }
+  progress::-moz-progress-bar { background: $red; }
+  progress::-webkit-progress-value { background: $red; }
+  progress::-webkit-progress-bar { background: $red; }
+  */ }
+  #media-controls > div {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle; }
+    #media-controls > div div {
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0 auto; }
+  #media-controls .uVolumeInc:before {
+    content: "";
+    height: 73px;
+    width: 2px;
+    background: #fff;
+    display: block;
+    position: absolute;
+    top: calc(50% - 35px); }
+  #media-controls #play-pause-button {
+    transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    height: 28px;
+    width: 33px; }
+    #media-controls #play-pause-button.play {
+      background-image: url("./../images//kiosk_play_btn_up.png"); }
+      #media-controls #play-pause-button.play:hover, #media-controls #play-pause-button.play:active {
+        background-image: url("./../images//kiosk_play_btn_RL-DN.png"); }
+    #media-controls #play-pause-button.pause {
+      background-image: url("./../images//kiosk_Pause_Btn_UP.png"); }
+      #media-controls #play-pause-button.pause:hover, #media-controls #play-pause-button.pause:active {
+        background-image: url("./../images//kiosk_Pause_Btn_RL-DN.png"); }
+  #media-controls .uProgressBar {
+    width: 832px; }
+  #media-controls #progress-bar {
+    height: 5px;
+    position: relative;
+    top: -5px;
+    background: #fff;
+    width: 100%; }
+  #media-controls #volume-inc-button {
+    height: 26px;
+    width: 26px;
+    transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    background-image: url("./../images//kiosk_Plus_btn_UP.png"); }
+    #media-controls #volume-inc-button:hover, #media-controls #volume-inc-button:active {
+      background-image: url("./../images//kiosk_Plus_btn_RL-DN.png"); }
+  #media-controls #volume-dec-button {
+    height: 26px;
+    width: 26px;
+    transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    background-image: url("./../images//kiosk_Minus_btn_UP.png"); }
+    #media-controls #volume-dec-button:hover, #media-controls #volume-dec-button:active {
+      background-image: url("./../images//kiosk_Minus_btn_RL-DN.png"); }
+  #media-controls #volume-mute-button {
+    transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    height: 39px;
+    width: 45px;
+    background-image: url("./../images//Kiosk_Volume_Icon.png"); }
 
 /* ryder keyboard - jQuery UI Widget */
 .ui-keyboard {
