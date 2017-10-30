@@ -16,8 +16,8 @@ header {
 
     .uTime {
       position: absolute;
-      right: 20px;
-      top: 20px;
+      right: 54px;
+      top: 22px;
       text-align: right;
       font-size: 24px;
       font-weight: normal;
@@ -45,24 +45,37 @@ footer {
 }
 
 footer .uRss {
+  display: table;
+  width: 100%;
+
+  & > span {
+    display: table-cell;
+    vertical-align: middle;
+    height: 95px;
+  }
     .uTitle1, .uTitle2 {
-        width: 200px;
+        //width: 200px;
+        width: 45px;
         color: $midGrey;
-        display: inline-block;
+        //display: inline-block;
+        line-height: 0.9em;
         font-size: 40px;
         font-family: 'Helvetica LT 107 Extra Black Condensed Oblique_0';//_0
         //font-family: "HelveticalNeue LT 107 XBlkCn";
         font-weight: bold;
         font-style: oblique;
         text-align: right;
+        padding-right: 15px;
     }
 
     .uContent1, .uContent2 {
         font-family: 'HelveticaNeue LT 45';
-        border-left: 1px solid $red;
-        width: 700px;
-        padding-left: 30px;
-        display: inline-block;
+        border-left: 3px solid $red;
+        width: 725px;
+        font-size: 26px;
+        padding-left: 26px;
+        padding-right: 26px;
+        //display: inline-block;
         color: $lightGrey;
     }
 
@@ -111,14 +124,12 @@ main {
         }
 
         h3{
-          font-family: 'Helvetica LT 107 Extra Black Condensed Oblique_0';//_0
+          font-family: 'Helvetica LT 107 Extra Black Condensed_0';//_0
           border-bottom: 1px dotted $midGrey;
           //border-top: 3px solid $midGrey;
-          padding-top: 30px;
-          padding-bottom: 5px;
-          margin-bottom: 10px;
+          padding: 30px 8px 3px 8px;
           color: $midGrey;
-          font-size: 2.4em;
+          font-size: 30px;//2.4em;
         }
     }
 }
@@ -186,34 +197,42 @@ main .uAttractLoopSec {
 // 5.) video list section ==============================================================
 main .uVideoListSec {
     display: none;
-    padding: 20px;
+    padding: 24px;
+    font-size: 21px;
+    font-family: 'HelveticaNeue LT 67 MdCn';
 
     .uVideoListDiv {
-        height: 580px;
+        height: 597px;
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
-        border: 3px solid $midGrey;
+        border: 5px solid #555;
         border-left: none;
         border-right: none;
 
         .uCategory {
-            border-bottom: 1px dotted grey;
+            border-bottom: 1px dotted #555;
         }
     }
 
     .uBtnDiv {
         height: 100px;
         text-align: right;
-        position: relative;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
 
         .uEmailBtn, .uToggleBtn {
             display: inline-block;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center center;
+            position: absolute;
+            bottom: 30px;
         }
 
         .uEmailBtn {
+          right: 45px;
+
             &[l10n-locale='en-us'], &[l10n-locale='en-ca'] {
                 width: 109px;
                 height: 40px;
@@ -238,6 +257,7 @@ main .uVideoListSec {
         .uToggleBtn {
             width: 110px;
             height: 38px;
+            right: 245px;
 
             &[l10n-locale='en-us'] {
                 @include fade(background-image);
@@ -303,11 +323,14 @@ main .uVideoListSec {
 // 6.) video tile ======================================================================
 main .uVideoListSec .uVideoTile {
     display: inline-block;
-    width: 300px;
-    height: 100px;
-    margin: 5px;
-    padding: 5px;
-    background-color: #333;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    width: 393px;
+    height: 111px;
+    margin: 10px 8px;
+    padding: 10px;
+    background-color: #1f1f1f;
 
     transition: 	border $time ease-in-out;
     -moz-transition: 	border $time ease-in-out;
@@ -318,11 +341,11 @@ main .uVideoListSec .uVideoTile {
     }
 
     .uThumb {
-        width: 120px;
-        height: 90px;
+        width: 166px;
+        height: 93px;
         box-shadow: 0px 0px 5px $darkGrey;
         float: left;
-        margin-right: 10px;
+        background-color: lightgrey;
     }
 
     .uBalloon {
@@ -330,6 +353,17 @@ main .uVideoListSec .uVideoTile {
         background: url('../images/kiosk_Language_Icon.png') right top no-repeat;
         background-size: 24px 23px;
         visibility: hidden;
+    }
+
+    .uTitle{
+        position: absolute;
+        top: 50%;
+        right: 100px;
+        transform: translateY(-50%);
+        //resize: vertical;
+        //overflow: auto;
+        width: 100px;
+        text-align: left;
     }
 }
 
@@ -378,11 +412,26 @@ main .uKeyboardSec {
     .uBackBtn {
       //font-family:
       border-left: 1px solid;
-      padding-left:30px;
+      font-size: 18px;
+      font-family: 'HelveticaNeue LT 67 MdCn';
+      height: 71px;
+      width: 171px;
+      line-height: 71px;
+      text-align: center;
+      position: absolute;
+      bottom: 11px;
+      right: 11px;
     }
 
     .uKeyboardDiv {
         position: relative;
+        height: 597px;
+        top: 30px;
+        border: 5px solid grey;
+        width: 1090px;
+        left: 28px;
+        border-left: none;
+        border-right: none;
 
         .uErrWrap, .uCoverWrap {
             position: absolute;
@@ -398,6 +447,38 @@ main .uKeyboardSec {
             opacity: 0.8;
         }
     }
+
+    .uKeyboardText {
+      font-family: 'HelveticaNeue LT 67 MdCn';
+      color: #555;
+      font-size: 18px;
+      display: table;
+      width: 100%;
+      height: 106px;
+    & > div{
+      width: 100%;
+      display: table-cell;
+      vertical-align: middle;
+        div{
+           text-align: center;
+           display: block;
+        }
+      }
+    }
+
+    .uEmailField {
+      width: 1005px;
+      height: 84px;
+      line-height: 84px;
+      font-family: 'HelveticaNeue LT 45';
+      color: $white;
+      font-size: 45px;
+      background-color: $fieldGrey;
+          border: none;
+          padding-left: 30px;
+              margin-left: 12px;
+    }
+
 }
 
 
