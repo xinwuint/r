@@ -28,17 +28,18 @@
 
     // const =====================================================================================
     var _dateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
-        _timeFormat = { hour: 'numeric', minute:'numeric', hour12: true },
+        _timeFormat = { hour: 'numeric', minute: 'numeric', hour12: true },
         _confDefault = {
-            locale: 'en-us',    // default locale
-            idleTimeout: 2*60,  // 2 min
-            rssUpdateInterval: 3600,  // 1h
-            rssDisplayInterval: 20,     // 20 sec
-            rssStoryLen: 120,   // 120 characters
+            locationId: 'test-location-id',     // default location id for test only. Used by GA.
+            locale: 'en-us',                    // default locale
+            idleTimeout: 2*60,                  // 2 min
+            rssUpdateInterval: 3600,            // 1h
+            rssDisplayInterval: 20,             // 20 sec
+            rssStoryLen: 120,                   // 120 characters
             videoRootUrl: 'assets/video/',
             videoManifestFile: 'videos_{locale}.ajax',
             emailFrom: 'do-not-reply@ryder-digital.com',
-            videoSiteAbsUrl: 'http://ryder-digital.com/videos/',
+            videoSiteAbsUrl: 'http://ryder-digital.com/videosite/',
         };
 
     // state
