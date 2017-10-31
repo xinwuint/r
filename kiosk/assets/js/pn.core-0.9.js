@@ -195,7 +195,7 @@
 
     // net related
     function util_checkConnectivity() {
-        var landmarks = ["https://www.google.com/", "https://www.bing.com/", "https://search.yahoo.com/"];
+        var landmarks = ["https://www.google-analytics.com/collect", "https://www.google.com/", "https://www.bing.com/", "https://search.yahoo.com/"];
         var d = $.Deferred();
         var handles = [];
         var failureCnt = 0;

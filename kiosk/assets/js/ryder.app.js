@@ -489,7 +489,7 @@
         // toggle audio btn
         $('main .aVideoListSec .aToggleBtn').on('click', function(){
             var isSelected = Pn.ui.toggleSelected(this);
-            $('main .uVideoListSec').toggleClass('uAudioToggled', isSelected);
+            $('main .aVideoListSec').toggleClass('uAudioToggled', isSelected);
         });
 
         // email btn
