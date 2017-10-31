@@ -237,8 +237,10 @@ Application.prototype = function() {
         fullscreenMedia()
       });
 
-      //$('#media-video').bind('timeupdate', updateProgressBar);
-      mediaPlayer.addEventListener('timeupdate', updateProgressBar, false);
+      mediaPlayer.addEventListener('durationchange', function() {
+        //console.log('Duration change', mediaPlayer.duration);
+        mediaPlayer.addEventListener('timeupdate', updateProgressBar, false);
+      });
     }
 
     togglePlayPause = function() {
@@ -263,11 +265,13 @@ Application.prototype = function() {
 
     updateProgressBar = function() {
       //var progressBar = document.getElementById('progress-bar');
-      var percentage = Math.floor((100 / mediaPlayer.duration) *
+      if (mediaPlayer.duration) {
+        var percentage = Math.floor((100 / mediaPlayer.duration) *
         mediaPlayer.currentTime);
-      //console.log(mediaPlayer.duration, percentage)
-      progressBar.value = percentage; //Uncaught TypeError: Failed to set the 'value' property on 'HTMLProgressElement': The provided double value is non-finite.
-      progressBar.innerHTML = percentage + '% played';
+        //console.log(mediaPlayer.duration, percentage)
+        progressBar.value = percentage;
+        progressBar.innerHTML = percentage + '% played';
+      }
     }
 
     changeVolume = function(direction) {

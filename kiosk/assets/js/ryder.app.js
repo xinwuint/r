@@ -268,8 +268,10 @@
       $('#volume-dec-button').off("click").on("click", function(event) {
         changeVolume("-")
       });
-      //$('#media-video').bind('timeupdate', updateProgressBar);
-      mediaPlayer.addEventListener('timeupdate', updateProgressBar, false);
+      mediaPlayer.addEventListener('durationchange', function() {
+        //console.log('Duration change', mediaPlayer.duration);
+        mediaPlayer.addEventListener('timeupdate', updateProgressBar, false);
+      });
     }
 
     function togglePlayPause() {
@@ -289,10 +291,12 @@
     }
 
     function updateProgressBar() {
-      var percentage = Math.floor((100 / mediaPlayer.duration) *
+      if (mediaPlayer.duration) {
+        var percentage = Math.floor((100 / mediaPlayer.duration) *
         mediaPlayer.currentTime);
-      progressBar.value = percentage;
-      progressBar.innerHTML = percentage + '% played';
+        progressBar.value = percentage;
+        progressBar.innerHTML = percentage + '% played';
+      }
     }
 
     function changeVolume(direction) {

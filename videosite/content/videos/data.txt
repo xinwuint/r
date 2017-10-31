@@ -1,0 +1,45 @@
+{
+   "defaults": {
+      "imageAssetPath": "./content/assets/images",
+      "videoAssetPath": "./content/assets/videos"
+   },
+   "videos": {
+      "videoslist": [{
+         "listtitle": "Natural Gas Vehicles",
+         "sublist": [{
+            "title": "Natural Gas Fueling Process",
+            "link": "video1.mp4"
+         }, {
+            "title": "Mitigation of Natural Gas",
+            "link": "video1.mp4"
+         }, {
+            "title": "Natural Gas Driver Orientation",
+            "link": "video1.mp4"
+         }]
+      }, {
+         "title": "Fuel Receipt App",
+         "link": "video1.mp4"
+      }, {
+         "title": "Safe Liftgate Operations",
+         "link": "video1.mp4"
+      }, {
+         "title": "Carrier Supra Operations",
+         "link": "video1.mp4"
+      }, {
+         "title": "Ryder RedZone",
+         "link": "video1.mp4"
+      }, {
+         "title": "DPF/DEF Regeneration",
+         "link": "video1.mp4"
+      }, {
+         "title": "Volvo Automated manual Transmission Operation",
+         "link": "video1.mp4"
+      }, {
+         "title": "Carrier Supra Operations",
+         "link": "video1.mp4"
+      }, {
+         "title": "Carrier Supra Operations",
+         "link": "video1.mp4"
+      }]
+   }
+}
