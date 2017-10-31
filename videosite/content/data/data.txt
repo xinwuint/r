@@ -2,8 +2,8 @@
    "defaults": {
       "imageAssetPath": "./content/assets/images",
       "videoAssetPath": "./content/assets/videos",
-      "listTitle": "Saftey/Why Ryder",
-      "footerText": "Ryder and Ryder Logo are registered trademarks of Ryder System, Inc. <br> Ever better is a trademark of Ryder System, Inc. © Copyright 1996 - 2017 Ryder System, Inc."
+      "listTitle": "videosite.list.title",
+      "footerText": "videosite.copyright"
    },
    "videos": {
       "videoslist": [{
