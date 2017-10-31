@@ -207,6 +207,7 @@
     function _adjustUrl(data, rootUrl) {
         if(data) {
             for(var cat in data) {
+                if(!data.hasOwnProperty(cat)) continue;
                 var l = data[cat];
                 if(l && l.length) {
                     for(var i=0; i<l.length; i++) {
@@ -231,7 +232,6 @@
             if(!okSafety && !okWhyryder) return;
 
             // adjust url
-            data.__proto__ = undefined;
             _adjustUrl(data, _config.videoRootUrl);
 
             // template

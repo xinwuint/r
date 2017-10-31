@@ -3,7 +3,7 @@
     "en": {
         "attract.start":            "START",
         "attract.desc":             "Tap the Start button for safety and informational videos about Ryder trucks.",
-        "attract.videourl":         "assets/video/attract.mp4",
+        "attract.videourl":         "content/videos/attract.mp4",
         "rss.cat.topnews":          "TOP NEWS",
         "rss.cat.sportsnews":       "SPORTS NEWS",
         "videolist.cat.safety":     "SAFETY",
@@ -16,7 +16,7 @@
         "err.title":                "NETWORK INTERRUPTOIN - NO INTERNET CONNECTION",
         "err.text1":                "We can't send an email right now. Please notify a Ryder associate for assistance.",
         "err.text2":                "Sorry for the inconvenience.",
-        "videosite.list.title":     "Safteyhaha/Why Ryder",
+        "videosite.list.title":     "Safety/Why Ryder",
         "videosite.copyright":      "Ryder and Ryder Logo are registered trademarks of Ryder System, Inc. <br> Ever better is a trademark of Ryder System, Inc. © Copyright 1996 - 2017 Ryder System, Inc.",
     },
 

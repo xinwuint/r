@@ -12,22 +12,10 @@ Application.prototype = function() {
   var idleTime = 0;
   var idleMax;
   var goReverse = false;
-  var locale = 'en-us';
-  var locationId = 'test-location-id';   // the user comes here from which kiosk
 
   var startURL = window.location.href;
 
   var launch = function() {
-      // init
-      Pn.init();
-      Pn.l10n.init();
-      // param
-      locale = Pn.util.getParameterByName('locale', startURL) || locale;
-      locationId = Pn.util.getParameterByName('locationId', startURL) || locationId;
-      // localize
-      locale = Pn.l10n.locale(locale);
-
-
       $('body').bind('touchstart', function() {});
 
       assetPath = dm.pageArray.defaults.imageAssetPath;

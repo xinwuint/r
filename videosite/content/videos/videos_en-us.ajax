@@ -3,8 +3,8 @@
 		{
 			"title": 				"1hello",
 			"thumbnailFile": 		"1a.png",
-			"videoFile": 			"tutorial.mp4",
-			"videoSecondaryFile": 	"1a_es.mp4"
+			"videoFile": 			"video1.mp4",
+			"videoSecondaryFile": 	"tutorial.mp4"
 		},
 		{
 			"title": 				"1world",
