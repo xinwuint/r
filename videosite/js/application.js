@@ -245,13 +245,9 @@ Application.prototype = function() {
 
     togglePlayPause = function() {
       if (mediaPlayer.paused || mediaPlayer.ended) {
-        btn.title = 'pause';
-        btn.innerHTML = 'pause';
         btn.className = 'pause';
         mediaPlayer.play();
       } else {
-        btn.title = 'play';
-        btn.innerHTML = 'play';
         btn.className = 'play';
         mediaPlayer.pause();
       }

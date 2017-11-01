@@ -30,6 +30,39 @@
   src: url("./../assets/fonts/HelveticaNeueLT-Light.eot?#iefix") format("embedded-opentype"), url("./../assets/fonts/HelveticaNeueLT-Light.woff") format("woff"), url("./../assets/fonts/HelveticaNeueLT-Light.ttf") format("truetype");
   font-weight: 100;
   font-style: normal; }
+@font-face {
+  font-family: 'Helvetica LT 47 Light Condensed_0';
+  src: url("./../assets/fonts/Helvetica LT 47 Light Condensed_0.eot");
+  src: url("./../assets/fonts/Helvetica LT 47 Light Condensed_0.woff2") format("woff2"), url("./../assets/fonts/Helvetica LT 47 Light Condensed_0.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'HelveticaNeueLT-LightCond';
+  src: url("./../assets/fonts/HelveticaNeueLT-LightCond.woff") format("woff"), url("./../assets/fonts/HelveticaNeueLT-LightCond.ttf") format("truetype"), url("./../assets/fonts/HelveticaNeueLT-LightCond.svg#HelveticaNeueLT-LightCond") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'Helvetica LT 107 Extra Black Condensed_0';
+  src: url("./../assets/fonts/Helvetica LT 107 Extra Black Condensed_0.eot");
+  src: url("./../assets/fonts/Helvetica LT 107 Extra Black Condensed_0.woff2") format("woff2"), url("./../assets/fonts/Helvetica LT 107 Extra Black Condensed_0.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'HelveticaNeueLT-ExtBlackCond';
+  src: url("./../assets/fonts/HelveticaNeueLT-ExtBlackCond.woff") format("woff"), url("./../assets/fonts/HelveticaNeueLT-ExtBlackCond.ttf") format("truetype"), url("./../assets/fonts/HelveticaNeueLT-ExtBlackCond.svg#HelveticaNeueLT-ExtBlackCond") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'Helvetica LT 107 Extra Black Condensed Oblique_0';
+  src: url("./../assets/fonts/Helvetica LT 107 Extra Black Condensed Oblique_0.eot");
+  src: url("./../assets/fonts/Helvetica LT 107 Extra Black Condensed Oblique_0.woff2") format("woff2"), url("./../assets/fonts/Helvetica LT 107 Extra Black Condensed Oblique_0.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'HelveticaNeueLT-ExtBlackCondObl';
+  src: url("./../assets/fonts/HelveticaNeueLT-ExtBlackCondObl.woff") format("woff"), url("./../assets/fonts/HelveticaNeueLT-ExtBlackCondObl.ttf") format("truetype"), url("./../assets/fonts/HelveticaNeueLT-ExtBlackCondObl.svg#HelveticaNeueLT-ExtBlackCondObl") format("svg");
+  font-weight: normal;
+  font-style: normal; }
 html {
   background-color: #fff;
   font-family: "Helvetica Neue", sans-serif;
@@ -47,7 +80,7 @@ header {
   position: absolute;
   background-image: url("./../assets/images/Kiosk_RyderLogo.png");
   background-repeat: no-repeat;
-  background-position: left center;
+  background-position: left 20px center;
   background-size: 256px 60px;
   height: 96px;
   width: 100%;
@@ -73,14 +106,17 @@ footer {
   pointer-events: none; }
 
 .uPopup {
-  text-align: center; }
+  text-align: center;
+  max-width: 90%;
+  position: relative;
+  margin: 0 auto; }
 
 #menuBtn {
   width: 68px;
   height: 56px;
   display: block;
   position: absolute;
-  top: 10px;
+  top: 18px;
   right: 10px;
   background-repeat: no-repeat;
   background-size: 34px 28px;
@@ -91,9 +127,9 @@ footer {
 
 #menuBtn {
   z-index: 99999;
-  background-image: url("./../assets/images/hamburger_DN.png"); }
+  background-image: url("./../assets/images/hamburger_UP.png"); }
   #menuBtn:hover, #menuBtn:active {
-    background-image: url("./../assets/images/hamburger_UP.png"); }
+    background-image: url("./../assets/images/hamburger_DN.png"); }
   #menuBtn.on {
     background-image: url("./../assets/images/hamburger_UP.png"); }
     #menuBtn.on:hover, #menuBtn.on:active {
@@ -165,13 +201,17 @@ footer {
   right: 20px;
   background-position: 7px 9px;
   background-size: contain;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  color: #696969;
+  text-align: right;
+  font-family: 'HelveticaNeue LT 67 MdCn'; }
   #callToAction #callToAction_Arrow {
     background-repeat: no-repeat;
     background-size: contain;
     width: 37px;
     height: 37px;
     display: block;
+    font-size: 40px;
     position: absolute;
     top: 0px;
     right: 0px;
@@ -190,24 +230,98 @@ footer {
     opacity: .3; } }
   #callToAction #callToAction_Text {
     display: block;
-    background-image: url("./../assets/images/CTA_text.png");
-    background-repeat: no-repeat;
-    background-size: contain;
     width: 202px;
     height: 53px;
-    left: 05px;
+    font-size: 30px;
+    left: 5px;
     bottom: 0;
     position: absolute; }
 
 #media-video {
   width: 100%;
-  position: relative; }
+  position: relative;
+  background-color: #555; }
 
 #media-controls {
-  background: rgba(0, 0, 0, 0.4);
   position: absolute;
   bottom: 0;
-  width: 100%; }
+  left: 0;
+  text-align: center;
+  display: table;
+  width: 100%;
+  height: 97px;
+  background: rgba(0, 0, 0, 0.4);
+  /*
+  progress { color: $red;}
+  progress::-webkit-progress-value {background: $red; }
+  progress::-moz-progress-bar { background: $red; }
+  progress::-webkit-progress-value { background: $red; }
+  progress::-webkit-progress-bar { background: $red; }
+  */ }
+  #media-controls > div {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle; }
+    #media-controls > div div {
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0 auto; }
+  #media-controls .uVolumeInc:before {
+    content: "";
+    height: 73px;
+    width: 2px;
+    background: #fff;
+    display: block;
+    position: absolute;
+    top: calc(50% - 35px); }
+  #media-controls #play-pause-button {
+    transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    height: 28px;
+    width: 33px; }
+    #media-controls #play-pause-button.play {
+      background-image: url("./../assets/images//kiosk_play_btn_up.png"); }
+      #media-controls #play-pause-button.play:hover, #media-controls #play-pause-button.play:active {
+        background-image: url("./../assets/images//kiosk_play_btn_RL-DN.png"); }
+    #media-controls #play-pause-button.pause {
+      background-image: url("./../assets/images//kiosk_Pause_Btn_UP.png"); }
+      #media-controls #play-pause-button.pause:hover, #media-controls #play-pause-button.pause:active {
+        background-image: url("./../assets/images//kiosk_Pause_Btn_RL-DN.png"); }
+  #media-controls .uProgressBar {
+    width: 832px;
+    padding: 0 4em; }
+  #media-controls #progress-bar {
+    height: 5px;
+    position: relative;
+    top: -5px;
+    background: #fff;
+    width: 100%; }
+  #media-controls #volume-inc-button {
+    height: 26px;
+    width: 26px;
+    transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    background-image: url("./../assets/images//kiosk_Plus_btn_UP.png"); }
+    #media-controls #volume-inc-button:hover, #media-controls #volume-inc-button:active {
+      background-image: url("./../assets/images//kiosk_Plus_btn_RL-DN.png"); }
+  #media-controls #volume-dec-button {
+    height: 26px;
+    width: 26px;
+    transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    background-image: url("./../assets/images//kiosk_Minus_btn_UP.png"); }
+    #media-controls #volume-dec-button:hover, #media-controls #volume-dec-button:active {
+      background-image: url("./../assets/images//kiosk_Minus_btn_RL-DN.png"); }
+  #media-controls #volume-mute-button {
+    transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    height: 39px;
+    width: 45px;
+    background-image: url("./../assets/images//Kiosk_Volume_Icon.png"); }
 
 progress[value] {
   /* Reset the default appearance */
@@ -252,5 +366,30 @@ progress[value]::-webkit-progress-value::after {
   }
 }
 */
+@media only screen and (max-width: 767px) {
+  footer {
+    display: none; }
+
+  header {
+    height: 80px;
+    background-size: 136px 30px; }
+
+  #welcome {
+    top: 50%;
+    height: 111px;
+    margin-top: -55px; }
+
+  #menuBtn {
+    top: 10px; }
+
+  #menu > ul {
+    max-height: 220px; } }
+@media (orientation: portrait) {
+  body {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg); } }
 
 /*# sourceMappingURL=style.css.map */

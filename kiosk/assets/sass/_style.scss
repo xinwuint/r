@@ -69,17 +69,19 @@ footer .uRss {
         font-style: oblique;
         text-align: right;
         padding-right: 15px;
+        border-right: 3px solid $red;
     }
 
     .uContent1, .uContent2 {
         font-family: 'HelveticaNeue LT 45';
-        border-left: 3px solid $red;
         width: 725px;
         font-size: 26px;
         padding-left: 26px;
         padding-right: 26px;
         //display: inline-block;
         color: $lightGrey;
+        position: relative;
+        overflow: hidden;
     }
 
     &[l10n-locale='fr-ca'] {
@@ -196,18 +198,22 @@ main .uAttractLoopSec {
       top: 0;
       right: 0;
       width: 422px;
-      height: calc(100% - 96px);
+      height: 100%;//calc(100% - 96px);
       display: table;
       div{
         display: table-cell;
         vertical-align: middle;
-        font-family: 'HelveticaNeueLT-LightCond';
-        border-top: 1px solid $darkGrey;
-        border-bottom: 1px solid $darkGrey;
-        font-size: 1.8em;
         padding:20px;
-        margin: 0 auto;
-        width: 80%;
+        //margin: 0;
+        //width: 80%;
+        div{
+          width: 400px;
+          color: #c5c5c5;
+          border-top: 1px solid;
+          border-bottom: 1px solid;
+          font-family: 'HelveticaNeueLT-LightCond';
+          font-size: 1.8em;
+        }
       }
     }
 
@@ -241,6 +247,10 @@ main .uVideoListSec {
     font-size: 21px;
     font-family: 'HelveticaNeue LT 67 MdCn';
 
+    .uVideoAnimate{
+      overflow: hidden;
+      height: 597px;
+    }
     .uVideoListDiv {
         height: 597px;
         overflow-y: scroll;
@@ -433,17 +443,19 @@ main .uKeyboardSec {
     //top: -720px;
     position: absolute;
     top: 0;
-    right: 0;//-1140px;
+    right: -100%;//-1140px;
     width: 1144px;
     background-color: #2b2b2b;
+    /*
     animation: keyboardIn $time;
-    -moz-animation:keyboardIn $time; /* Firefox */
-    -webkit-animation:keyboardIn $time; /* Safari and Chrome */
+    -moz-animation:keyboardIn $time;
+    -webkit-animation:keyboardIn $time;
 
     @keyframes keyboardIn {
       0%   { transform: translateX(1140px); opacity: 0;}
       100% { transform: translateX(0); opacity: 1;}
     }
+    */
 
     .uBackToVideoDiv {
         text-align: right;
@@ -551,6 +563,11 @@ article.uVideoPopup {
     }
 }
 
+#media-video {
+  width: 100%;
+	position: relative;
+	background-color: #555;
+}
 #media-controls {
   //display: none;
   position: absolute;
@@ -560,7 +577,7 @@ article.uVideoPopup {
   display: table;
   width: 100%;
   height: 97px;
-  background: rgba(0,0,0,.6);
+  background: rgba(0,0,0,.4);
 
   & > div{
     position: relative;
@@ -605,6 +622,7 @@ article.uVideoPopup {
   }
   .uProgressBar{
     width: 832px;
+    padding: 0 4em;
   }
   #progress-bar {
     height: 5px;

@@ -66,7 +66,7 @@
 				<div id="welcome">
 				</div>
 				<div id="callToAction">
-					<div id="callToAction_Text"></div>
+					<div id="callToAction_Text">Tap the MENU<br>button for videos.</div>
 					<div id="callToAction_Arrow">^</div>
 				</div>
 			</section>
@@ -91,14 +91,15 @@
 					  <source src="" type="video/mp4">
 						Your browser does not support the video tag.
 					</video>
-				<div id='media-controls'>
-					<button id='play-pause-button' class='play' title='play'>Play</button>
-					<progress id='progress-bar' min='0' max='100' value='0'>0% played</progress>
-					<button id='volume-inc-button' class='volume-plus' title='increase volume'>Increase volume</button>
-					<button id='volume-dec-button' class='volume-minus' title='decrease volume'>Decrease volume</button>
-					<button id='replay-button' class='replay' title='replay'>Replay</button>
-					<button id='fullscreen-button' class='fullscreen' title='fullscreen'>Fullscreen</button>
-				</div>
+					<div id='media-controls'>
+						<div><div id='play-pause-button' class='play' title='play'></div></div>
+						<div class="uProgressBar"><progress id='progress-bar' min='0' max='100' value='0'></progress></div>
+						<div class="uVolumeInc"><div id='volume-inc-button' class='volume-plus' title='increase volume'></div></div>
+						<div><div id='volume-mute-button' class='volume-mute' title='mute volume'></div></div>
+						<div><div id='volume-dec-button' class='volume-minus' title='decrease volume'></div></div>
+						<!--<div id='replay-button' class='replay' title='replay'></div>
+						<div id='fullscreen-button' class='fullscreen' title='fullscreen'></div>-->
+					</div>
 			</div>
 		</div>
 	</div>

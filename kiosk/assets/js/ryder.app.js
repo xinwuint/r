@@ -391,8 +391,9 @@
 
     function biz_switchStory() {
         // wait until stories are loaded
+        biz_hideStory();
         $.when(_rssWaitLoad).done(function(){
-            biz_hideStory();
+            //biz_hideStory();
             _rssLoopIdx = (_rssLoopIdx + 1) % _rssLoopLen;
             $('footer .aRss .aContent1Story').text(_rssStories[0][_rssLoopIdx]);
             $('footer .aRss .aContent2Story').text(_rssStories[1][_rssLoopIdx]);
@@ -402,41 +403,81 @@
 
     function biz_hideStory() {
         // put transition here
-        $('footer .aRss .aContent1Story').hide();
-        $('footer .aRss .aContent2Story').hide();
+        console.log("hide story")
+        $('footer .uContent1').fadeOut();
+        $('footer .uContent2').fadeOut();
     }
 
     function biz_showStory() {
         // put transition here
-        $('footer .aRss .aContent1Story').show();
-        $('footer .aRss .aContent2Story').show();
+        //$('footer .aRss .aContent1Story').show();
+        //$('footer .aRss .aContent2Story').show();
+        console.log("show story")
+        $('footer .uContent1').stop().css('top', '100%').show().animate({
+          top: "0"
+          //height: "toggle"
+        },  500, 'easeOutBounce')
+
+        $('footer .uContent2').stop().css('top', '100%').show().delay(100).animate({
+          top: "0"
+        },  500, 'easeOutBounce');
     }
 
     function biz_showAtrractLoop() {
         $('main section').hide();
         infra_playAtrractLoopVideo();
         $('main section.aAttractLoopSec').show();
+        $('.uWelcome').css("width","422px");
+        $('.uStart, .uWelcome div').fadeIn();
     }
 
     function biz_showVideoList() {
         // put transition here
-        $('main section').hide();
+        //$('main section').hide();
         infra_stopAtrractLoopVideo();
         infra_clearVideoTileSelection();
         infra_showPointer();
-        $('main section.aVideoListSec').show();
+        //$('main section.aVideoListSec').show();
+        anim_videoList();
     }
+      function anim_attractLoop() {
+        $('.uStart, .uWelcome div').stop().fadeOut(250);
+        $('.uWelcome').stop().animate({
+          width: "100%"
+        }, 350, "easeOutExpo", function() {
+              // Animation complete.
+              $('main section').hide();
+              biz_showVideoList();
+        });
+        //});
+      }
+
+      function anim_videoList() {
+        $('.uVideoListDiv').css("margin-top", "700px").animate({
+          marginTop: 0
+        },  500, "easeInCirc");
+
+        $('main section.aVideoListSec').show().animate({
+          opacity: 1
+        }, 250);
+      }
 
     function biz_showKeyboard() {
         // put transition here
-        $('main section.aLayerSec').show();
-        $('main section.aKeyboardSec').show();
+
+        $('main section.aLayerSec').fadeIn();
+        $('main section.aKeyboardSec').show().animate({
+          right: "0"
+        }, 500, "easeOutCirc");
+        //});
     }
 
     function biz_hideKeyboard() {
         // put transition here
-        $('main section.aLayerSec').hide();
-        $('main section.aKeyboardSec').hide();
+        $('main section.uLayerSec').fadeOut(500);
+        $('main section.uKeyboardSec').stop().animate({
+          right: "-1140px"
+        }, 500, "easeOutExpo" );
         infra_clearEmailInput();
         infra_hideErrMsgOnKeyboard();
     }
@@ -488,8 +529,8 @@
 
     function _hookEventHandlers() {
         // start btn
-        $('main .aAttractLoopSec .aStart').on('click', biz_showVideoList);
-
+        //$('main .aAttractLoopSec .aStart').on('click', biz_showVideoList);
+        $('main .aAttractLoopSec .aStart').on('click', anim_attractLoop);
         // toggle audio btn
         $('main .aVideoListSec .aToggleBtn').on('click', function(){
             var isSelected = Pn.ui.toggleSelected(this);

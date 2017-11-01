@@ -326,15 +326,17 @@ footer .uRss {
     font-weight: bold;
     font-style: oblique;
     text-align: right;
-    padding-right: 15px; }
+    padding-right: 15px;
+    border-right: 3px solid #ce1126; }
   footer .uRss .uContent1, footer .uRss .uContent2 {
     font-family: 'HelveticaNeue LT 45';
-    border-left: 3px solid #ce1126;
     width: 725px;
     font-size: 26px;
     padding-left: 26px;
     padding-right: 26px;
-    color: #C2C2C2; }
+    color: #C2C2C2;
+    position: relative;
+    overflow: hidden; }
   footer .uRss[l10n-locale='fr-ca'] .uTitle1 {
     width: 400px; }
   footer .uRss[l10n-locale='fr-ca'] .uTitle2 {
@@ -411,18 +413,19 @@ main .uAttractLoopSec {
     top: 0;
     right: 0;
     width: 422px;
-    height: calc(100% - 96px);
+    height: 100%;
     display: table; }
     main .uAttractLoopSec .uWelcome div {
       display: table-cell;
       vertical-align: middle;
-      font-family: 'HelveticaNeueLT-LightCond';
-      border-top: 1px solid #2b2b2b;
-      border-bottom: 1px solid #2b2b2b;
-      font-size: 1.8em;
-      padding: 20px;
-      margin: 0 auto;
-      width: 80%; }
+      padding: 20px; }
+      main .uAttractLoopSec .uWelcome div div {
+        width: 400px;
+        color: #c5c5c5;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        font-family: 'HelveticaNeueLT-LightCond';
+        font-size: 1.8em; }
   main .uAttractLoopSec .uStart {
     font-family: "Helvetica LT 107 Extra Black Condensed Oblique_0";
     font-size: 40px;
@@ -447,6 +450,9 @@ main .uVideoListSec {
   padding: 24px;
   font-size: 21px;
   font-family: 'HelveticaNeue LT 67 MdCn'; }
+  main .uVideoListSec .uVideoAnimate {
+    overflow: hidden;
+    height: 597px; }
   main .uVideoListSec .uVideoListDiv {
     height: 597px;
     overflow-y: scroll;
@@ -598,22 +604,19 @@ main .uLayerSec {
 main .uKeyboardSec {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -100%;
   width: 1144px;
   background-color: #2b2b2b;
-  animation: keyboardIn 0.2s;
-  -moz-animation: keyboardIn 0.2s;
-  /* Firefox */
-  -webkit-animation: keyboardIn 0.2s;
-  /* Safari and Chrome */ }
+  /*
+    animation: keyboardIn $time;
+    -moz-animation:keyboardIn $time;
+    -webkit-animation:keyboardIn $time;
 
-@keyframes keyboardIn {
-  0% {
-    transform: translateX(1140px);
-    opacity: 0; }
-  100% {
-    transform: translateX(0);
-    opacity: 1; } }
+    @keyframes keyboardIn {
+      0%   { transform: translateX(1140px); opacity: 0;}
+      100% { transform: translateX(0); opacity: 1;}
+    }
+    */ }
   main .uKeyboardSec .uBackToVideoDiv {
     text-align: right; }
   main .uKeyboardSec .uBackBtn {
@@ -694,6 +697,11 @@ article.uVideoPopup {
     background: #000;
     position: relative; }
 
+#media-video {
+  width: 100%;
+  position: relative;
+  background-color: #555; }
+
 #media-controls {
   position: absolute;
   bottom: 0;
@@ -702,7 +710,7 @@ article.uVideoPopup {
   display: table;
   width: 100%;
   height: 97px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.4);
   /*
   progress { color: $red;}
   progress::-webkit-progress-value {background: $red; }
@@ -741,7 +749,8 @@ article.uVideoPopup {
       #media-controls #play-pause-button.pause:hover, #media-controls #play-pause-button.pause:active {
         background-image: url("./../images//kiosk_Pause_Btn_RL-DN.png"); }
   #media-controls .uProgressBar {
-    width: 832px; }
+    width: 832px;
+    padding: 0 4em; }
   #media-controls #progress-bar {
     height: 5px;
     position: relative;
