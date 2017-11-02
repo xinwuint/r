@@ -2,7 +2,7 @@
 
     "en": {
         "attract.start":            "START",
-        "attract.desc":             "Tap the Start button for safety and informational videos about Ryder trucks.",
+        "attract.desc":             "Tap the Start button for \n safety and informational \n videos about ryder trucks",
         "attract.videourl":         "content/videos/attract.mp4",
         "rss.cat.topnews":          "TOP NEWS",
         "rss.cat.sportsnews":       "SPORTS NEWS",

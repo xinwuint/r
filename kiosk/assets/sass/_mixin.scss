@@ -10,6 +10,20 @@
   -webkit-transition: $prop $time ease-in-out;
 }
 
+@mixin touchClick($prop, $base, $active) {
+  @-webkit-keyframes starthover {
+    0%   { $prop: $base; }
+    25%  { $prop: $active; }
+    100% { $prop: $base; }
+  }
+
+  @keyframes starthover {
+    0%   { $prop: $base; }
+    25%  { $prop: $active; }
+    100% { $prop: $base; }
+  }
+}
+
 //font: font-style font-variant font-weight font-size/line-height font-family|caption|icon|menu|message-box|small-caption|status-bar|initial|inherit;
 .fontTime {
   font: 42px 'HelveticaNeue LT 107 XBlkCn','comic sans';

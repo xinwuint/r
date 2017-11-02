@@ -414,18 +414,21 @@ main .uAttractLoopSec {
     right: 0;
     width: 422px;
     height: 100%;
+    padding-bottom: 96px;
+    white-space: pre-line;
     display: table; }
     main .uAttractLoopSec .uWelcome div {
       display: table-cell;
       vertical-align: middle;
-      padding: 20px; }
+      padding: 75px 30px; }
       main .uAttractLoopSec .uWelcome div div {
         width: 400px;
-        color: #c5c5c5;
+        color: #696969;
         border-top: 1px solid;
         border-bottom: 1px solid;
-        font-family: 'HelveticaNeueLT-LightCond';
-        font-size: 1.8em; }
+        font-family: 'HelveticaNeue LT 67 MdCn';
+        font-size: 30px;
+        line-height: 1.6em; }
   main .uAttractLoopSec .uStart {
     font-family: "Helvetica LT 107 Extra Black Condensed Oblique_0";
     font-size: 40px;
@@ -437,13 +440,28 @@ main .uAttractLoopSec {
     height: 96px;
     color: #fff;
     text-align: left;
-    padding-left: 20px;
-    line-height: 100px;
-    transition: background 0.2s ease-in-out;
-    -moz-transition: background 0.2s ease-in-out;
-    -webkit-transition: background 0.2s ease-in-out; }
-    main .uAttractLoopSec .uStart:hover, main .uAttractLoopSec .uStart:active {
-      background: #000; }
+    padding-left: 52px;
+    line-height: 100px; }
+    main .uAttractLoopSec .uStart:active {
+      -webkit-animation: starthover 0.5s normal forwards;
+      -moz-animation: starthover 0.5s normal forwards;
+      -o-animation: starthover 0.5s normal forwards; }
+
+@-webkit-keyframes starthover {
+  0% {
+    background-color: #ce1126; }
+  25% {
+    background-color: #980d1c; }
+  100% {
+    background-color: #ce1126; } }
+
+@keyframes starthover {
+  0% {
+    background-color: #ce1126; }
+  25% {
+    background-color: #980d1c; }
+  100% {
+    background-color: #ce1126; } }
 
 main .uVideoListSec {
   display: none;
@@ -500,32 +518,41 @@ main .uVideoListSec {
       height: 38px;
       right: 245px; }
       main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-us'] {
-        transition: background-image 0.2s ease-in-out;
-        -moz-transition: background-image 0.2s ease-in-out;
-        -webkit-transition: background-image 0.2s ease-in-out;
         background-image: url("./../images//kiosk_Spanish_Btn_UP.png"); }
-        main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-us'][selected] {
+        main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-us']:active {
           background-image: url("./../images//kiosk_Spanish_Btn_RL-DN.png"); }
+        main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-us'][selected] {
+          background-image: url("./../images//kiosk_English_Btn_UP.png"); }
+          main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-us'][selected]:active {
+            background-image: url("./../images//kiosk_English_Btn_RL-DN.png"); }
       main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca'] {
         transition: background-image 0.2s ease-in-out;
         -moz-transition: background-image 0.2s ease-in-out;
         -webkit-transition: background-image 0.2s ease-in-out;
         background-image: url("./../images//kiosk_French_Btn_UP.png"); }
-        main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca'][selected] {
+        main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca']:active {
           background-image: url("./../images//kiosk_French_Btn_RL-DN.png"); }
+        main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca'][selected] {
+          background-image: url("./../images//kiosk_English_Btn_UP.png"); }
+          main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='en-ca'][selected]:active {
+            background-image: url("./../images//kiosk_French_Btn_RL-DN.png"); }
       main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca'] {
         transition: background-image 0.2s ease-in-out;
         -moz-transition: background-image 0.2s ease-in-out;
         -webkit-transition: background-image 0.2s ease-in-out;
         background-image: url("./../images//kiosk_English_Btn_UP.png"); }
-        main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca'][selected] {
+        main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca']:active {
           background-image: url("./../images//kiosk_English_Btn_RL-DN.png"); }
+        main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca'][selected] {
+          background-image: url("./../images//kiosk_English_Btn_UP.png"); }
+          main .uVideoListSec .uBtnDiv .uToggleBtn[l10n-locale='fr-ca'][selected]:active {
+            background-image: url("./../images//kiosk_English_Btn_RL-DN.png"); }
     main .uVideoListSec .uBtnDiv .uPointerBtn {
       display: block;
       opacity: 0;
       position: absolute;
-      left: 840px;
-      top: 0px;
+      left: -900px;
+      top: -75px;
       width: 109px;
       height: 121px;
       animation-name: handmove;
@@ -541,15 +568,9 @@ main .uVideoListSec {
   0% {
     transform: translateY(0px);
     opacity: 0; }
-  5% {
-    transform: translateY(0px);
-    opacity: .3; }
-  80% {
+  70% {
     transform: translateY(20px);
     opacity: 1; }
-  94% {
-    transform: translateY(0px);
-    opacity: .3; }
   100% {
     transform: translateY(0px);
     opacity: 0; } }
@@ -659,8 +680,7 @@ main .uKeyboardSec {
       top: 0px;
       display: none; }
     main .uKeyboardSec .uKeyboardDiv .uCoverWrap {
-      background-color: #2b2b2b;
-      opacity: 0.8; }
+      background-color: #2b2b2b; }
   main .uKeyboardSec .uKeyboardText {
     font-family: 'HelveticaNeue LT 67 MdCn';
     color: #555;

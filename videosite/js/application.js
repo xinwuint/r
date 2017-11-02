@@ -241,6 +241,9 @@ Application.prototype = function() {
         //console.log('Duration change', mediaPlayer.duration);
         mediaPlayer.addEventListener('timeupdate', updateProgressBar, false);
       });
+      mediaPlayer.addEventListener('ended', function() {
+        actions.closePopup();
+      });
     }
 
     togglePlayPause = function() {

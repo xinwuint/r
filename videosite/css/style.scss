@@ -1,6 +1,7 @@
 @import 'reset.css';
 @import 'fonts';
 @import 'app.css';
+@import 'mixins';
 
 $black: #000;
 $red: #ce1126;
@@ -16,12 +17,6 @@ $time: .2s;
 $imagePath: "./../assets/images/";
 $textHeader: 'ObjektivMk2' sans-serif;
 $textBase: 'Helvetica Neue', sans-serif;
-
-@mixin fade($prop){
-  transition: 	$prop $time ease-in-out;
-  -moz-transition: 	$prop $time ease-in-out;
-  -webkit-transition: $prop $time ease-in-out;
-}
 
 html{
 	background-color: $backgroundColor;
@@ -111,28 +106,13 @@ footer{
 #menuBtn {
 	z-index: 99999;
 	background-image: url('#{$imagePath}hamburger_UP.png');
-	&:hover, &:active{
-		background-image: url('#{$imagePath}hamburger_DN.png');
-	}
 	&.on {
-		background-image: url('#{$imagePath}hamburger_UP.png');
-		&:hover, &:active{
-			background-image: url('#{$imagePath}hamburger_DN.png');
-		}
+		background-image: url('#{$imagePath}hamburger_DN.png');
 	}
 }
 
-// #menuBtnOpened {
-// 	background-image: url('#{$imagePath}hamburger_DN.png');
-// 	&:hover, &:active{
-// 		background-image: url('#{$imagePath}hamburger_UP.png');
-// 	}
-// }
-
-
 #menu{
 	display: none;
-
 	position: absolute;
 	right: 0px;
 	top: 13px;
@@ -438,14 +418,4 @@ progress[value] {
 	#menu > ul {
 	    max-height: 220px;
 	}
-}
-
-@media (orientation: portrait) {
-  body {
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
-  }
 }

@@ -126,10 +126,26 @@
 
     function infra_showPointer() {
         $('main .aVideoListSec .aPointerBtn').show();
+        /*.fadeIn()
+        .animate({
+          marginBottom: "20px"
+        },  500, 'easeOutBounce')
+        .animate({
+          marginBottom: "0px"
+        },  500, 'easeOutBounce')
+        .animate({
+          marginBottom: "20px"
+        },  500, 'easeOutBounce')
+        .animate({
+          marginBottom: "0px"
+        },  500, 'easeOutBounce')
+        .animate({
+          marginBottom: "20px"
+        },  500, 'easeOutBounce').fadeOut();*/
     }
 
     function infra_hidePointer() {
-        $('main .aVideoListSec .aPointerBtn').hide();
+        $('main .aVideoListSec .aPointerBtn').stop().fadeOut();
     }
 
     function infra_clearVideoTileSelection() {
@@ -402,20 +418,16 @@
     }
 
     function biz_hideStory() {
-        // put transition here
-        console.log("hide story")
         $('footer .uContent1').fadeOut();
         $('footer .uContent2').fadeOut();
     }
 
     function biz_showStory() {
-        // put transition here
         //$('footer .aRss .aContent1Story').show();
         //$('footer .aRss .aContent2Story').show();
         console.log("show story")
         $('footer .uContent1').stop().css('top', '100%').show().animate({
           top: "0"
-          //height: "toggle"
         },  500, 'easeOutBounce')
 
         $('footer .uContent2').stop().css('top', '100%').show().delay(100).animate({
@@ -436,20 +448,18 @@
         //$('main section').hide();
         infra_stopAtrractLoopVideo();
         infra_clearVideoTileSelection();
-        infra_showPointer();
         //$('main section.aVideoListSec').show();
         anim_videoList();
     }
-      function anim_attractLoop() {
+      function anim_attractLoopOut() {
         $('.uStart, .uWelcome div').stop().fadeOut(250);
         $('.uWelcome').stop().animate({
           width: "100%"
         }, 350, "easeOutExpo", function() {
-              // Animation complete.
               $('main section').hide();
               biz_showVideoList();
+              infra_showPointer();
         });
-        //});
       }
 
       function anim_videoList() {
@@ -530,7 +540,7 @@
     function _hookEventHandlers() {
         // start btn
         //$('main .aAttractLoopSec .aStart').on('click', biz_showVideoList);
-        $('main .aAttractLoopSec .aStart').on('click', anim_attractLoop);
+        $('main .aAttractLoopSec .aStart').on('click', anim_attractLoopOut);
         // toggle audio btn
         $('main .aVideoListSec .aToggleBtn').on('click', function(){
             var isSelected = Pn.ui.toggleSelected(this);

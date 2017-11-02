@@ -128,12 +128,8 @@ footer {
 #menuBtn {
   z-index: 99999;
   background-image: url("./../assets/images/hamburger_UP.png"); }
-  #menuBtn:hover, #menuBtn:active {
-    background-image: url("./../assets/images/hamburger_DN.png"); }
   #menuBtn.on {
-    background-image: url("./../assets/images/hamburger_UP.png"); }
-    #menuBtn.on:hover, #menuBtn.on:active {
-      background-image: url("./../assets/images/hamburger_DN.png"); }
+    background-image: url("./../assets/images/hamburger_DN.png"); }
 
 #menu {
   display: none;
@@ -384,12 +380,5 @@ progress[value]::-webkit-progress-value::after {
 
   #menu > ul {
     max-height: 220px; } }
-@media (orientation: portrait) {
-  body {
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg); } }
 
 /*# sourceMappingURL=style.css.map */

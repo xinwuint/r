@@ -199,20 +199,23 @@ main .uAttractLoopSec {
       right: 0;
       width: 422px;
       height: 100%;//calc(100% - 96px);
+      padding-bottom: 96px;
+      white-space: pre-line;
       display: table;
       div{
         display: table-cell;
         vertical-align: middle;
-        padding:20px;
+        padding: 75px 30px;
         //margin: 0;
         //width: 80%;
         div{
           width: 400px;
-          color: #c5c5c5;
+          color: #696969;
           border-top: 1px solid;
           border-bottom: 1px solid;
-          font-family: 'HelveticaNeueLT-LightCond';
-          font-size: 1.8em;
+          font-family: 'HelveticaNeue LT 67 MdCn';
+          font-size: 30px;
+          line-height:  1.6em;
         }
       }
     }
@@ -228,12 +231,27 @@ main .uAttractLoopSec {
       height: 96px;
       color: $white;
       text-align: left;
-      padding-left: 20px;
+      padding-left: 52px;
       line-height: 100px;
 
-      @include fade(background);
-      &:hover, &:active {
-        background: $black;
+      //@include fade(background);
+      &:active {
+        //background: $black;
+        -webkit-animation: starthover 0.5s normal forwards;
+        -moz-animation:    starthover 0.5s normal forwards;
+        -o-animation:      starthover 0.5s normal forwards;
+      }
+
+      @-webkit-keyframes starthover {
+        0%   { background-color: $red; }
+        25%  { background-color: $darkRed; }
+        100% { background-color: $red; }
+      }
+
+      @keyframes starthover {
+        0%   { background-color: $red; }
+        25%  { background-color: $darkRed; }
+        100% { background-color: $red; }
       }
     }
 }
@@ -288,6 +306,7 @@ main .uVideoListSec {
                 height: 40px;
                 @include fade(background-image);
                 background-image: url('#{$imagePath}/kiosk_Email_Bth_UP.png');
+                //@include touchClick(background-image, url('#{$imagePath}/kiosk_Email_Bth_UP.png'), url('#{$imagePath}/kiosk_Email_Bth_RL-DN.png'));
                 &[selected] {
                     background-image: url('#{$imagePath}/kiosk_Email_Bth_RL-DN.png');
                 }
@@ -310,26 +329,47 @@ main .uVideoListSec {
             right: 245px;
 
             &[l10n-locale='en-us'] {
-                @include fade(background-image);
+                //@include fade(background-image);
                 background-image: url('#{$imagePath}/kiosk_Spanish_Btn_UP.png');
+                &:active{
+                  //@include touchClick(background-image,
+                  ////url('#{$imagePath}/kiosk_Spanish_Btn_UP.png'),
+                  //url('#{$imagePath}/kiosk_Spanish_Btn_RL-DN.png'));
+                  background-image: url('#{$imagePath}/kiosk_Spanish_Btn_RL-DN.png');
+                }
                 &[selected] {
-                    background-image: url('#{$imagePath}/kiosk_Spanish_Btn_RL-DN.png');
+                    background-image: url('#{$imagePath}/kiosk_English_Btn_UP.png');
+                    &:active{
+                      background-image: url('#{$imagePath}/kiosk_English_Btn_RL-DN.png');
+                    }
                 }
             }
 
             &[l10n-locale='en-ca'] {
                 @include fade(background-image);
                 background-image: url('#{$imagePath}/kiosk_French_Btn_UP.png');
+                &:active {
+                  background-image: url('#{$imagePath}/kiosk_French_Btn_RL-DN.png');
+                }
                 &[selected] {
-                    background-image: url('#{$imagePath}/kiosk_French_Btn_RL-DN.png');
+                    background-image: url('#{$imagePath}/kiosk_English_Btn_UP.png');
+                    &:active {
+                      background-image: url('#{$imagePath}/kiosk_French_Btn_RL-DN.png');
+                    }
                 }
             }
 
             &[l10n-locale='fr-ca'] {
                 @include fade(background-image);
                 background-image: url('#{$imagePath}/kiosk_English_Btn_UP.png');
+                &:active{
+                  background-image: url('#{$imagePath}/kiosk_English_Btn_RL-DN.png');
+                }
                 &[selected] {
-                    background-image: url('#{$imagePath}/kiosk_English_Btn_RL-DN.png');
+                    background-image: url('#{$imagePath}/kiosk_English_Btn_UP.png');
+                    &:active{
+                      background-image: url('#{$imagePath}/kiosk_English_Btn_RL-DN.png');
+                    }
                 }
             }
         }
@@ -338,8 +378,10 @@ main .uVideoListSec {
             display: block;
             opacity: 0;
             position: absolute;
-            left: 840px;
-            top: 0px;
+            //left: 840px;
+            //top: 0px;
+            left: -900px;
+            top: -75px;
             width: 109px;
             height: 121px;
             animation-name: handmove;
@@ -357,9 +399,9 @@ main .uVideoListSec {
 
             @keyframes handmove {
               0%   { transform: translateY(0px); opacity: 0;}
-              5%   { transform: translateY(0px); opacity: .3;}
-          		80%  { transform: translateY(20px); opacity: 1; }
-              94%  { transform: translateY(0px); opacity: .3; }
+              //15%   { transform: translateY(0px); opacity: .3;}
+          		70%  { transform: translateY(20px); opacity: 1; }
+              //90%  { transform: translateY(0px); opacity: .3; }
           		100% { transform: translateY(0px); opacity: 0;}
             }
         }
@@ -511,7 +553,7 @@ main .uKeyboardSec {
 
         .uCoverWrap {
             background-color: #2b2b2b;
-            opacity: 0.8;
+            //opacity: 0.8;
         }
     }
 
