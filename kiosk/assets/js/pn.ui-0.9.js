@@ -2,7 +2,7 @@
     JS Library for UI, ver 0.9
     Created by Xin Wu, 2017-09-25
 
-    Dependency: 
+    Dependency:
         jQuery 1.8+
         pn.core.js
 */
@@ -84,6 +84,7 @@
             escClose: modalClose,
             onClose: onClosed,
             positionStyle: 'absolute', //'fixed',
+            position: [300, 180], 
             follow: [false, false]
         }, onLaunched);
     };

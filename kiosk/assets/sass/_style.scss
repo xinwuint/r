@@ -44,12 +44,13 @@ header {
 footer {
     width: 100%;
     height: 120px;
-    padding: 10px;
+    //padding: 10px;
 }
 
 footer .uRss {
   display: table;
   width: 100%;
+  height: 100%;
 
   & > span {
     display: table-cell;
@@ -58,18 +59,30 @@ footer .uRss {
   }
     .uTitle1, .uTitle2 {
         //width: 200px;
-        width: 45px;
+        width: 128px;
         color: $midGrey;
         //display: inline-block;
         line-height: 0.9em;
+        letter-spacing: 0.02em;
         font-size: 40px;
         font-family: 'Helvetica LT 107 Extra Black Condensed Oblique_0';//_0
         //font-family: "HelveticalNeue LT 107 XBlkCn";
         font-weight: bold;
         font-style: oblique;
         text-align: right;
-        padding-right: 15px;
-        border-right: 3px solid $red;
+        padding-right: 19px;
+        position: relative;
+
+        &:after {
+          content: "";
+          position: absolute;
+          display: block;
+          height: 93px;
+          width: 3px;
+          background: $red;
+          top: 12px;
+          right: 0px;
+        }
     }
 
     .uContent1, .uContent2 {
@@ -99,26 +112,39 @@ footer .uRss {
 
 footer .uErr {
     display: none;
+    height: 100%;
 
     & > div {
       display: table;
       width: 100%;
-      height: 100px;
+      height: 120px;
 
       & > div{
         display: table-cell;
         vertical-align: middle;
         position: relative;
 
-        &:nth-of-type(3):before{
-          content: "";
-          display: block;
-          height: 95px;
-          width: 2px;
-          position: absolute;
-          background: #c2c2c2;
-          top: 0px;
-          left: -35px;
+        &:nth-of-type(1) {
+          width: 121px;
+          text-align: right;
+        }
+        &:nth-of-type(2) {
+          width: 447px;
+          padding: 0 27px 0 20px;
+
+          &:after {
+            content: "";
+            display: block;
+            height: 95px;
+            width: 2px;
+            position: absolute;
+            background: #555;
+            top: 12px;
+            right: 0;
+          }
+        }
+        &:nth-of-type(3) {
+          padding-left: 30px;
         }
       }
     }
@@ -268,9 +294,11 @@ main .uVideoListSec {
     .uVideoAnimate{
       overflow: hidden;
       height: 597px;
+      width: 100%;
     }
     .uVideoListDiv {
         height: 597px;
+        width: calc(100% + 34px);
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
         border: 5px solid #555;
@@ -595,6 +623,7 @@ main .uKeyboardSec {
 article.uVideoPopup {
     width: 1280px;
     height: 720px;
+    top: 180px;
     display: none;
 
     video {

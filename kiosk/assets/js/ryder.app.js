@@ -285,7 +285,6 @@
         changeVolume("-")
       });
       mediaPlayer.addEventListener('durationchange', function() {
-        //console.log('Duration change', mediaPlayer.duration);
         mediaPlayer.addEventListener('timeupdate', updateProgressBar, false);
       });
     }
@@ -423,9 +422,6 @@
     }
 
     function biz_showStory() {
-        //$('footer .aRss .aContent1Story').show();
-        //$('footer .aRss .aContent2Story').show();
-        console.log("show story")
         $('footer .uContent1').stop().css('top', '100%').show().animate({
           top: "0"
         },  500, 'easeOutBounce')
@@ -444,11 +440,8 @@
     }
 
     function biz_showVideoList() {
-        // put transition here
-        //$('main section').hide();
         infra_stopAtrractLoopVideo();
         infra_clearVideoTileSelection();
-        //$('main section.aVideoListSec').show();
         anim_videoList();
     }
       function anim_attractLoopOut() {
@@ -473,17 +466,13 @@
       }
 
     function biz_showKeyboard() {
-        // put transition here
-
         $('main section.aLayerSec').fadeIn();
         $('main section.aKeyboardSec').show().animate({
           right: "0"
         }, 500, "easeOutCirc");
-        //});
     }
 
     function biz_hideKeyboard() {
-        // put transition here
         $('main section.uLayerSec').fadeOut(500);
         $('main section.uKeyboardSec').stop().animate({
           right: "-1140px"
@@ -539,9 +528,7 @@
 
     function _hookEventHandlers() {
         // start btn
-        //$('main .aAttractLoopSec .aStart').on('click', biz_showVideoList);
         $('main .aAttractLoopSec .aStart').on('click', anim_attractLoopOut);
-        // toggle audio btn
         $('main .aVideoListSec .aToggleBtn').on('click', function(){
             var isSelected = Pn.ui.toggleSelected(this);
             $('main .aVideoListSec').toggleClass('uAudioToggled', isSelected);

@@ -307,27 +307,37 @@ header {
 
 footer {
   width: 100%;
-  height: 120px;
-  padding: 10px; }
+  height: 120px; }
 
 footer .uRss {
   display: table;
-  width: 100%; }
+  width: 100%;
+  height: 100%; }
   footer .uRss > span {
     display: table-cell;
     vertical-align: middle;
     height: 95px; }
   footer .uRss .uTitle1, footer .uRss .uTitle2 {
-    width: 45px;
+    width: 128px;
     color: #555;
     line-height: 0.9em;
+    letter-spacing: 0.02em;
     font-size: 40px;
     font-family: 'Helvetica LT 107 Extra Black Condensed Oblique_0';
     font-weight: bold;
     font-style: oblique;
     text-align: right;
-    padding-right: 15px;
-    border-right: 3px solid #ce1126; }
+    padding-right: 19px;
+    position: relative; }
+    footer .uRss .uTitle1:after, footer .uRss .uTitle2:after {
+      content: "";
+      position: absolute;
+      display: block;
+      height: 93px;
+      width: 3px;
+      background: #ce1126;
+      top: 12px;
+      right: 0px; }
   footer .uRss .uContent1, footer .uRss .uContent2 {
     font-family: 'HelveticaNeue LT 45';
     width: 725px;
@@ -345,24 +355,33 @@ footer .uRss {
     width: 500px; }
 
 footer .uErr {
-  display: none; }
+  display: none;
+  height: 100%; }
   footer .uErr > div {
     display: table;
     width: 100%;
-    height: 100px; }
+    height: 120px; }
     footer .uErr > div > div {
       display: table-cell;
       vertical-align: middle;
       position: relative; }
-      footer .uErr > div > div:nth-of-type(3):before {
-        content: "";
-        display: block;
-        height: 95px;
-        width: 2px;
-        position: absolute;
-        background: #c2c2c2;
-        top: 0px;
-        left: -35px; }
+      footer .uErr > div > div:nth-of-type(1) {
+        width: 121px;
+        text-align: right; }
+      footer .uErr > div > div:nth-of-type(2) {
+        width: 447px;
+        padding: 0 27px 0 20px; }
+        footer .uErr > div > div:nth-of-type(2):after {
+          content: "";
+          display: block;
+          height: 95px;
+          width: 2px;
+          position: absolute;
+          background: #555;
+          top: 12px;
+          right: 0; }
+      footer .uErr > div > div:nth-of-type(3) {
+        padding-left: 30px; }
   footer .uErr img {
     width: 72px;
     height: 62px; }
@@ -470,9 +489,11 @@ main .uVideoListSec {
   font-family: 'HelveticaNeue LT 67 MdCn'; }
   main .uVideoListSec .uVideoAnimate {
     overflow: hidden;
-    height: 597px; }
+    height: 597px;
+    width: 100%; }
   main .uVideoListSec .uVideoListDiv {
     height: 597px;
+    width: calc(100% + 34px);
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     border: 5px solid #555;
@@ -710,6 +731,7 @@ main .uKeyboardSec {
 article.uVideoPopup {
   width: 1280px;
   height: 720px;
+  top: 180px;
   display: none; }
   article.uVideoPopup video {
     width: 100%;
