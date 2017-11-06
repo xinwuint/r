@@ -160,7 +160,7 @@ Application.prototype = function() {
           //console.log(subDataArray[j]);
           $subItem.addClass('sublist-item')
           $subItem.find('.video-title').html(subDataArray[j].title);
-          $subItem.find('a').attr("data-link", subDataArray[j].link)
+          $subItem.find('a').attr("data-link", subDataArray[j].link).attr('data-lang-idx', subDataArray[j].langIdx);
           $("#video-list").append($subItem.clone());
         }
         //$("#video-list").append($subTitle.clone());
@@ -168,7 +168,7 @@ Application.prototype = function() {
       } else {
         console.log("item")
         $item.find('.video-title').html(dataArray[i].title);
-        $item.find('a').attr("data-link", dataArray[i].link)
+        $item.find('a').attr("data-link", dataArray[i].link).attr('data-lang-idx', dataArray[i].langIdx);
       }
 
       $("#video-list").append($item.clone());
@@ -184,6 +184,9 @@ Application.prototype = function() {
       console.log('open video page');
 
       videoSrc = $(this).attr("data-link");
+
+      // track
+      et.playVideo(videoSrc, $(this).attr("data-link")!=='1');
 
       animate_menu('close');
 

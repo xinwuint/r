@@ -3,7 +3,7 @@ var firstLaunch = true;
 
 $(document).on("ready", function() {
 	var locale = 'en-us';
-	var locationId = 'test-location-id';   // the user comes here from which kiosk
+	var locationId = 'test-location';   // the user comes here from which kiosk
 
 	// init
 	Pn.init();
@@ -13,7 +13,8 @@ $(document).on("ready", function() {
 	locationId = Pn.util.getParameterByName('locationId') || locationId;
 	// localize
 	locale = Pn.l10n.locale(locale);
-	// TODO: init tracking
+	// init tracking
+	et.init(locale, locationId, false);
 
 	$templates = $("#templates").clone();
 	

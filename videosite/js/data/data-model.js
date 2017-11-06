@@ -24,11 +24,13 @@ DataModel.prototype = function() {
                         if(v) {
                             if(v.videoFile) rst.push({
                             	title: v.title,
-                            	link: v.videoFile
+                            	link: v.videoFile,
+                                langIdx: 0
                             });
-                            if(v.videoSecondaryFile) rst.push({
-                            	title: v.title,
-                            	link: v.videoSecondaryFile
+                            if(v.videoFile2) rst.push({
+                            	title: v.title2,
+                            	link: v.videoFile2,
+                                langIdx: 1
                             });
                         }
                     }

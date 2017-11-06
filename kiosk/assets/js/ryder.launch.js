@@ -16,8 +16,9 @@
         // Below 2 variables should be retrieved from BS player environment.
         // locationId:  could be the sn of each indivisual BS player.
         // locale:      could be calculated by zip or some other info.
-        conf.locationId = 'test-location-id';
+        conf.locationId = 'test-location';
         conf.locale = 'en-us';
+        et.init(conf.locale, conf.locationId, true);      //tracking
         app.init(conf);
     });
 

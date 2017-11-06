@@ -111,10 +111,10 @@
 
         <script id="template-videolist" type="text/x-handlebars-template">
             {{#each this}}
-            <div class="aVideoTile uVideoTile" data-video-src="{{videoFile}}" data-video-2nd-src="{{videoSecondaryFile}}">
+            <div class="aVideoTile uVideoTile" data-lang-idx="0" data-title="{{title}}" data-title-2="{{title2}}" data-video-src="{{videoFile}}" data-video-src-2="{{videoFile2}}">
                 <div class="uThumb"><img src="{{thumbnailFile}}"></div>
                 <div class="aBalloon uBalloon"></div>
-                <div class="uTitle">{{title}}</div>
+                <div class="aTitle uTitle">{{title}}</div>
             </div>
             {{/each}}
         </script>
@@ -133,6 +133,7 @@
         <!-- ryder localization -->
         <script type="text/javascript" src="assets/localization/localizations.js"></script>
         <!-- ryder app -->
+        <script type="text/javascript" src="assets/js/ryder.et.js"></script>
         <script type="text/javascript" src="assets/js/ryder.app.js"></script>
         <script type="text/javascript" src="assets/js/ryder.launch.js"></script>
     </body>
