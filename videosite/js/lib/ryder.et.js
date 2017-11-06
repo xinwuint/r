@@ -23,13 +23,19 @@
         VIDEOSITE = 'mobile',
         EN = 'en',
         FR = 'fr',
-        ES = 'es';
+        ES = 'es',
+        OVERALL = 'Overall';
 
     // state
     var _videoLangs, _locationId, _siteType, _sessionId;
 
     function _genSessionId() {
         return Pn.util.newGuid();
+    }
+
+    function _getOclock(date) {
+        var h = date.getHours();
+        return (h < 10 ? '0' + h : h) + ':00';
     }
 
     function et_init(locale, locationId, isKiosk) {
@@ -47,6 +53,7 @@
 
     function et_startSession() {
         _sessionId = _genSessionId();
+
         $.ajax({
             url: URL,
             method: 'POST',
@@ -59,7 +66,8 @@
                 ea: 'Start',
                 sc: 'start',
                 cd2: _locationId,
-                cd4: 'Overall',
+                cd4: OVERALL,
+                cd5: _getOclock(new Date()),
                 ds: _siteType  // data source
             }
         });
@@ -77,10 +85,10 @@
                 t: 'event',
                 ec: 'Session',
                 ea: 'End',
-                sc: 'end',
-                cd2: _locationId,
-                cd4: 'Overall',
-                ds: _siteType  // data source
+                sc: 'end'
+                //cd2: _locationId,
+                //cd4: 'Overall',
+                //ds: _siteType  // data source
             }
         });
     }
