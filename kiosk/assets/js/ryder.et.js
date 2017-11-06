@@ -53,7 +53,6 @@
 
     function et_startSession() {
         _sessionId = _genSessionId();
-
         $.ajax({
             url: URL,
             method: 'POST',
@@ -86,11 +85,9 @@
                 ec: 'Session',
                 ea: 'End',
                 sc: 'end'
-                //cd2: _locationId,
-                //cd4: 'Overall',
-                //ds: _siteType  // data source
             }
         });
+        _sessionId = null;
     }
 
     function et_playVideo(videoFilename, isFirstLang) {
@@ -100,7 +97,7 @@
             data: {
                 v: '1',
                 tid: TRACKINGID,
-                cid: _sessionId, // use session id as user id, coz did not defined 'user'.
+                cid: _sessionId ? _sessionId : _genSessionId(), // use session id as user id, coz did not defined 'user'.
                 t: 'event',
                 ec: 'Video',
                 ea: 'Watch',
@@ -108,7 +105,7 @@
                 cd1: isFirstLang ? _videoLangs[0] : _videoLangs[1],
                 cd2: _locationId,
                 cd3: videoFilename,
-                ds: _siteType  // data source
+                ds: _siteType  // ds: data source
             }
         });
     }
