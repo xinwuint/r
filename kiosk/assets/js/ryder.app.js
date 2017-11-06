@@ -442,6 +442,7 @@
     function biz_showVideoList() {
         infra_stopAtrractLoopVideo();
         infra_clearVideoTileSelection();
+        biz_toggleAudio(false); // set to default lang
         anim_videoList();
     }
 
@@ -521,7 +522,7 @@
     }
 
     function biz_toggleAudio(isSelected) {
-        Pn.ui.toggleSelected(this, isSelected);
+        Pn.ui.selected('main .aVideoListSec .aToggleBtn', isSelected);
         $('main .aVideoListSec').toggleClass('uAudioToggled', isSelected);
         // set video title
         $('main .aVideoListSec .aVideoTile').each(function(i, v){
