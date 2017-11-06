@@ -74,7 +74,7 @@ footer{
 	position: relative;
 	margin:0 auto;
 }
-
+/*
 #page-container{
 	//background-color: $white;
 	//width:1080px;
@@ -83,8 +83,9 @@ footer{
 	//background-image: url('#{$imagePath}kiosk_bk_Image.png');
 	//background-repeat: no-repeat;
 	//background-size: cover;
+	height: 100vh;
 }
-
+*/
 #menuBtn {//Closed, #menuBtnOpened {
 	width:  68px;///34px;
 	height: 56px; //28px;
@@ -145,7 +146,7 @@ footer{
 		font-weight: bold;
 		margin-top: 65px;
 		margin-bottom: 10px; //looks;
-		font-family: 'HelveticaNeue LT 107 XBlkCn', "Comic Sans MS", cursive; //HelveticaNeue, Helvetica, sans-sei;
+		font-family: 'HelveticaNeue LT 107 XBlkCn'; //HelveticaNeue, Helvetica, sans-sei;
 		span { padding-left: 46px;}
 	}
 	.list-title {
@@ -157,17 +158,36 @@ footer{
 	li.sublist-item { padding-left: 63px; }
 
 }
+
+#landingPage {
+	display: table;
+//vertical-align: middle;
+	height: 100vh;
+	width: 100%;
+	position: relative;
+}
+
 #welcome{
-	background-image: url('#{$imagePath}welcome_text.png');
-	background-repeat: no-repeat;
-	background-size: contain;
-	width: 416px;
-	height: 111px;
+	//background-image: url('#{$imagePath}welcome_text.png');
+	//background-repeat: no-repeat;
+	//background-size: contain;
+	//width: 416px;
+	//height: 111px;
 
 	//////TO DO Make dynamic for mobile
+	//position: absolute;
+  //  top: 300px;
+  //  left: 50px;
+
+	//display: table-cell;
+	font-family: 'HelveticaNeue LT 107 XBlkCn';
+	font-size: 60px;
+	padding-left: 10%;//112px;
+	//vertical-align: middle;
 	position: absolute;
-    top: 300px;
-    left: 50px;
+  top: 50%;
+  height: 124px;
+  margin-top: -124px;
 }
 
 #callToAction{
@@ -258,16 +278,16 @@ footer{
     }
   }
 
-  .uVolumeInc{
+  .uVolumeDec{
     //border-left: 2px solid white;
     &:before{
       content: "";
-      height: 73px;
+      height: 70%;//73px;
       width: 2px;
       background: $white;
       display: block;
       position: absolute;
-      top: calc(50% - 35px);
+      top: 16%;//calc(50% - 35px);
     }
   }
   #play-pause-button {
@@ -404,18 +424,105 @@ progress[value] {
 
 	//made-up
 	header {
-		height: 80px;
+		height: 60px;
 		background-size: 136px 30px;
 	}
+	#page-container {
+    top: 60px;
+	}
 	#welcome {
-		top: 50%;
-	  height: 111px;
-	  margin-top: -55px;
+		font-size: 30px;//60px;
+		height: 62px;
+		margin-top: -62px;
+	}
+	#callToAction {
+		top: 10px;
+		right: 35px;
+		height: 60px;
+		#callToAction_Text {
+			font-size: 15px;
+			height: 25px;
+		}
 	}
 	#menuBtn {
-		top: 10px;
+		top: 0px;
+	}
+	#menu {
+		top: 0;
 	}
 	#menu > ul {
 	    max-height: 220px;
 	}
+	#popup {
+		top: 60px !important;
+	}
+	.uPopup{
+			max-width: 85%;
+			min-width: 277px;
+		}
+	#media-controls {
+		height: 48px;
+	}
+	/* This used to work for the parent element of button divs */
+	/* But it does not work with newer browsers, the below doesn't hide the play button parent div */
+
+	*::-webkit-media-controls-panel {
+	  display: none!important;
+	  -webkit-appearance: none;
+	}
+
+	/* Old shadow dom for play button */
+
+	*::-webkit-media-controls-play-button {
+	  display: none!important;
+	  -webkit-appearance: none;
+	}
+
+	/* New shadow dom for play button */
+
+	/* This one works! */
+
+	*::-webkit-media-controls-start-playback-button {
+	  display: none!important;
+	  -webkit-appearance: none;
+	}
 }
+
+/*
+@media (orientation: portrait) and (max-width: 767px) {
+	body {
+		transform-origin: top left;
+
+		-webkit-transform: rotate(-90deg);
+		-moz-transform: rotate(-90deg);
+		-o-transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		transform: rotate(-90deg);
+	}
+
+	video {
+		position:absolute;
+		top:0;
+		left:-530px;
+	}
+}
+
+@media (orientation: landscape) and (max-width: 767px) {
+	body {
+		transform-origin: top left;
+
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		transform: rotate(0deg);
+		transform: scale(0.66, 0.66);
+		overflow-x: hidden;
+	}
+
+	video {
+		position:absolute;
+		top:0;
+		left:0;
+	}
+}*/
