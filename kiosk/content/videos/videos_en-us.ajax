@@ -1,114 +1,132 @@
 ﻿{
 	"safety": [
 		{
-			"title": 				"1hello",
 			"thumbnailFile": 		"1a.png",
+			"title": 				"1hello",
+			"title2": 				"es 1hello",
 			"videoFile": 			"video1.mp4",
-			"videoSecondaryFile": 	"tutorial.mp4"
+			"videoFile2": 			"tutorial.mp4"
 		},
 		{
-			"title": 				"1world",
 			"thumbnailFile": 		"1b.png",
+			"title": 				"1world",
+			"title2": 				"es 1world",
 			"videoFile": 			"1b_en.mp4",
-			"videoSecondaryFile": 	"1b_es.mp4"
+			"videoFile2": 			"1b_es.mp4"
 		},
 		{
-			"title": 				"1sunday",
 			"thumbnailFile": 		"1c.png",
+			"title": 				"1sunday",
+			"title2": 				"",
 			"videoFile": 			"1c_en.mp4",
-			"videoSecondaryFile": 	""
+			"videoFile2": 			""
 		}
 	],
 	"whyryder": [
 		{
-			"title": 				"1what is ryder",
 			"thumbnailFile": 		"1d.png",
+			"title": 				"1what is ryder",
+			"title2": 				"es 1what is ryder",
 			"videoFile": 			"1d_en.mp4",
-			"videoSecondaryFile": 	"1d_es.mp4"
+			"videoFile2": 			"1d_es.mp4"
 		},
 		{
-			"title": 				"1love ryder",
 			"thumbnailFile": 		"1e.png",
-			"videoFile": 			"1e_en.mp4",
-			"videoSecondaryFile": 	""
-		},
-		{
-			"title": 				"1nature gas",
-			"thumbnailFile": 		"1f.png",
-			"videoFile": 			"1f_en.mp4",
-			"videoSecondaryFile": 	"1f_es.mp4"
-		},
-		{
-			"title": 				"1what is ryder",
-			"thumbnailFile": 		"1d.png",
-			"videoFile": 			"1d_en.mp4",
-			"videoSecondaryFile": 	"1d_es.mp4"
-		},
-		{
 			"title": 				"1love ryder",
-			"thumbnailFile": 		"1e.png",
+			"title2": 				"",
 			"videoFile": 			"1e_en.mp4",
-			"videoSecondaryFile": 	""
+			"videoFile2": 			""
 		},
 		{
-			"title": 				"1nature gas",
 			"thumbnailFile": 		"1f.png",
+			"title": 				"1nature gas",
+			"title2": 				"es 1nature gas",
 			"videoFile": 			"1f_en.mp4",
-			"videoSecondaryFile": 	"1f_es.mp4"
+			"videoFile2": 			"1f_es.mp4"
 		},
 		{
-			"title": 				"1what is ryder",
 			"thumbnailFile": 		"1d.png",
+			"title": 				"1what is ryder",
+			"title2": 				"es 1what is ryder",
 			"videoFile": 			"1d_en.mp4",
-			"videoSecondaryFile": 	"1d_es.mp4"
+			"videoFile2": 			"1d_es.mp4"
 		},
 		{
+			"thumbnailFile": 		"1e.png",
+			"title": 				"1love ryder",
+			"title2": 				"",
+			"videoFile": 			"1e_en.mp4",
+			"videoFile2": 			""
+		},
+		{
+			"thumbnailFile": 		"1f.png",
+			"title": 				"1nature gas",
+			"title2": 				"es 1nature gas",
+			"videoFile": 			"1f_en.mp4",
+			"videoFile2": 			"1f_es.mp4"
+		},
+		{
+			"thumbnailFile": 		"1d.png",
+			"title": 				"1what is ryder",
+			"title2": 				"es 1what is ryder",
+			"videoFile": 			"1d_en.mp4",
+			"videoFile2": 			"1d_es.mp4"
+		},
+		{
+			"thumbnailFile": 		"1e.png",
 			"title": 				"1love ryderlove ryderlove ryder",
-			"thumbnailFile": 		"1e.png",
+			"title2": 				"",
 			"videoFile": 			"1e_en.mp4",
-			"videoSecondaryFile": 	""
+			"videoFile2": 			""
 		},
 		{
-			"title": 				"1nature gas",
 			"thumbnailFile": 		"1f.png",
-			"videoFile": 			"1f_en.mp4",
-			"videoSecondaryFile": 	"1f_es.mp4"
-		},
-		{
-			"title": 				"1what is ryder",
-			"thumbnailFile": 		"1d.png",
-			"videoFile": 			"1d_en.mp4",
-			"videoSecondaryFile": 	"1d_es.mp4"
-		},
-		{
-			"title": 				"1love ryder",
-			"thumbnailFile": 		"1e.png",
-			"videoFile": 			"1e_en.mp4",
-			"videoSecondaryFile": 	""
-		},
-		{
 			"title": 				"1nature gas",
-			"thumbnailFile": 		"1f.png",
+			"title2": 				"es 1nature gas",
 			"videoFile": 			"1f_en.mp4",
-			"videoSecondaryFile": 	"1f_es.mp4"
+			"videoFile2": 			"1f_es.mp4"
 		},
 		{
-			"title": 				"1what is ryder",
 			"thumbnailFile": 		"1d.png",
+			"title": 				"1what is ryder",
+			"title2": 				"es 1what is ryder",
 			"videoFile": 			"1d_en.mp4",
-			"videoSecondaryFile": 	"1d_es.mp4"
+			"videoFile2": 			"1d_es.mp4"
 		},
 		{
-			"title": 				"1love ryder",
 			"thumbnailFile": 		"1e.png",
+			"title": 				"1love ryder",
+			"title2": 				"",
 			"videoFile": 			"1e_en.mp4",
-			"videoSecondaryFile": 	""
+			"videoFile2": 			""
 		},
 		{
+			"thumbnailFile": 		"1f.png",
+			"title": 				"1nature gas",
+			"title2": 				"es 1nature gas",
+			"videoFile": 			"1f_en.mp4",
+			"videoFile2": 			"1f_es.mp4"
+		},
+		{
+			"thumbnailFile": 		"1d.png",
+			"title": 				"1what is ryder",
+			"title2": 				"es 1what is ryder",
+			"videoFile": 			"1d_en.mp4",
+			"videoFile2": 			"1d_es.mp4"
+		},
+		{
+			"thumbnailFile": 		"1e.png",
+			"title": 				"1love ryder",
+			"title2": 				"",
+			"videoFile": 			"1e_en.mp4",
+			"videoFile2": 			""
+		},
+		{
+			"thumbnailFile": 		"1f.png",
 			"title": 				"1nature gasnature gasnature gasnature gas",
-			"thumbnailFile": 		"1f.png",
+			"title2": 				"es 1nature gasnature gasnature gasnature gas",
 			"videoFile": 			"1f_en.mp4",
-			"videoSecondaryFile": 	"1f_es.mp4"
+			"videoFile2": 			"1f_es.mp4"
 		}
 	]
 }

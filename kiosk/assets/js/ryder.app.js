@@ -14,6 +14,7 @@
         pn.ui.js
         pn.idle.js
         pn.l10n.js
+        ryder.et.js // tracking
 */
 
 /*
@@ -30,7 +31,7 @@
     var _dateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
         _timeFormat = { hour: 'numeric', minute: 'numeric', hour12: true },
         _confDefault = {
-            locationId: 'test-location-id',     // default location id for test only. Used by GA.
+            locationId: 'test-location',     // default location id for test only. Used by GA.
             locale: 'en-us',                    // default locale
             idleTimeout: 2*60,                  // 2 min
             rssUpdateInterval: 3600,            // 1h
@@ -45,8 +46,7 @@
     // state
     var _config,
         _langCode = '',
-        _countryCode = '',
-        _sessionId;
+        _countryCode = '';
 
     // rss related
     var _rssStories = Pn.util.createArray([2, 5], ''),       // 2x5: 2 rows (top and sports). each row has 5 stories.
@@ -231,7 +231,7 @@
                         if(v) {
                             if(v.thumbnailFile) v.thumbnailFile = rootUrl + v.thumbnailFile;
                             if(v.videoFile) v.videoFile = rootUrl + v.videoFile;
-                            if(v.videoSecondaryFile) v.videoSecondaryFile = rootUrl + v.videoSecondaryFile;
+                            if(v.videoFile2) v.videoFile2 = rootUrl + v.videoFile2;
                         }
                     }
                 }
@@ -444,26 +444,27 @@
         infra_clearVideoTileSelection();
         anim_videoList();
     }
-      function anim_attractLoopOut() {
+
+    function anim_attractLoopOut() {
         $('.uStart, .uWelcome div').stop().fadeOut(250);
         $('.uWelcome').stop().animate({
-          width: "100%"
+            width: "100%"
         }, 350, "easeOutExpo", function() {
-              $('main section').hide();
-              biz_showVideoList();
-              infra_showPointer();
+            $('main section').hide();
+            biz_showVideoList();
+            infra_showPointer();
         });
-      }
+    }
 
-      function anim_videoList() {
+    function anim_videoList() {
         $('.uVideoListDiv').css("margin-top", "700px").animate({
-          marginTop: 0
+            marginTop: 0
         },  500, "easeInCirc");
 
         $('main section.aVideoListSec').show().animate({
-          opacity: 1
+            opacity: 1
         }, 250);
-      }
+    }
 
     function biz_showKeyboard() {
         $('main section.aLayerSec').fadeIn();
@@ -519,19 +520,43 @@
         });
     }
 
-    function biz_startSession() {
-        _sessionId = Pn.util.newGuid();
+    function biz_toggleAudio(isSelected) {
+        Pn.ui.toggleSelected(this, isSelected);
+        $('main .aVideoListSec').toggleClass('uAudioToggled', isSelected);
+        // set video title
+        $('main .aVideoListSec .aVideoTile').each(function(i, v){
+            var $this = $(this);
+            var has2ndLang = !!$this.attr('data-video-src-2');
+            if(has2ndLang) {
+                $this.attr('data-lang-idx', isSelected ? '1' : '0');
+                var title = $this.attr(isSelected ? 'data-title-2' : 'data-title');
+                $this.find('.aTitle').text(title);
+            }
+        });
+    }
+
+    function biz_startOver() {
         biz_hideKeyboard();
         biz_showAtrractLoop();
-        // TODO: add tracking
+        et.endSession();
+    }
+
+    function _getFilename(url) {
+        var idx = url.lastIndexOf('/');
+        return idx < 0 ? url : url.substring(idx + 1, url.length);
     }
 
     function _hookEventHandlers() {
         // start btn
-        $('main .aAttractLoopSec .aStart').on('click', anim_attractLoopOut);
+        $('main .aAttractLoopSec .aStart').on('click', function(){
+            et.startSession();
+            anim_attractLoopOut();
+        });
+
+        // audio toggle btn
         $('main .aVideoListSec .aToggleBtn').on('click', function(){
             var isSelected = Pn.ui.toggleSelected(this);
-            $('main .aVideoListSec').toggleClass('uAudioToggled', isSelected);
+            biz_toggleAudio(isSelected);
         });
 
         // email btn
@@ -562,9 +587,12 @@
             infra_hidePointer();
 
             // popup
-            var needSecond = $this.find('.aBalloon').css('visibility') !== 'hidden';
-            var videoUrl = $this.attr(needSecond ? 'data-video-2nd-src' : 'data-video-src');
+            var is1stLang = $this.attr('data-lang-idx') === '0';
+            var videoUrl = $this.attr(is1stLang ? 'data-video-src' : 'data-video-src-2');
             biz_playVideo(videoUrl);
+
+            // tracking
+            et.playVideo(_getFilename(videoUrl), is1stLang);
         });
     }
 
@@ -594,13 +622,13 @@
         infra_loadVideoListAsync();
 
         // idle timer
-        Pn.idle.start(_config.idleTimeout, biz_startSession);
+        Pn.idle.start(_config.idleTimeout, biz_startOver);
 
         // display rss story
         biz_switchStory();
         window.setInterval(biz_switchStory, _config.rssDisplayInterval*1000);
 
-        biz_startSession();
+        biz_startOver();
     }
 
     var app = {
@@ -612,4 +640,4 @@
     // publish ==================================
     window.app = app;
 
-}(Pn, jQuery, this));
+}(Pn, jQuery, this));   // et = eventtracking

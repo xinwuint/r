@@ -630,7 +630,7 @@ main .uVideoListSec .uVideoTile {
     width: 100px;
     text-align: left; }
 
-main .uVideoListSec.uAudioToggled .uVideoTile:not([data-video-2nd-src='']) .uBalloon {
+main .uVideoListSec.uAudioToggled .uVideoTile:not([data-video-src-2='']) .uBalloon {
   visibility: inherit; }
 
 main .uLayerSec {
