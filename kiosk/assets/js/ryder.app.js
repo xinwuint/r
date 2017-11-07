@@ -422,11 +422,22 @@
     }
 
     function biz_showStory() {
-        $('footer .uContent1').stop().css('top', '100%').show().animate({
+        $('footer .uContent1')
+            .stop()
+            .css('top', '100%')
+            .css('opacity', '1')
+            .show()
+            .animate({
           top: "0"
         },  500, 'easeOutBounce')
 
-        $('footer .uContent2').stop().css('top', '100%').show().delay(100).animate({
+        $('footer .uContent2')
+            .stop()
+            .css('top', '100%')
+            .css('opacity', '1')
+            .show()
+            .delay(100)
+            .animate({
           top: "0"
         },  500, 'easeOutBounce');
     }
