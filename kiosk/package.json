@@ -11,6 +11,7 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
-    "scroll-js": "^1.7.1"
+    "scroll-js": "^1.7.1",
+    "del": "^1.1.1"
   }
 }
