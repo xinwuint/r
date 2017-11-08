@@ -486,8 +486,8 @@
     }
 
     function biz_hideKeyboard() {
-        $('main section.uLayerSec').fadeOut(500);
-        $('main section.uKeyboardSec').stop().animate({
+        $('main section.aLayerSec').fadeOut(500);
+        $('main section.aKeyboardSec').stop().animate({
           right: "-1140px"
         }, 500, "easeOutExpo" );
         infra_clearEmailInput();
@@ -626,6 +626,7 @@
 
         // init keyboard
         infra_initKeyboard(_langCode);
+        //biz_hideKeyboard(); // this will position it properly
 
         // events
         _hookEventHandlers();
