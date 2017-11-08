@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+        <title>Ryder</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <!--link rel="localizations" type="application/vnd.oftn.l10n+json" href="assets/localization/languages.json" /-->
+        <!--link rel="localization" type="application/vnd.oftn.l10n+json" href="assets/localization/fr.json" hreflang="fr" /-->
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css" media="screen" />
+    </head>
+
+    <body>
+        <header>
+
+            <div class="uTime">
+                <div class="aTime"></div>
+                <div class="aDate"></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="uSectionsWrap">
+                <section class="aAttractLoopSec uAttractLoopSec">
+                    <video autoplay="true" loop="true" l10n-attr="data-src:attract.videourl"></video>
+                    <div class="uWelcome"><div><div l10n-text="attract.desc"></div></div></div>
+                    <div class="aStart uStart" l10n-text="attract.start"></div>
+                </section>
+                <section class="aVideoListSec uVideoListSec">
+                    <div class="uVideoAnimate">
+                      <div class="uVideoListDiv">
+                        <h3 class="uCategory" l10n-text="videolist.cat.safety"></h3>
+                        <div class="aGridSafety uGrid"></div>
+                        <h3 class="uCategory" l10n-text="videolist.cat.whyryder"></h3>
+                        <div class="aGridWhyryder uGrid"></div>
+                      </div>
+                    </div>
+                    <div class="uBtnDiv">
+                        <span class="aToggleBtn uToggleBtn" l10n-locale></span>
+                        <span class="aEmailBtn uEmailBtn" l10n-locale></span>
+                        <span class="aPointerBtn uPointerBtn" l10n-locale></span>
+                    </div>
+                </section>
+                <section class="aLayerSec uLayerSec"></section>
+                <section class="aKeyboardSec uKeyboardSec">
+                    <div class="uKeyboardDiv">
+                        <div class="uKeyboardWrap">
+                            <div class="uKeyboardText">
+                              <div>
+                              <div l10n-text="keyboard.desc"></div>
+                              <div l10n-text="keyboard.title"></div>
+                              </div>
+                            </div>
+                            <div>
+                                <input type="text" class="aEmailField uEmailField" />
+                            </div>
+                        </div>
+                        <div class="aCoverWrap uCoverWrap"></div>
+                        <div class="aErrWrap uErrWrap">
+                            <img src="assets/images/kiosk_LRG_Warning_Icon.png">
+                            <h3 l10n-text="err.title"></h3>
+                            <div l10n-text="err.text1"></div>
+                            <div l10n-text="err.text2"></div>
+                        </div>
+                    </div>
+                    <div class="uBackToVideoDiv"><div class="aBackBtn uBackBtn" l10n-text="keyboard.backtovideo"></div></div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <section class="aRss uRss" l10n-locale>
+                <span class="uTitle1" l10n-text="rss.cat.topnews"></span>
+                <span class="uContent1">
+                    <span class="aContent1Story"></span>
+                </span>
+                <span class="uTitle2" l10n-text="rss.cat.sportsnews"></span>
+                <span class="uContent2">
+                    <span class="aContent2Story"></span>
+                </span>
+            </section>
+            <section class="aErr uErr">
+                <div>
+                  <div>
+                    <img src="assets/images/kiosk_LRG_Warning_Icon.png">
+                  </div>
+                  <div>
+                    <h3 l10n-text="err.title"></h3>
+                  </div>
+                  <div>
+                    <span l10n-text="err.text1"></span>
+                    <span l10n-text="err.text2"></span>
+                  </div>
+                </div>
+            </section>
+        </footer>
+
+        <article class='aVideoPopup uVideoPopup'>
+            <video id="video" autoplay="true" controls></video>
+            <div id='media-controls'>
+    					<div><div id='play-pause-button' class='play' title='play'></div></div>
+    					<div class="uProgressBar"><progress id='progress-bar' min='0' max='100' value='0'></progress></div>
+    					<div class="uVolumeInc"><div id='volume-inc-button' class='volume-plus' title='increase volume'></div></div>
+              <div><div id='volume-mute-button' class='volume-mute' title='mute volume'></div></div>
+    					<div><div id='volume-dec-button' class='volume-minus' title='decrease volume'></div></div>
+    					<!--<div id='replay-button' class='replay' title='replay'></div>
+    					<div id='fullscreen-button' class='fullscreen' title='fullscreen'></div>-->
+    				</div>
+        </article>
+
+        <script id="template-videolist" type="text/x-handlebars-template">
+            {{#each this}}
+            <div class="aVideoTile uVideoTile" data-lang-idx="0" data-title="{{title}}" data-title-2="{{title2}}" data-video-src="{{videoFile}}" data-video-src-2="{{videoFile2}}">
+                <div class="uThumb"><img src="{{thumbnailFile}}"></div>
+                <div class="aBalloon uBalloon"></div>
+                <div class="aTitle uTitle">{{title}}</div>
+            </div>
+            {{/each}}
+        </script>
+
+        <!-- 3rd party lib -->
+        <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.bpopup-0.9.4.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.keyboard.js"></script>
+        <script type="text/javascript" src="assets/js/l10n.min.js"></script>
+        <script type="text/javascript" src="assets/js/handlebars.min.js"></script>
+        <script type="text/javascript" src="assets/js/pn.core-0.9.js"></script>
+        <script type="text/javascript" src="assets/js/pn.ui-0.9.js"></script>
+        <script type="text/javascript" src="assets/js/pn.l10n-0.9.js"></script>
+        <script type="text/javascript" src="assets/js/pn.idle-0.9.js"></script>
+        <!-- ryder localization -->
+        <script type="text/javascript" src="assets/localization/localizations.js"></script>
+        <!-- ryder app -->
+        <script type="text/javascript" src="assets/js/ryder.et.js"></script>
+        <script type="text/javascript" src="assets/js/ryder.app.js"></script>
+        <script type="text/javascript" src="assets/js/ryder.launch.js"></script>
+    </body>
+
+</html>

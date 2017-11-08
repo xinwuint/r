@@ -1,0 +1,528 @@
+@import 'reset.css';
+@import 'fonts';
+@import 'app.css';
+@import 'mixins';
+
+$black: #000;
+$red: #ce1126;
+$white: #fff;
+$darkGrey: #2b2b2b;
+$midGrey: #555;
+
+$backgroundColor: $white;
+$menuBackgroundColor: $darkGrey;
+
+$time: .2s;
+
+$imagePath: "./../assets/images/";
+$textHeader: 'ObjektivMk2' sans-serif;
+$textBase: 'Helvetica Neue', sans-serif;
+
+html{
+	background-color: $backgroundColor;
+	font-family: $textBase;
+
+	background-image: url('#{$imagePath}kiosk_bk_Image.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+body{
+	overflow: hidden;
+			color: $darkGrey;
+			font-size: 16px;
+}
+
+header{
+	background-color: $backgroundColor;
+	position: absolute;
+	background-image: url('#{$imagePath}Kiosk_RyderLogo.png');
+	background-repeat: no-repeat;
+	background-position: left 20px center;
+	background-size: 256px 60px;
+
+	height: 96px;//60px;
+	width:100%;
+	top:0px;
+	left:0;
+	z-index: 9999;//above modal
+}
+
+footer{
+	bottom: 40px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+	font-size: .9em;
+}
+#modal{
+    display: block;
+    height: 1920px;
+    width: 1080px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    pointer-events: none;
+    //background-color: rgba(255,255,255,.7)
+}
+
+.uPopup{
+	//background-color: $white;
+	text-align: center;
+	max-width: 90%;
+	position: relative;
+	margin:0 auto;
+}
+/*
+#page-container{
+	//background-color: $white;
+	//width:1080px;
+	//height:1581px;
+
+	//background-image: url('#{$imagePath}kiosk_bk_Image.png');
+	//background-repeat: no-repeat;
+	//background-size: cover;
+	height: 100vh;
+}
+*/
+#menuBtn {//Closed, #menuBtnOpened {
+	width:  68px;///34px;
+	height: 56px; //28px;
+	display: block;
+	position: absolute;
+	top: 18px;//10px;
+	right:10px;
+	//z-index: 9999;//above modal
+
+	background-repeat: no-repeat;
+	background-size: 34px 28px;
+	background-position: center;
+
+		transition: 	background-image $time ease-in-out;
+	-moz-transition: 	background-image $time ease-in-out;
+	-webkit-transition: background-image $time ease-in-out;
+}
+
+#menuBtn {
+	z-index: 99999;
+	background-image: url('#{$imagePath}hamburger_UP.png');
+	&.on {
+		background-image: url('#{$imagePath}hamburger_DN.png');
+	}
+}
+
+#menu{
+	display: none;
+	position: absolute;
+	right: 0px;
+	top: 13px;
+	background-color: $darkGrey;
+	width: calc(314px - 30px);
+	max-height: 496px;
+	padding: 15px;
+
+	color: $midGrey;
+
+	& > ul{
+		overflow-y: scroll;
+		//height: 376px;
+		max-height: 376px;//calc(100% - 125px);
+	}
+
+	a{
+		width: 100%;
+		display: block;
+		padding: 10px 0;
+	}
+	a:link	  	{ color: $white; text-decoration: none; }
+	a:visited 	{ color: $white; text-decoration: none; }
+	a:hover	  	{ color: $red; text-decoration: none; }
+	a:active	{ color: $red; text-decoration: none; }
+
+ 	h3 {
+		border-bottom: 1px dotted $midGrey;
+		font-size: 1.4em;//19px;//32px;//24pt;
+		font-weight: bold;
+		margin-top: 65px;
+		margin-bottom: 10px; //looks;
+		font-family: 'HelveticaNeue LT 107 XBlkCn'; //HelveticaNeue, Helvetica, sans-sei;
+		span { padding-left: 46px;}
+	}
+	.list-title {
+		color: $midGrey;
+		text-transform: uppercase;
+	}
+
+	li { padding: 1px 0 1px 45px;}
+	li.sublist-item { padding-left: 63px; }
+
+}
+
+#landingPage {
+	display: table;
+//vertical-align: middle;
+	height: 100vh;
+	width: 100%;
+	position: relative;
+}
+
+#welcome{
+	//background-image: url('#{$imagePath}welcome_text.png');
+	//background-repeat: no-repeat;
+	//background-size: contain;
+	//width: 416px;
+	//height: 111px;
+
+	//////TO DO Make dynamic for mobile
+	//position: absolute;
+  //  top: 300px;
+  //  left: 50px;
+
+	//display: table-cell;
+	font-family: 'HelveticaNeue LT 107 XBlkCn';
+	font-size: 60px;
+	padding-left: 10%;//112px;
+	//vertical-align: middle;
+	position: absolute;
+  top: 50%;
+  height: 124px;
+  margin-top: -124px;
+}
+
+#callToAction{
+	width: 210px;
+	height: 100px;//50px;
+	display: block;
+	pointer-events: none;
+
+	position: absolute;
+	top: 20px;
+	right: 20px;
+
+	background-position: 7px 9px;
+	//background-image: url('#{$imagePath}Prompt_HandIcon.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	color: #696969;
+	text-align: right;
+	font-family: 'HelveticaNeue LT 67 MdCn';
+
+	#callToAction_Arrow{
+		//background-image: url('#{$imagePath}Prompt_OuterAnimatedRing.png');
+		background-repeat: no-repeat;
+		background-size: contain;
+		width: 37px;
+		height: 37px;
+		display: block;
+		//float: left;
+		font-size: 40px;
+		position:  absolute;
+		top: 0px;
+		right: 0px;
+
+		$animEase: ease-in-out;
+		$animDur: .6s;
+
+		-webkit-animation: flickerAnimation $animDur $animEase infinite;
+ 		-moz-animation:    flickerAnimation $animDur $animEase infinite;
+ 		animation:         flickerAnimation $animDur $animEase infinite;
+	}
+	@keyframes flickerAnimation {
+		0%   { transform: translateY(0px); opacity: .3;}
+		70%  { transform: translateY(2px); opacity: 1; }
+		100% { transform: translateY(0px); opacity: .3;}
+	}
+
+	#callToAction_Text{
+		display: block;
+		//background-image: url('#{$imagePath}CTA_text.png');
+		//background-repeat: no-repeat;
+		//background-size: contain;
+		width: 202px;
+		height: 53px;
+		font-size: 30px;
+
+		left: 5px;
+    	bottom: 0;
+		position: absolute;
+	}
+}
+
+#media-video{
+	//max-width: 960px;
+	width: 100%;
+	position: relative;
+	background-color: #555;
+}
+#media-controls {
+  //display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  display: table;
+  width: 100%;
+  height: 97px;
+  background: rgba(0,0,0,.4);
+
+  & > div{
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+
+    div{
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0 auto;
+    }
+  }
+
+  .uVolumeDec{
+    //border-left: 2px solid white;
+    &:before{
+      content: "";
+      height: 70%;//73px;
+      width: 2px;
+      background: $white;
+      display: block;
+      position: absolute;
+      top: 16%;//calc(50% - 35px);
+    }
+  }
+  #play-pause-button {
+    @include fade(background-image);
+    height: 28px;
+    width: 33px;
+    &.play{
+      background-image: url('#{$imagePath}/kiosk_play_btn_up.png');
+      &:hover, &:active {
+        background-image: url('#{$imagePath}/kiosk_play_btn_RL-DN.png');
+      }
+    }
+    &.pause{
+      background-image: url('#{$imagePath}/kiosk_Pause_Btn_UP.png');
+      &:hover, &:active {
+        background-image: url('#{$imagePath}/kiosk_Pause_Btn_RL-DN.png');
+      }
+    }
+  }
+  .uProgressBar{
+    width: 832px;
+		padding: 0 4em;
+  }
+  #progress-bar {
+    height: 5px;
+    position: relative;
+    top: -5px;
+    background: $white;
+    width: 100%;
+  }
+  /*
+  progress { color: $red;}
+  progress::-webkit-progress-value {background: $red; }
+  progress::-moz-progress-bar { background: $red; }
+  progress::-webkit-progress-value { background: $red; }
+  progress::-webkit-progress-bar { background: $red; }
+  */
+
+  #volume-inc-button {
+    height: 26px;
+    width: 26px;
+
+    @include fade(background-image);
+    background-image: url('#{$imagePath}/kiosk_Plus_btn_UP.png');
+    &:hover, &:active {
+      background-image: url('#{$imagePath}/kiosk_Plus_btn_RL-DN.png');
+    }
+  }
+  #volume-dec-button {
+    height: 26px;
+    width: 26px;
+
+    @include fade(background-image);
+    background-image: url('#{$imagePath}/kiosk_Minus_btn_UP.png');
+    &:hover, &:active {
+      background-image: url('#{$imagePath}/kiosk_Minus_btn_RL-DN.png');
+    }
+  }
+  #volume-mute-button {
+    @include fade(background-image);
+    height: 39px;
+    width: 45px;
+    background-image: url('#{$imagePath}/Kiosk_Volume_Icon.png');
+  }
+  #replay-button {
+
+  }
+  #fullscreen-button {
+
+  }
+}
+
+progress[value] {
+	/* Reset the default appearance */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+		appearance: none;
+
+	/* Get rid of default border in Firefox. */
+	border: none;
+
+	width: 250px;
+	height: 3px;
+  }
+
+  progress[value]::-webkit-progress-bar {
+	background-color: #eee;
+	border-radius: 2px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  }
+
+  progress[value]::-webkit-progress-value {
+	background-image:
+		 -webkit-linear-gradient(-45deg,
+								 transparent 33%, rgba(0, 0, 0, .1) 33%,
+								 rgba(0,0, 0, .1) 66%, transparent 66%),
+		 -webkit-linear-gradient(top,
+								 rgba(255, 255, 255, .25),
+								 rgba(0, 0, 0, .25)),
+		 -webkit-linear-gradient(left, $midGrey, $white);
+
+	  border-radius: 2px;
+	  background-size: 35px 20px, 100% 100%, 100% 100%;
+  }
+
+  progress[value]::-webkit-progress-value::after {
+	content: '';
+	width: 6px;
+	height: 6px;
+	position: absolute;
+	border-radius: 100%;
+	right: 7px;
+	top: 7px;
+	background-color: white;
+  }
+
+/*
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+*/
+@media only screen and (max-width: 767px) {
+	footer {
+		display: none;
+	}
+
+	//made-up
+	header {
+		height: 60px;
+		background-size: 136px 30px;
+	}
+	#page-container {
+    top: 60px;
+	}
+	#welcome {
+		font-size: 30px;//60px;
+		height: 62px;
+		margin-top: -62px;
+	}
+	#callToAction {
+		top: 10px;
+		right: 35px;
+		height: 60px;
+		#callToAction_Text {
+			font-size: 15px;
+			height: 25px;
+		}
+	}
+	#menuBtn {
+		top: 0px;
+	}
+	#menu {
+		top: 0;
+	}
+	#menu > ul {
+	    max-height: 220px;
+	}
+	#popup {
+		top: 60px !important;
+	}
+	.uPopup{
+			max-width: 85%;
+			min-width: 277px;
+		}
+	#media-controls {
+		height: 48px;
+	}
+	/* This used to work for the parent element of button divs */
+	/* But it does not work with newer browsers, the below doesn't hide the play button parent div */
+
+	*::-webkit-media-controls-panel {
+	  display: none!important;
+	  -webkit-appearance: none;
+	}
+
+	/* Old shadow dom for play button */
+
+	*::-webkit-media-controls-play-button {
+	  display: none!important;
+	  -webkit-appearance: none;
+	}
+
+	/* New shadow dom for play button */
+
+	/* This one works! */
+
+	*::-webkit-media-controls-start-playback-button {
+	  display: none!important;
+	  -webkit-appearance: none;
+	}
+}
+
+/*
+@media (orientation: portrait) and (max-width: 767px) {
+	body {
+		transform-origin: top left;
+
+		-webkit-transform: rotate(-90deg);
+		-moz-transform: rotate(-90deg);
+		-o-transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		transform: rotate(-90deg);
+	}
+
+	video {
+		position:absolute;
+		top:0;
+		left:-530px;
+	}
+}
+
+@media (orientation: landscape) and (max-width: 767px) {
+	body {
+		transform-origin: top left;
+
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		transform: rotate(0deg);
+		transform: scale(0.66, 0.66);
+		overflow-x: hidden;
+	}
+
+	video {
+		position:absolute;
+		top:0;
+		left:0;
+	}
+}*/

@@ -7,34 +7,39 @@
         del = require('del');
 
 	gulp.task('build:css', function() {
-        return gulp.src('./assets/sass/**/*.scss')
+        return gulp.src('./src/assets/sass/**/*.scss')
             .pipe(sass()) // Converts Sass to CSS with gulp-sass
-            .pipe(gulp.dest('./build/assets/css/'))
-            .pipe(gulp.dest('./assets/css/'));
+            .pipe(gulp.dest('./build/assets/css/'));
 	});
 
     gulp.task('build:other', function () {
         // build fonts, images, js, localization, html
         return gulp
             .src([
-                './index.html',
-                './assets/fonts/**/*',
-                './assets/images/**/*',
-                './assets/js/**/*',
-                './assets/localization/**/*',
-                './config/**/*', 
-                './content/**/*'
-            ], { base: './' })
+                './src/index.html',
+                './src/assets/images/**/*',
+                './src/assets/js/**/*',
+                './src/config/**/*', 
+            ], { base: './src' })
+            .pipe(gulp.dest('./build'));
+    });
+
+    gulp.task('build:common', function () {
+        return gulp
+            .src([
+                '../common/**/*'
+            ], { base: '../common' })
             .pipe(gulp.dest('./build'));
     });
 
 	gulp.task('build', [
 		'build:css',
-        'build:other'
+        'build:other',
+        'build:common'
 	]);
 
 	gulp.task('watch', ['build'], function() {
-	    gulp.watch('./assets/sass/**/*.scss', ['build:css']);
+	    gulp.watch('./src/assets/sass/**/*.scss', ['build:css']);
 	});
 
 	gulp.task('default', ['build']);
