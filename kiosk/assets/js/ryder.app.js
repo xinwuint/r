@@ -422,11 +422,22 @@
     }
 
     function biz_showStory() {
-        $('footer .uContent1').stop().css('top', '100%').show().animate({
+        $('footer .uContent1')
+            .stop()
+            .css('top', '100%')
+            .css('opacity', '1')
+            .show()
+            .animate({
           top: "0"
         },  500, 'easeOutBounce')
 
-        $('footer .uContent2').stop().css('top', '100%').show().delay(100).animate({
+        $('footer .uContent2')
+            .stop()
+            .css('top', '100%')
+            .css('opacity', '1')
+            .show()
+            .delay(100)
+            .animate({
           top: "0"
         },  500, 'easeOutBounce');
     }
@@ -442,6 +453,7 @@
     function biz_showVideoList() {
         infra_stopAtrractLoopVideo();
         infra_clearVideoTileSelection();
+        biz_toggleAudio(false); // set to default lang
         anim_videoList();
     }
 
@@ -474,8 +486,8 @@
     }
 
     function biz_hideKeyboard() {
-        $('main section.uLayerSec').fadeOut(500);
-        $('main section.uKeyboardSec').stop().animate({
+        $('main section.aLayerSec').fadeOut(500);
+        $('main section.aKeyboardSec').stop().animate({
           right: "-1140px"
         }, 500, "easeOutExpo" );
         infra_clearEmailInput();
@@ -521,7 +533,7 @@
     }
 
     function biz_toggleAudio(isSelected) {
-        Pn.ui.toggleSelected(this, isSelected);
+        Pn.ui.selected('main .aVideoListSec .aToggleBtn', isSelected);
         $('main .aVideoListSec').toggleClass('uAudioToggled', isSelected);
         // set video title
         $('main .aVideoListSec .aVideoTile').each(function(i, v){
@@ -614,6 +626,7 @@
 
         // init keyboard
         infra_initKeyboard(_langCode);
+        //biz_hideKeyboard(); // this will position it properly
 
         // events
         _hookEventHandlers();
