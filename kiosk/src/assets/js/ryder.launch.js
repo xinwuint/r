@@ -12,13 +12,27 @@
 
     // load config
     var promiseConfig = $.getJSON('config/config.ajax').done(function(conf) {
-        // TODO:
-        // Below 2 variables should be retrieved from BS player environment.
-        // locationId:  could be the sn of each indivisual BS player.
-        // locale:      could be calculated by zip or some other info.
-        conf.locationId = 'test-location';
-        conf.locale = 'en-us';
-        et.init(conf.locale, conf.locationId, true);      //tracking
+        // locationId:  Anything unique to kiosk. Could be the sn of each indivisual BS player.
+        // locale:      Could be calculated by zip or some other info.
+        var locale, locationId, zip;
+
+        // get zip
+        zip = Pn.util.getParameterByName('zip').replace(/\s+/, '').toLowerCase();
+
+        // calculate locale
+        if (/^(\w\d){3}$/.test(zip)) {
+            // canada postal code
+            locale = zip.startsWith('j') || zip.startsWith('g') || (zip.startsWith('h') && zip !== 'h0h0h0') ? 'fr-ca' : 'en-ca';
+        } else {
+            locale = 'en-us';
+        }
+
+        // get locationid
+        locationId = 'test-location';
+
+        et.init(locale, locationId, true);      //tracking
+        conf.locale = locale;
+        conf.locationId = locationId;
         app.init(conf);
     });
 

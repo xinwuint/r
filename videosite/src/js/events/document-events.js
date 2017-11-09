@@ -10,7 +10,7 @@ $(document).on("ready", function() {
 	Pn.l10n.init();
 	// param
 	locale = Pn.util.getParameterByName('locale') || locale;
-	locationId = Pn.util.getParameterByName('locationId') || locationId;
+	locationId = Pn.util.getParameterByName('location') || locationId;
 	// localize
 	locale = Pn.l10n.locale(locale);
 	// init tracking

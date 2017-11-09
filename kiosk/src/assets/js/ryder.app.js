@@ -31,7 +31,7 @@
     var _dateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
         _timeFormat = { hour: 'numeric', minute: 'numeric', hour12: true },
         _confDefault = {
-            locationId: 'test-location',     // default location id for test only. Used by GA.
+            locationId: 'test-location',        // default locationid
             locale: 'en-us',                    // default locale
             idleTimeout: 2*60,                  // 2 min
             rssUpdateInterval: 3600,            // 1h
@@ -40,7 +40,7 @@
             videoRootUrl: 'assets/video/',
             videoManifestFile: 'videos_{locale}.ajax',
             emailFrom: 'do-not-reply@ryder-digital.com',
-            videoSiteAbsUrl: 'http://ryder-digital.com/videosite/',
+            videoSiteAbsUrl: 'http://ryder-digital.com/videosite/?locale={locale}&location={location}',
         };
 
     // state
@@ -81,7 +81,7 @@
     }
 
     function infra_email(addr) {
-        var videoSiteUrl = _config.videoSiteAbsUrl + '?locale=' + _config.locale;
+        var videoSiteUrl = _config.videoSiteAbsUrl.replace('{locale}', _config.locale).replace('{location}', _config.locationId);
         var from = _config.emailFrom;
         var body = Pn.l10n.get('email.body').replace('{url}', videoSiteUrl);
 
