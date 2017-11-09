@@ -381,7 +381,7 @@ main .uVideoListSec {
                 &[selected] {
                     background-image: url('#{$imagePath}/kiosk_English_Btn_UP.png');
                     &:active {
-                      background-image: url('#{$imagePath}/kiosk_French_Btn_RL-DN.png');
+                      background-image: url('#{$imagePath}/kiosk_English_Btn_RL-DN.png');
                     }
                 }
             }
@@ -393,9 +393,9 @@ main .uVideoListSec {
                   background-image: url('#{$imagePath}/kiosk_English_Btn_RL-DN.png');
                 }
                 &[selected] {
-                    background-image: url('#{$imagePath}/kiosk_English_Btn_UP.png');
+                    background-image: url('#{$imagePath}/kiosk_French_Btn_UP.png');
                     &:active{
-                      background-image: url('#{$imagePath}/kiosk_English_Btn_RL-DN.png');
+                      background-image: url('#{$imagePath}/kiosk_French_Btn_RL-DN.png');
                     }
                 }
             }
