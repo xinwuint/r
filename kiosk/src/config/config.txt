@@ -5,8 +5,9 @@
     "rssStoryLen":          120,
     "videoRootUrl":         "content/videos/",
     "videoManifestFile":    "videos_{locale}.txt",
-    "emailFrom":            "do-not-reply@ryder-digital.com",
-    "videoSiteAbsUrl":      "http://ryder-digital.com/videos/",
+    "emailApiUrl":          "http://stage03.wirelessronin.com/ryder_service/api/email",
+    "emailApiAuthCode":     "abcd1234",
+    "videoSiteAbsUrl":      "http://stage03.wirelessronin.com/ryder-mobile/?locale={locale}&location={location}",
 
     "rssUrls": {
         "en-us": [

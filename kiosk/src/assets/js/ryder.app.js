@@ -39,7 +39,8 @@
             rssStoryLen: 120,                   // 120 characters
             videoRootUrl: 'assets/video/',
             videoManifestFile: 'videos_{locale}.txt',
-            emailFrom: 'do-not-reply@ryder-digital.com',
+            emailApiUrl: '',
+            emailApiAuthCode: '',
             videoSiteAbsUrl: 'http://ryder-digital.com/videosite/?locale={locale}&location={location}',
         };
 
@@ -82,15 +83,19 @@
 
     function infra_email(addr) {
         var videoSiteUrl = _config.videoSiteAbsUrl.replace('{locale}', _config.locale).replace('{location}', _config.locationId);
-        var from = _config.emailFrom;
+        var title = Pn.l10n.get('email.title');
         var body = Pn.l10n.get('email.body').replace('{url}', videoSiteUrl);
 
-        var d = $.Deferred();
-        // fack code for success
-        //d.resolve();
-        // fack code for failure
-        d.reject();
-        return d;
+        return Pn.ajax.ajax({
+            url: _config.emailApiUrl,
+            method: 'POST',
+            data: {
+                AuthCode: _config.emailApiAuthCode,
+                Recipients: addr,
+                Subject: title,
+                Message: body
+            }
+        });
     }
 
     function infra_playAtrractLoopVideo() {
