@@ -29,7 +29,7 @@
 
     // const =====================================================================================
     var _dateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
-        _timeFormat = { hour: 'numeric', minute: 'numeric', hour12: true },
+        //_timeFormat = { hour: 'numeric', minute: 'numeric', hour12: true }, //not compatible with old browser
         _confDefault = {
             locationId: 'test-location',        // default locationid
             locale: 'en-us',                    // default locale
@@ -340,12 +340,29 @@
     }
     //=========================== infra end ==============================
 
+    function _getTimeString(date) {
+        var h = date.getHours(),
+            m = date.getMinutes(),
+            ap = h < 12 ? 'AM' : 'PM';
+        if(h === 0) h = 12;
+        else if(h > 12) h -= 12;
+
+        return h + ':' + (m < 10 ? '0' : '') + m + ' ' + ap;
+    }
+
     function biz_populateDateTime() {
-        var dateObj = new Date();
+        var date = new Date();
+
+        //not compatible with old browser
         // https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
-        $('header .aTime').text(dateObj.toLocaleTimeString(_langCode, _timeFormat));    // fr and fr-CA have different output
+        //$('header .aTime').text(date.toLocaleTimeString(_langCode, _timeFormat));    // fr and fr-CA have different output
+
+        $('header .aTime').text(_getTimeString(date));
+
         // https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date
-        $('header .aDate').text(dateObj.toLocaleDateString(_langCode, _dateFormat));
+        // en: Saturday, November 11, 2017
+        // fr: samedi 11 novembre 2017
+        $('header .aDate').text(date.toLocaleDateString(_langCode, _dateFormat));
     }
 
     function biz_sendEmail(addr) {
