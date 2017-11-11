@@ -17,6 +17,7 @@
         "err.text1":                "We can't send an email right now. Please notify a Ryder associate for assistance.",
         "err.text2":                "Sorry for the inconvenience.",
         "videosite.list.title":     "Safety/Why Ryder",
+        "videosite.welcome":        "Welcome <br>Ryder Customer.",
         "videosite.copyright":      "Ryder and Ryder Logo are registered trademarks of Ryder System, Inc. <br> Ever better is a trademark of Ryder System, Inc. © Copyright 1996 - 2017 Ryder System, Inc.",
     },
 
