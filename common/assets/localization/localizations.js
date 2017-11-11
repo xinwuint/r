@@ -13,7 +13,7 @@
         "keyboard.backtovideo":     "BACK TO VIDEO",
         "email.title":              "Your Ryder video",
         "email.body":               "Here is the url of videos: {url}",
-        "err.title":                "NETWORK INTERRUPTOIN - NO INTERNET CONNECTION",
+        "err.title":                "NETWORK INTERRUPTION - NO INTERNET CONNECTION",
         "err.text1":                "We can't send an email right now. Please notify a Ryder associate for assistance.",
         "err.text2":                "Sorry for the inconvenience.",
         "videosite.list.title":     "Safety/Why Ryder",
