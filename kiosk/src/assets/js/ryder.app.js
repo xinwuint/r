@@ -38,7 +38,7 @@
             rssDisplayInterval: 20,             // 20 sec
             rssStoryLen: 120,                   // 120 characters
             videoRootUrl: 'assets/video/',
-            videoManifestFile: 'videos_{locale}.ajax',
+            videoManifestFile: 'videos_{locale}.txt',
             emailFrom: 'do-not-reply@ryder-digital.com',
             videoSiteAbsUrl: 'http://ryder-digital.com/videosite/?locale={locale}&location={location}',
         };

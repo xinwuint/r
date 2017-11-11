@@ -1,7 +1,7 @@
 {
     "imageAssetPath": "./content/videos",
     "videoAssetPath": "./content/videos",
-    "videoManifestFile": "videos_{locale}.ajax",
+    "videoManifestFile": "videos_{locale}.txt",
     "listTitle": "videosite.list.title",
     "footerText": "videosite.copyright"
 }

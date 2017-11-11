@@ -11,7 +11,7 @@
     Pn.idle.init();
 
     // load config
-    var promiseConfig = $.getJSON('config/config.ajax').done(function(conf) {
+    var promiseConfig = $.getJSON('config/config.txt').done(function(conf) {
         // locationId:  Anything unique to kiosk. Could be the sn of each indivisual BS player.
         // locale:      Could be calculated by zip or some other info.
         var locale, locationId, zip;

@@ -20,7 +20,7 @@ $(document).on("ready", function() {
 	
 	document.getElementById("templates").innerHTML = "";
 
-	dc.loadData("./config/config.ajax", locale).done(function() {
+	dc.loadData("./config/config.txt", locale).done(function() {
 		app.launch();
 	});
 	

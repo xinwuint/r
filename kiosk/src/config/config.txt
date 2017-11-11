@@ -4,7 +4,7 @@
     "rssDisplayInterval":   20,
     "rssStoryLen":          120,
     "videoRootUrl":         "content/videos/",
-    "videoManifestFile":    "videos_{locale}.ajax",
+    "videoManifestFile":    "videos_{locale}.txt",
     "emailFrom":            "do-not-reply@ryder-digital.com",
     "videoSiteAbsUrl":      "http://ryder-digital.com/videos/",
 
