@@ -373,7 +373,7 @@
 
     function biz_updateStories() {
         var rssUrls = _config.rssUrls[_config.locale];
-        var set1;
+        var set1, set2, set3;
 
         // wait for ajax calls
         var waitCall1 = $.Deferred(),
@@ -381,7 +381,7 @@
             waitCall3 = $.Deferred();
 
         // stories on left
-        var pRss1 = infra_fetchRssStories(rssUrls[0]).done(function(data){
+        infra_fetchRssStories(rssUrls[0]).done(function(data){
             set1 = data;
             Pn.util.copyArray(set1, 0, _rssStories[0], 0, _rssLoopLen);
         }).always(function(){
@@ -391,11 +391,12 @@
         // stories on right
         if(!rssUrls[1] && !rssUrls[2]) {
             // take from set1
-            $.when(pRss1).done(function(){
-                Pn.util.copyArray(set1, 5, _rssStories[1], 0, _rssLoopLen);
+            waitCall1.always(function(){
+                if(set1) Pn.util.copyArray(set1, 5, _rssStories[1], 0, _rssLoopLen);
+                waitCall2.resolve();
             });
-            waitCall2.resolve();
             waitCall3.resolve();
+
         } else if(!rssUrls[2]) {
             infra_fetchRssStories(rssUrls[1]).done(function(data){
                 Pn.util.copyArray(data, 0, _rssStories[1], 0, _rssLoopLen);
@@ -403,19 +404,30 @@
                 waitCall2.resolve();
             });
             waitCall3.resolve();
+
         } else {
-            // half half
             infra_fetchRssStories(rssUrls[1]).done(function(data){
-                // even idx
-                for(var i=0, j=0; i<_rssLoopLen; i+=2, j++) _rssStories[1][i] = data[j];
+                set2 = data;
             }).always(function(){
                 waitCall2.resolve();
             });
             infra_fetchRssStories(rssUrls[2]).done(function(data){
-                // odd idx
-                for(var i=1, j=0; i<_rssLoopLen; i+=2, j++) _rssStories[1][i] = data[j];
+                set3 = data;
             }).always(function(){
                 waitCall3.resolve();
+            });
+            $.when(waitCall2, waitCall3).done(function(){
+                if(!set2 && !set3) {
+                    //do nothing, since no response data at all
+                } else if(set2 && set3) {
+                    // even idx
+                    for(var i=0, j=0; i<_rssLoopLen; i+=2, j++) _rssStories[1][i] = set2[j];
+                    // odd idx
+                    for(var i=1, j=0; i<_rssLoopLen; i+=2, j++) _rssStories[1][i] = set3[j];
+                } else {
+                    var set = set2 ? set2 : set3;
+                    Pn.util.copyArray(set, 0, _rssStories[1], 0, _rssLoopLen);
+                }
             });
         }
 
