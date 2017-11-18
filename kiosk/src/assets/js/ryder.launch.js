@@ -14,21 +14,24 @@
     var promiseConfig = $.getJSON('config/config.txt').done(function(conf) {
         // locationId:  Anything unique to kiosk. Could be the sn of each indivisual BS player.
         // locale:      Could be calculated by zip or some other info.
-        var locale, locationId, zip;
+        var locale, locationId;
 
-        // get zip
-        zip = Pn.util.getParameterByName('zip').replace(/\s+/, '').toLowerCase();
+        // 1 US (English [default]/Spanish)
+        // 2 Canada – (English [default]/French)
+        // 3 Canada – (French [default]/English)
+        var lang = Pn.util.getParameterByName('lang');
+        if(lang === '3') locale = 'fr-ca';
+        else if(lang === '2') locale = 'en-ca';
+        else locale = 'en-us';
 
-        // calculate locale
-        if (/^(\w\d){3}$/.test(zip)) {
-            // canada postal code
-            locale = zip.startsWith('j') || zip.startsWith('g') || (zip.startsWith('h') && zip !== 'h0h0h0') ? 'fr-ca' : 'en-ca';
-        } else {
-            locale = 'en-us';
+        try {
+            locationId = (new BSDeviceInfo()).deviceUniqueId;
+        } catch(ex) {
+            // nothing
         }
-
-        // get locationid
-        locationId = 'test-location';
+        if(!locationId) {
+            locationId = Pn.util.getParameterByName('sn') || 'test-location';
+        }
 
         et.init(locale, locationId, true);      //tracking
         conf.locale = locale;
