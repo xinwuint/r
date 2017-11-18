@@ -51,7 +51,8 @@
 
     // rss related
     var _rssStories = Pn.util.createArray([2, 5], ''),       // 2x5: 2 rows (top and sports). each row has 5 stories.
-        _rssLoopIdx = -1,        // which story is shown?
+        _rssLoopIdx1 = -1,        // which story is shown?
+        _rssLoopIdx2 = -1,        // which story is shown?
         _rssLoopLen = 5,
         _rssWaitLoad = $.Deferred();    // indicate if rss is loaded
 
@@ -65,20 +66,27 @@
 
     //=========================== infra start ==============================
 
-    // return 10 stories
-    function infra_fetchRssStories(url) {
-        return Pn.ajax.get(url).then(function(data) {
-            // this is a filter, not just callback. Need use '.then()'
+    function infra_fetchRssStories(url, max, textLen) {
+        var d = $.Deferred();
+        Pn.ajax.ajax({
+            url: url,
+            cache: false
+        })
+        .done(function(data) {
+            var rst = [];
             if(data && data.channel && data.channel.item && data.channel.item.length) {
-                var rst = [];
-                for(var i=0; i<_rssLoopLen*2; i++) {
-                    var s = data.channel.item[i] && data.channel.item[i].description ? data.channel.item[i].description : '';
-                    rst.push(Pn.util.ellipsis(s, _config.rssStoryLen));
+                for(var i = 0, j = 0, len = data.channel.item.length; i < len && j < max; i++) {
+                    if(data.channel.item[i].description) {
+                        rst[j++] = Pn.util.ellipsis(data.channel.item[i].description, textLen);
+                    }
                 }
-                return rst;
             }
-            return Pn.util.createArray([_rssLoopLen*2], '');
+            d.resolve(rst);
+        })
+        .fail(function(){
+            d.resolve([]);
         });
+        return d.promise();
     }
 
     function infra_email(addr) {
@@ -371,69 +379,73 @@
             .fail(infra_showErrMsgOnKeyboard);
     }
 
+    // make sure each set has at lease one line.
     function biz_updateStories() {
-        var rssUrls = _config.rssUrls[_config.locale];
-        var set1, set2, set3;
+        var rssUrls = _config.rssUrls[_config.locale],
+            max = _rssLoopLen * 2,
+            textLen = _config.rssStoryLen;
 
-        // wait for ajax calls
-        var waitCall1 = $.Deferred(),
-            waitCall2 = $.Deferred(),
-            waitCall3 = $.Deferred();
+        // rssUrls[0] gives [] even not applicable
+        $.when(rssUrls[0] ? infra_fetchRssStories(rssUrls[0], max, textLen) : [],
+            rssUrls[1] ? infra_fetchRssStories(rssUrls[1], max, textLen) : undefined,
+            rssUrls[2] ? infra_fetchRssStories(rssUrls[2], max, textLen) : undefined)
+        .done(function(data1, data2, data3) {
+            var set1 = [],
+                set2 = [];
 
-        // stories on left
-        infra_fetchRssStories(rssUrls[0]).done(function(data){
-            set1 = data;
-            Pn.util.copyArray(set1, 0, _rssStories[0], 0, _rssLoopLen);
-        }).always(function(){
-            waitCall1.resolve();
-        });
-
-        // stories on right
-        if(!rssUrls[1] && !rssUrls[2]) {
-            // take from set1
-            waitCall1.always(function(){
-                if(set1) Pn.util.copyArray(set1, 5, _rssStories[1], 0, _rssLoopLen);
-                waitCall2.resolve();
-            });
-            waitCall3.resolve();
-
-        } else if(!rssUrls[2]) {
-            infra_fetchRssStories(rssUrls[1]).done(function(data){
-                Pn.util.copyArray(data, 0, _rssStories[1], 0, _rssLoopLen);
-            }).always(function(){
-                waitCall2.resolve();
-            });
-            waitCall3.resolve();
-
-        } else {
-            infra_fetchRssStories(rssUrls[1]).done(function(data){
-                set2 = data;
-            }).always(function(){
-                waitCall2.resolve();
-            });
-            infra_fetchRssStories(rssUrls[2]).done(function(data){
-                set3 = data;
-            }).always(function(){
-                waitCall3.resolve();
-            });
-            $.when(waitCall2, waitCall3).done(function(){
-                if(!set2 && !set3) {
-                    //do nothing, since no response data at all
-                } else if(set2 && set3) {
-                    // even idx
-                    for(var i=0, j=0; i<_rssLoopLen; i+=2, j++) _rssStories[1][i] = set2[j];
-                    // odd idx
-                    for(var i=1, j=0; i<_rssLoopLen; i+=2, j++) _rssStories[1][i] = set3[j];
-                } else {
-                    var set = set2 ? set2 : set3;
-                    Pn.util.copyArray(set, 0, _rssStories[1], 0, _rssLoopLen);
+            if(!data2 && !data3) {
+                // bath set1 and set2 come from data1
+                for(var i=0, j=0, len=data1.length; i < len && j < _rssLoopLen; j++) {
+                    set1.push(data1[i++]);
+                    if(i < len) set2.push(data1[i++]);
                 }
-            });
-        }
 
-        // set signal
-        $.when(waitCall1, waitCall2, waitCall3).done(function(){
-            // no harm to call it again and again.
+                // adjust set1 and set2.
+                // the most diff of size between set1 and set2 is 1
+                if(set1.length === 0) { // 0,0
+                    set1.push('');
+                    set2.push('');
+                } else if(set2.length === 0) {  // 1,0
+                    set2.push('');
+                } else if(set1.length === 1) {  // 1,1
+                    set1.push(set2[0]);
+                    set2.push(set1[0]);
+                } else if(set2.length === 1) {  // 2,1
+                    set2.push(set1[0]);
+                }
+
+            } else {
+                // set1 comes from data1
+                for(var i=0, j=0, len=data1.length; i < len && j < _rssLoopLen; j++) {
+                    set1.push(data1[i++]);
+                }
+
+                // set2
+                if(data2 && data3) {
+                    // set2 comes from data2 and data3 evenly
+                    for(var i2=0, i3=0, j=0, len2=data2.length, len3=data3.length; (i2 < len2 || i3 < len3) && j < _rssLoopLen;) {
+                        if(i2 < len2 && j < _rssLoopLen) set2[j++] = data2[i2++];
+                        if(i3 < len3 && j < _rssLoopLen) set2[j++] = data3[i3++];
+                    }
+
+                } else {
+                    // set2 comes from either one
+                    var data = data2 ? data2 : data3;
+                    for(var i=0, j=0, len=data.length; i < len && j < _rssLoopLen; j++) {
+                        set2.push(data[i++]);
+                    }
+                }
+
+                // adjust set1 and set2
+                if(set1.length === 0) set1.push('');
+                if(set2.length === 0) set2.push('');
+            }
+
+            // end up
+            _rssStories[0] = set1;
+            _rssStories[1] = set2;
+
+            // set signal. no harm to call it again and again.
             _rssWaitLoad.resolve();
         });
     }
@@ -443,9 +455,10 @@
         biz_hideStory();
         $.when(_rssWaitLoad).done(function(){
             //biz_hideStory();
-            _rssLoopIdx = (_rssLoopIdx + 1) % _rssLoopLen;
-            $('footer .aRss .aContent1Story').text(_rssStories[0][_rssLoopIdx]);
-            $('footer .aRss .aContent2Story').text(_rssStories[1][_rssLoopIdx]);
+            _rssLoopIdx1 = (_rssLoopIdx1 + 1) % _rssStories[0].length;
+            _rssLoopIdx2 = (_rssLoopIdx2 + 1) % _rssStories[1].length;
+            $('footer .aRss .aContent1Story').text(_rssStories[0][_rssLoopIdx1]);
+            $('footer .aRss .aContent2Story').text(_rssStories[1][_rssLoopIdx2]);
             biz_showStory();
         });
     }
