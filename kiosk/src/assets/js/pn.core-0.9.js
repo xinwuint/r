@@ -18,7 +18,8 @@
         bool    isPromise(obj);
         obj     deref(obj, callContext, [obj]:callParams);
         number  randomInRange(number:min, number:max);
-        jqObj   createOneElementJqObj((string|domObj|jqObj):obj);
+        jqObj   makeJqObj((string|domObj|jqObj):obj);
+        jqObj   makeJqObjWithSingleton((string|domObj|jqObj):obj);
         string  escapeRegex(string:text);
         string  fetch(string:text, (string|RegExp):regex, int:groupIdx);
         string|null|undefined  trim(string:text);
@@ -105,7 +106,11 @@
         return Math.min(a, b) + Math.floor(Math.random() * (Math.abs(b - a) + 1));
     }
 
-    function util_createOneElementJqObj(obj) {
+    function util_makeJqObj(obj) {
+        return util_isJqObj(obj) ? obj : $(obj);
+    }
+
+    function util_makeJqObjWithSingleton(obj) {
         var jq = util_isJqObj(obj) ? obj : $(obj);
         return jq.length > 1 ? $(jq[0]) : jq;
     }
@@ -229,7 +234,8 @@
         isPromise:                          util_isPromise,
         deref:                              util_deref,
         randomInRange:                      util_randomInRange,
-        createOneElementJqObj:              util_createOneElementJqObj,
+        makeJqObj:                          util_makeJqObj,
+        makeJqObjWithSingleton:             util_makeJqObjWithSingleton,
         escapeRegex:                        util_escapeRegex,
         fetch:                              util_fetch,
         trim:                               util_trim,

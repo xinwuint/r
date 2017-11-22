@@ -22,10 +22,10 @@
         Promise     popupModalAjax((string|domObj|jqObj):eleToPopup, (string|object):ajaxOpt, (string|object):mountOpt, (string|object):launchOpt);
         Promise     popupModalAir((string|object):ajaxOpt, (string|object):mountOpt, (string|object):launchOpt);
         Promise     loadAjax((string|object):ajaxOpt, (string|object):mountOpt);
-        boolean     selected((string|domObj|jqObj):element, [boolean:isSelected]);      // get or set 'selected' attribute to element
-        boolean     toggleSelected((string|domObj|jqObj):element);                      // reverse 'selected' attribute to element
-        boolean     disabled((string|domObj|jqObj):element, [boolean:isDisabled]);      // get or set 'disabled' attribute to element
-        boolean     toggleDisabled((string|domObj|jqObj):element);                      // reverse 'disabled' attribute to element
+        boolean     isSelected((string|domObj|jqObj):element);                              // get 'selected' attribute of element
+        boolean     toggleSelected((string|domObj|jqObj):element, [boolean:isSelected]);    // reverse or set 'selected' attribute to element
+        boolean     isDisabled((string|domObj|jqObj):element);                              // get 'disabled' attribute of element
+        boolean     toggleDisabled((string|domObj|jqObj):element, [boolean:isDisabled]);    // reverse or set 'disabled' attribute to element
 */
 
 ;(function (lib, $, window, undefined) {
@@ -64,7 +64,7 @@
 
     function ui_scrollTo(element, duration) {
         duration = duration || duration === 0 ? duration : 1000; //default 1 sec
-        var ele = lib.util.isJqObj(element) ? element : $(element);
+        var ele = lib.util.makeJqObj(element);
         var d = $.Deferred();
         var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body'); // by willin
         $body.animate({ scrollTop: ele.offset().top }, duration, null, function () {
@@ -74,7 +74,7 @@
     }
 
     function ui_openPopup(eleToPopup, blockUi, closeOnOverlay, onLaunched, onClosed) {
-        var ele = lib.util.createOneElementJqObj(eleToPopup);
+        var ele = lib.util.makeJqObjWithSingleton(eleToPopup);
         if (ele.length == 0) return null;    // work on only one element
 
         var modalClose = lib.util.isNullOrUndefined(closeOnOverlay) ? true : !!closeOnOverlay;   // explicitly set default to true, in case escClose has a different default
@@ -120,17 +120,17 @@
     var _eventtype_return = '_component_event_return';
 
     function ui_fireReturnEvent(element, data) {
-        var ele = lib.util.isJqObj(element) ? element : $(element);
+        var ele = lib.util.makeJqObj(element);
         ele.trigger(_eventtype_return, [data]);
     }
 
     // TODO: need this?
     // function ui_registerComponentHandlers(element, returnHandler) {
-    //     var ele = lib.util.isJqObj(element) ? element : $(element);
+    //     var ele = lib.util.makeJqObj(element);
     //     if (typeof returnHandler === 'function') ele.on(_eventtype_return, returnHandler);
     // }
     // function ui_unregisterComponentHandlers(element, returnHandler) {
-    //     var ele = lib.util.isJqObj(element) ? element : $(element);
+    //     var ele = lib.util.makeJqObj(element);
     //     if (returnHandler === '*') ele.off(_eventtype_return);
     //     else if (typeof returnHandler === 'function') ele.off(_eventtype_return, returnHandler);
     // }
@@ -141,7 +141,7 @@
         launchOpt = $.extend(true, {}, _launchOptDefault, launchOpt);
 
         // init and validate
-        var ele = lib.util.createOneElementJqObj(eleToPopup);
+        var ele = lib.util.makeJqObjWithSingleton(eleToPopup);
         var d = $.Deferred();
         if(ele.length == 0) {
             d.rejectWith(null);
@@ -211,7 +211,7 @@
         launchOpt = $.extend(true, {}, _launchOptDefault, launchOpt);
 
         // init and validate
-        var ele = lib.util.createOneElementJqObj(eleToPopup);
+        var ele = lib.util.makeJqObjWithSingleton(eleToPopup);
         var tmp = mountOpt.targetContainer;
         var tContainer = !tmp ? ele : lib.util.isJqObj(tmp) ? tmp : ele.find(tmp);
         var d = $.Deferred();
@@ -312,7 +312,7 @@
         // init and validate
         var tmp = mountOpt.targetContainer;
         var d = $.Deferred();
-        var tContainer = lib.util.isJqObj(tmp) ? tmp : $(tmp);
+        var tContainer = lib.util.makeJqObj(tmp);
         if(tContainer.length == 0) {
             d.rejectWith(null);
             return d.promise();
@@ -345,34 +345,33 @@
         return jqObj.is('[' + attrName + ']');
     }
 
-    function _getSetFlagAttr(element, attrName, isSet) {
-        var ele = lib.util.isJqObj(element) ? element : $(element);
-        if (isSet === undefined) return _hasAttr(ele, attrName);
-        if (isSet) ele.attr(attrName, '');
+    function _getFlagAttr(element, attrName) {
+        var ele = lib.util.makeJqObj(element);
+        return _hasAttr(ele, attrName);
+    }
+
+    function _toggleFlagAttr(element, attrName, isSet) {
+        var ele = lib.util.makeJqObj(element);
+        var rst = isSet === undefined ? !_hasAttr(ele, attrName) : !!isSet;
+        if (rst) ele.attr(attrName, '');
         else ele.removeAttr(attrName);
-        return !!isSet;
+        return rst;
     }
 
-    function _toggleFlagAttr(element, attrName) {
-        var rst = _getSetFlagAttr(element, attrName);
-        _getSetFlagAttr(element, attrName, !rst);
-        return !rst;
+    function ui_isSelected(element) {
+        return _getFlagAttr(element, 'selected');
     }
 
-    function ui_selected(element, isSelected) {
-        return _getSetFlagAttr(element, 'selected', isSelected);
+    function ui_toggleSelected(element, isSelected) {
+        return _toggleFlagAttr(element, 'selected', isSelected);
     }
 
-    function ui_toggleSelected(element) {
-        return _toggleFlagAttr(element, 'selected');
+    function ui_isDisabled(element) {
+        return _getFlagAttr(element, 'disabled');
     }
 
-    function ui_disabled(element, isDisabled) {
-        return _getSetFlagAttr(element, 'disabled', isDisabled);
-    }
-
-    function ui_toggleDisabled(element) {
-        return _toggleFlagAttr(element, 'disabled');
+    function ui_toggleDisabled(element, isDisabled) {
+        return _toggleFlagAttr(element, 'disabled', isDisabled);
     }
 
     var ui = {
@@ -389,9 +388,9 @@
         popupModalAjax:      ui_popupModalAjax,
         popupModalAir:       ui_popupModalAir,
         loadAjax:            ui_loadAjax,
-        selected:            ui_selected,
+        isSelected:          ui_isSelected,
         toggleSelected:      ui_toggleSelected,
-        disabled:            ui_disabled,
+        isDisabled:          ui_isDisabled,
         toggleDisabled:      ui_toggleDisabled
     };
 

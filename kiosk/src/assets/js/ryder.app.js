@@ -162,7 +162,7 @@
     }
 
     function infra_clearVideoTileSelection() {
-        Pn.ui.selected('main .aVideoListSec .aVideoTile', false);
+        Pn.ui.toggleSelected('main .aVideoListSec .aVideoTile', false);
     }
 
     function infra_initKeyboard(langCode) {
@@ -580,7 +580,7 @@
     }
 
     function biz_toggleAudio(isSelected) {
-        Pn.ui.selected('main .aVideoListSec .aToggleBtn', isSelected);
+        Pn.ui.toggleSelected('main .aVideoListSec .aToggleBtn', isSelected);
         $('main .aVideoListSec').toggleClass('uAudioToggled', isSelected);
         // set video title
         $('main .aVideoListSec .aVideoTile').each(function(i, v){
@@ -620,9 +620,9 @@
 
         // email btn
         $('main .aVideoListSec .aEmailBtn').on('mousedown', function(){
-            Pn.ui.selected(this, true);
+            Pn.ui.toggleSelected(this, true);
         }).on('mouseup', function(){
-            Pn.ui.selected(this, false);
+            Pn.ui.toggleSelected(this, false);
         }).on('click', biz_showKeyboard);
 
         // back to video btn
@@ -640,7 +640,7 @@
 
             // select this tile
             infra_clearVideoTileSelection();
-            Pn.ui.selected($this, true);
+            Pn.ui.toggleSelected($this, true);
 
             // hide pointer
             infra_hidePointer();
