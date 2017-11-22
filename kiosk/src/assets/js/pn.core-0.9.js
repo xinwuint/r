@@ -12,14 +12,13 @@
         bool    debugMode([bool:value]);            // get or set debug mode
     util
         bool    isNullOrUndefined(obj);
-        bool    isJqueryObject(obj);
+        bool    isJqObj(obj);
         bool    isDomNode(obj);
         bool    isDomElement(obj);
         bool    isPromise(obj);
-        bool    isWorkflowContinuable(obj);         // the value of obj controls continuing or not.
         obj     deref(obj, callContext, [obj]:callParams);
         number  randomInRange(number:min, number:max);
-        jqObj   createJqueryObjectWithOneElement((string|domObj|jqObj):obj);
+        jqObj   createOneElementJqObj((string|domObj|jqObj):obj);
         string  escapeRegex(string:text);
         string  fetch(string:text, (string|RegExp):regex, int:groupIdx);
         string|null|undefined  trim(string:text);
@@ -42,6 +41,7 @@
         //      f1, in this case 'I am xin', to f3, and continue execution.
         // If every thing is ok, the state of returned Promise of "execPipe" will be "resolved", otherwise "rejected".
         Promise execPipe([funciton(any)], [any]);
+        bool    isContinuable(obj);         // the value of obj controls continuing or not.
 */
 
 ;(function ($, window, undefined) {
@@ -79,7 +79,7 @@
         return obj === undefined || obj === null;
     }
 
-    function util_isJqueryObject(obj) {
+    function util_isJqObj(obj) {
         return obj && (obj instanceof $);
     }
 
@@ -97,10 +97,6 @@
         return obj && $.isFunction(obj.then);
     }
 
-    function util_isWorkflowContinuable(obj) {
-        return util_isNullOrUndefined(obj) ? true : !!obj;
-    }
-
     function util_deref(obj, callContext, callParams) {
         return $.isFunction(obj) ? obj.apply(callContext, callParams) : obj;
     }
@@ -109,8 +105,8 @@
         return Math.min(a, b) + Math.floor(Math.random() * (Math.abs(b - a) + 1));
     }
 
-    function util_createJqueryObjectWithOneElement(obj) {
-        var jq = util_isJqueryObject(obj) ? obj : $(obj);
+    function util_createOneElementJqObj(obj) {
+        var jq = util_isJqObj(obj) ? obj : $(obj);
         return jq.length > 1 ? $(jq[0]) : jq;
     }
 
@@ -227,14 +223,13 @@
 
     var util = {
         isNullOrUndefined:                  util_isNullOrUndefined,
-        isJqueryObject:                     util_isJqueryObject,
+        isJqObj:                            util_isJqObj,
         isDomNode:                          util_isDomNode,
         isDomElement:                       util_isDomElement,
         isPromise:                          util_isPromise,
-        isWorkflowContinuable:              util_isWorkflowContinuable,
         deref:                              util_deref,
         randomInRange:                      util_randomInRange,
-        createJqueryObjectWithOneElement:   util_createJqueryObjectWithOneElement,
+        createOneElementJqObj:              util_createOneElementJqObj,
         escapeRegex:                        util_escapeRegex,
         fetch:                              util_fetch,
         trim:                               util_trim,
@@ -271,6 +266,10 @@
 
 
     // flow ======================================================================================
+    function flow_isContinuable(obj) {
+        return util_isNullOrUndefined(obj) ? true : !!obj;
+    }
+
     function flow_getPromiseValue(obj) {
         if(!util_isPromise(obj) || obj.state() == 'pending') return undefined;
         var v;
@@ -456,7 +455,8 @@
     //}
 
     var flow = {
-        execPipe:   flow_execPipe
+        isContinuable:      flow_isContinuable,
+        execPipe:           flow_execPipe
     };
 
 

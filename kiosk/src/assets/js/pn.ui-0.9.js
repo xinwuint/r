@@ -64,7 +64,7 @@
 
     function ui_scrollTo(element, duration) {
         duration = duration || duration === 0 ? duration : 1000; //default 1 sec
-        var ele = lib.util.isJqueryObject(element) ? element : $(element);
+        var ele = lib.util.isJqObj(element) ? element : $(element);
         var d = $.Deferred();
         var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body'); // by willin
         $body.animate({ scrollTop: ele.offset().top }, duration, null, function () {
@@ -74,7 +74,7 @@
     }
 
     function ui_openPopup(eleToPopup, blockUi, closeOnOverlay, onLaunched, onClosed) {
-        var ele = lib.util.createJqueryObjectWithOneElement(eleToPopup);
+        var ele = lib.util.createOneElementJqObj(eleToPopup);
         if (ele.length == 0) return null;    // work on only one element
 
         var modalClose = lib.util.isNullOrUndefined(closeOnOverlay) ? true : !!closeOnOverlay;   // explicitly set default to true, in case escClose has a different default
@@ -120,17 +120,17 @@
     var _eventtype_return = '_component_event_return';
 
     function ui_fireReturnEvent(element, data) {
-        var ele = lib.util.isJqueryObject(element) ? element : $(element);
+        var ele = lib.util.isJqObj(element) ? element : $(element);
         ele.trigger(_eventtype_return, [data]);
     }
 
     // TODO: need this?
     // function ui_registerComponentHandlers(element, returnHandler) {
-    //     var ele = lib.util.isJqueryObject(element) ? element : $(element);
+    //     var ele = lib.util.isJqObj(element) ? element : $(element);
     //     if (typeof returnHandler === 'function') ele.on(_eventtype_return, returnHandler);
     // }
     // function ui_unregisterComponentHandlers(element, returnHandler) {
-    //     var ele = lib.util.isJqueryObject(element) ? element : $(element);
+    //     var ele = lib.util.isJqObj(element) ? element : $(element);
     //     if (returnHandler === '*') ele.off(_eventtype_return);
     //     else if (typeof returnHandler === 'function') ele.off(_eventtype_return, returnHandler);
     // }
@@ -141,7 +141,7 @@
         launchOpt = $.extend(true, {}, _launchOptDefault, launchOpt);
 
         // init and validate
-        var ele = lib.util.createJqueryObjectWithOneElement(eleToPopup);
+        var ele = lib.util.createOneElementJqObj(eleToPopup);
         var d = $.Deferred();
         if(ele.length == 0) {
             d.rejectWith(null);
@@ -155,14 +155,14 @@
         // popup handler and cleanup
         var _dismissHandler = function(e) {     // no user data will be passed from param
             var rst = lib.util.deref(launchOpt.onClosing, ele[0], [launchOpt.dataReturnedWhenDismiss]);
-            if(lib.util.isWorkflowContinuable(rst)) {
+            if(lib.flow.isContinuable(rst)) {
                 ui_closePopup(objPop);
             }
             return false; // prevent bubbling
         };
         var _returnHandler = function(e, data) {
             var rst = lib.util.deref(launchOpt.onClosing, ele[0], [data]);
-            if(lib.util.isWorkflowContinuable(rst)) {
+            if(lib.flow.isContinuable(rst)) {
                 dismissed = false;
                 returnedData = data;
                 ui_closePopup(objPop);
@@ -211,9 +211,9 @@
         launchOpt = $.extend(true, {}, _launchOptDefault, launchOpt);
 
         // init and validate
-        var ele = lib.util.createJqueryObjectWithOneElement(eleToPopup);
+        var ele = lib.util.createOneElementJqObj(eleToPopup);
         var tmp = mountOpt.targetContainer;
-        var tContainer = !tmp ? ele : lib.util.isJqueryObject(tmp) ? tmp : ele.find(tmp);
+        var tContainer = !tmp ? ele : lib.util.isJqObj(tmp) ? tmp : ele.find(tmp);
         var d = $.Deferred();
         if(ele.length == 0 || tContainer.length == 0) {
             d.rejectWith(null);
@@ -227,14 +227,14 @@
         // popup handler and cleanup
         var _dismissHandler = function(e) {     // no user data will be passed from param
             var rst = lib.util.deref(launchOpt.onClosing, ele[0], [launchOpt.dataReturnedWhenDismiss]);
-            if(lib.util.isWorkflowContinuable(rst)) {
+            if(lib.flow.isContinuable(rst)) {
                 ui_closePopup(objPop);
             }
             return false; // prevent bubbling
         };
         var _returnHandler = function(e, data) {
             var rst = lib.util.deref(launchOpt.onClosing, ele[0], [data]);
-            if(lib.util.isWorkflowContinuable(rst)) {
+            if(lib.flow.isContinuable(rst)) {
                 dismissed = false;
                 returnedData = data;
                 ui_closePopup(objPop);
@@ -312,7 +312,7 @@
         // init and validate
         var tmp = mountOpt.targetContainer;
         var d = $.Deferred();
-        var tContainer = lib.util.isJqueryObject(tmp) ? tmp : $(tmp);
+        var tContainer = lib.util.isJqObj(tmp) ? tmp : $(tmp);
         if(tContainer.length == 0) {
             d.rejectWith(null);
             return d.promise();
@@ -346,7 +346,7 @@
     }
 
     function _getSetFlagAttr(element, attrName, isSet) {
-        var ele = lib.util.isJqueryObject(element) ? element : $(element);
+        var ele = lib.util.isJqObj(element) ? element : $(element);
         if (isSet === undefined) return _hasAttr(ele, attrName);
         if (isSet) ele.attr(attrName, '');
         else ele.removeAttr(attrName);
