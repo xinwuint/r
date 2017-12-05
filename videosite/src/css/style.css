@@ -219,12 +219,12 @@ footer {
   text-align: right;
   font-family: 'HelveticaNeue LT 67 MdCn'; }
   #callToAction #callToAction_Arrow {
+    background-image: url("./../assets/images/web-mobile_arrow.png");
     background-repeat: no-repeat;
     background-size: contain;
-    width: 37px;
-    height: 37px;
+    width: 28px;
+    height: 19px;
     display: block;
-    font-size: 40px;
     position: absolute;
     top: 0px;
     right: 0px;

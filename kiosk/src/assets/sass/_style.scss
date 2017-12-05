@@ -208,13 +208,14 @@ main .uAttractLoopSec {
     display: block;
     position: relative;
 
-    video {
+    .cover, video {
         width: 1280px;
-        height: 100%;
     }
 
-    div {
-        //float: right;
+    video {
+        height: 100%;
+        z-index: 2;
+        position: absolute;
     }
 
     .uWelcome{
@@ -227,20 +228,21 @@ main .uAttractLoopSec {
       padding-bottom: 96px;
       white-space: pre-line;
       display: table;
+      z-index: 3;
       div{
         display: table-cell;
         vertical-align: middle;
-        padding: 75px 30px;
+        padding: 73px 26px;
         //margin: 0;
         //width: 80%;
         div{
-          width: 400px;
+          width: 427px;
           color: #696969;
-          border-top: 1px solid;
-          border-bottom: 1px solid;
+          border-top: 6px solid;
+          border-bottom: 6px solid;
           font-family: 'HelveticaNeue LT 67 MdCn';
           font-size: 30px;
-          line-height:  1.6em;
+          line-height: 1.5em;
         }
       }
     }
@@ -258,6 +260,7 @@ main .uAttractLoopSec {
       text-align: left;
       padding-left: 52px;
       line-height: 100px;
+      z-index: 4;
 
       //@include fade(background);
       &:active {
@@ -303,6 +306,14 @@ main .uVideoListSec {
         border: 5px solid #555;
         border-left: none;
         border-right: none;
+
+        -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
 
         .uCategory {
             border-bottom: 1px dotted #555;
@@ -403,7 +414,7 @@ main .uVideoListSec {
 
         .uPointerBtn {
             display: block;
-            opacity: 0;
+            opacity: 1;
             position: absolute;
             //left: 840px;
             //top: 0px;
@@ -413,7 +424,7 @@ main .uVideoListSec {
             height: 121px;
             animation-name: handmove;
             animation-duration: 1s;
-            animation-iteration-count: 4;
+            animation-iteration-count: infinite;
             user-select: none;
 
             &[l10n-locale='en-us'], &[l10n-locale='en-ca'] {
@@ -425,11 +436,7 @@ main .uVideoListSec {
             }
 
             @keyframes handmove {
-              0%   { transform: translateY(0px); opacity: 0;}
-              //15%   { transform: translateY(0px); opacity: .3;}
-          		70%  { transform: translateY(20px); opacity: 1; }
-              //90%  { transform: translateY(0px); opacity: .3; }
-          		100% { transform: translateY(0px); opacity: 0;}
+          		70%  { transform: translateY(20px); opacity: 0.7; }
             }
         }
 
@@ -512,7 +519,7 @@ main .uKeyboardSec {
     //top: -720px;
     position: absolute;
     top: 0;
-    right: -100%;//-1140px;
+    //right: -100%;//-1140px;
     width: 1144px;
     background-color: #2b2b2b;
     /*
@@ -556,7 +563,7 @@ main .uKeyboardSec {
 
         .uErrWrap h3{
           font-family: 'Helvetica LT 107 Extra Black Condensed_0';//_0
-          font-size: 37px;
+          font-size: 42px;//37px;
           text-align: center;
         }
         .uErrWrap img{
@@ -564,7 +571,7 @@ main .uKeyboardSec {
           margin: 123px auto 0;
         }
         .uErrWrap div{
-          margin: 36px auto;
+          margin: 42px auto;//36px auto;
           color: #c2c2c2;
           font-size: 24px;
           text-align: center;
@@ -580,7 +587,7 @@ main .uKeyboardSec {
 
         .uCoverWrap {
             background-color: #2b2b2b;
-            //opacity: 0.8;
+            opacity: 0.9;
         }
     }
 

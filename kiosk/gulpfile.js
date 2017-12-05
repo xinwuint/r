@@ -15,7 +15,8 @@
 
     var gulp = require('gulp'),
         sass = require('gulp-sass'),
-        del = require('del');
+        del = require('del'),
+        runSequence = require('run-sequence');
 
     gulp.task('build:css', function() {
         return gulp
@@ -37,11 +38,15 @@
             .pipe(gulp.dest('./build'));
     });
 
-    gulp.task('build', [
+    gulp.task('build:all', [
         'build:css',
         'build:other',
         'build:common'
     ]);
+
+    gulp.task('build', ['clean'], function(cb) {
+        runSequence('build:all', cb);
+    });
 
     gulp.task('watch', ['build'], function() {
         gulp.watch(_src.scss, ['build:css']);
@@ -49,9 +54,10 @@
 
     gulp.task('default', ['build']);
 
-    gulp.task('clean', function () {
-        return del('./build', function (err, deletedFiles) {
+    gulp.task('clean', function(cb) {
+        del('./build', function(err, deletedFiles) {
             console.log('Files deleted : ' + deletedFiles.join(','));
+            cb();
         });
     });
 

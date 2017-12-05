@@ -139,26 +139,10 @@
 
     function infra_showPointer() {
         $('main .aVideoListSec .aPointerBtn').show();
-        /*.fadeIn()
-        .animate({
-          marginBottom: "20px"
-        },  500, 'easeOutBounce')
-        .animate({
-          marginBottom: "0px"
-        },  500, 'easeOutBounce')
-        .animate({
-          marginBottom: "20px"
-        },  500, 'easeOutBounce')
-        .animate({
-          marginBottom: "0px"
-        },  500, 'easeOutBounce')
-        .animate({
-          marginBottom: "20px"
-        },  500, 'easeOutBounce').fadeOut();*/
     }
 
     function infra_hidePointer() {
-        $('main .aVideoListSec .aPointerBtn').stop().fadeOut();
+        $('main .aVideoListSec .aPointerBtn').fadeOut();
     }
 
     function infra_clearVideoTileSelection() {
@@ -174,9 +158,9 @@
                 '{meta1} {space} {meta1}'
             ],
             'meta2': [
-                'à â ä ç é è ê ë ï î {bksp}',
-                'ì í ò ó ô ö œ ù ú {accept}',
-                '{normal} û ü µ ¨ £ € ¥ @ .',
+                'Ã  Ã¢ Ã¤ Ã§ Ã© Ã¨ Ãª Ã« Ã¯ Ã® {bksp}',
+                'Ã¬ Ã­ Ã² Ã³ Ã´ Ã¶ Å“ Ã¹ Ãº {accept}',
+                '{normal} Ã» Ã¼ Âµ Â¨ Â£ â‚¬ Â¥ @ .',
                 '{meta1} {space} {meta1}'
             ],
             'meta1': [
@@ -207,7 +191,7 @@
                 'accept'  : 'send:Email address',
                 'normal' : 'ABC',
                 'meta1'  : '.?123',
-                'meta2'  : 'ÀÉÖ'
+                'meta2'  : 'Ã€Ã‰Ã–'
             },
 
             usePreview: false,
@@ -229,7 +213,7 @@
     function infra_clearEmailInput() {
         var kb = $('.aEmailField').getkeyboard();
         kb.$preview.val('');
-        kb.reveal();
+        kb.reveal();  //caused keyboard to move around, solved with important! css values
     }
 
     // in json, videoFile has no path. So add it.
@@ -297,6 +281,9 @@
       $('#volume-dec-button').off("click").on("click", function(event) {
         changeVolume("-")
       });
+      $('#volume-mute-button').off("click").on("click", function(event) {
+        muteVolume()
+      });
       mediaPlayer.addEventListener('durationchange', function() {
         mediaPlayer.addEventListener('timeupdate', updateProgressBar, false);
       });
@@ -330,6 +317,11 @@
     function changeVolume(direction) {
       if (direction === '+') mediaPlayer.volume += mediaPlayer.volume == 1 ? 0 : 0.1;
       else mediaPlayer.volume -= (mediaPlayer.volume == 0 ? 0 : 0.1);
+    }
+
+    function muteVolume() {
+      if ( mediaPlayer.muted === true ) mediaPlayer.muted = false;
+      else mediaPlayer.muted = true;
     }
 
     function replayMedia() {
@@ -518,25 +510,24 @@
     function anim_videoList() {
         $('.uVideoListDiv').css("margin-top", "700px").animate({
             marginTop: 0
-        },  500, "easeInCirc");
+        },  250, "easeInCirc");
 
-        $('main section.aVideoListSec').show().animate({
-            opacity: 1
-        }, 250);
+        $('main section.aVideoListSec').fadeIn();
     }
 
     function biz_showKeyboard() {
         $('main section.aLayerSec').fadeIn();
         $('main section.aKeyboardSec').show().animate({
           right: "0"
-        }, 500, "easeOutCirc");
+        }, 250, "easeOutCirc");
     }
 
     function biz_hideKeyboard() {
-        $('main section.aLayerSec').fadeOut(500);
         $('main section.aKeyboardSec').stop().animate({
           right: "-1140px"
-        }, 500, "easeOutExpo" );
+        }, 250, "easeOutExpo" ).hide();
+
+        $('main section.aLayerSec').fadeOut(500);
         infra_clearEmailInput();
         infra_hideErrMsgOnKeyboard();
     }
@@ -605,7 +596,13 @@
         return idx < 0 ? url : url.substring(idx + 1, url.length);
     }
 
+    var $scrollContainer = $('.uVideoListDiv');
+    var scrollContainerStartPos;
+    var dragStartPos;
+
     function _hookEventHandlers() {
+        $scrollContainer.on('mousedown', onTouchScrollPress);
+
         // start btn
         $('main .aAttractLoopSec .aStart').on('click', function(){
             et.startSession();
@@ -636,6 +633,7 @@
 
         // video tile
         $('main .aVideoListSec').on('click', '.aVideoTile', function(){
+            $('main .aVideoListSec .aPointerBtn').stop().fadeOut();
             var $this = $(this);
 
             // select this tile
@@ -655,6 +653,28 @@
         });
     }
 
+    function onTouchScrollPress(e) {
+        console.log("onTouchScrollPress()");
+
+        scrollContainerStartPos = $scrollContainer.scrollTop();
+        dragStartPos = e.pageY
+
+        $(document).on('mouseup', onTouchScrollRelease);
+        $(document).on('mousemove', onTouchScrollMove);
+    }
+
+    function onTouchScrollRelease(e) {
+        console.log("onTouchScrollRelease()");
+        $(document).off('mouseup', onTouchScrollRelease);
+        $(document).off('mousemove', onTouchScrollMove);
+    }
+
+    function onTouchScrollMove(e) {
+        console.log("onTouchScrollMove()", e.pageY);
+        $scrollContainer.scrollTop(scrollContainerStartPos + dragStartPos - e.pageY);
+    }
+
+
     function start() {
         // localize
         Pn.l10n.locale(_config.locale);
@@ -673,7 +693,7 @@
 
         // init keyboard
         infra_initKeyboard(_langCode);
-        //biz_hideKeyboard(); // this will position it properly
+        biz_hideKeyboard(); // this will position it properly
 
         // events
         _hookEventHandlers();

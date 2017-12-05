@@ -83,8 +83,9 @@
             modalClose: modalClose,
             escClose: modalClose,
             onClose: onClosed,
+            opacity: 0.9,
             positionStyle: 'absolute', //'fixed',
-            position: [300, 180], 
+            position: [300, 180],
             follow: [false, false]
         }, onLaunched);
     };

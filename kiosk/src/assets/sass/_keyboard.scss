@@ -1,8 +1,12 @@
 /* ryder keyboard - jQuery UI Widget */
 
 .ui-keyboard {
+    //unsure where ui-keyboard inline-styling comes from. important! values here, but should be deleted when extra animation is found and removed
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+
     padding: .3em;
-    //border: 1px solid blue;
     text-align: center;
     /* see issue #484 */
     -ms-touch-action: manipulation;

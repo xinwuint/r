@@ -209,14 +209,12 @@ footer{
 	font-family: 'HelveticaNeue LT 67 MdCn';
 
 	#callToAction_Arrow{
-		//background-image: url('#{$imagePath}Prompt_OuterAnimatedRing.png');
+		background-image: url('#{$imagePath}web-mobile_arrow.png');
 		background-repeat: no-repeat;
 		background-size: contain;
-		width: 37px;
-		height: 37px;
+		width: 28px;
+		height: 19px;
 		display: block;
-		//float: left;
-		font-size: 40px;
 		position:  absolute;
 		top: 0px;
 		right: 0px;

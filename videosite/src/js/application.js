@@ -235,6 +235,9 @@ Application.prototype = function() {
         console.log('replay');
         replayMedia()
       });
+      $('#volume-mute-button').off("click").on("click", function(event) {
+        muteVolume()
+      });
       $('#fullscreen-button').off("click").on("click", function(event) {
         console.log('fullscreen');
         fullscreenMedia()
@@ -284,6 +287,11 @@ Application.prototype = function() {
     replayMedia = function() {
       resetPlayer();
       mediaPlayer.play();
+    }
+
+    function muteVolume() {
+      if ( mediaPlayer.muted === true ) mediaPlayer.muted = false;
+      else mediaPlayer.muted = true;
     }
 
     fullscreenMedia = function() {

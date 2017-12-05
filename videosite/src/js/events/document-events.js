@@ -17,14 +17,14 @@ $(document).on("ready", function() {
 	et.init(locale, locationId, false);
 
 	$templates = $("#templates").clone();
-	
+
 	document.getElementById("templates").innerHTML = "";
 
 	dc.loadData("./config/config.txt", locale).done(function() {
 		app.launch();
 	});
-	
-	window.onhashchange = function() {
-		app.handleHashChange(location.hash);
-	}
+
+	//window.onhashchange = function() {
+	//	app.handleHashChange(location.hash);
+	//}
 });
