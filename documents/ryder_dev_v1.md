@@ -41,7 +41,10 @@
 ## Launching
 The launching url of kiosk is
 ```
-index.html?lang=<locale>&location=<locationid>
+index.html?lang={lang}&location={location}
 ```
-where `<locale>` is `en-us`, or `en-ca`, or `fr-ca`.
+| Param | Value | Mandatory | Default | Desc |
+| ------ | ------ | ------ | ------ | ------ |
+| lang | 'en-us', 'en-ca', 'fr-ca' | no | 'en-us' | locale for app |
+| location | any string | no | try get SN first, if fail, use 'test-location' | used to identify this broswer/location |
 
