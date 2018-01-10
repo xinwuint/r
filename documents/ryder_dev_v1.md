@@ -47,6 +47,16 @@ cd kiosk && gulp build
 cd videosite && gulp build
 ```
 5. Output will be in `kiosk/build` and `videosite/build`
+6. Other useful commands.
+
+| Command | Desc |
+| ------ | ------ |
+| gulp build:css | Compile/minify scss files one time only. |
+| gulp build | Build project and create folder 'build'. |
+| gulp clean | Remove folder 'build'. |
+| gulp watch | Watch for modifications and build automatically. |
+| gulp | Equivalent to 'gulp build'. |
+
 
 ## Launching
 

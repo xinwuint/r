@@ -18,7 +18,7 @@ https://cridevteam.visualstudio.com/_git/Ryder?path=%2Fpublish&version=GBdevelop
 
 | Param | Possible Value | Mandatory | Desc |
 | ------ | ------ | ------ | ------ |
-| lang | 'en-us', 'en-ca', 'fr-ca' | yes | locale for app |
+| lang | 'en-us', 'en-ca', 'fr-ca' | yes | locale for kiosk BS player |
 
 
 2. Kiosk app needs to access BrightSign "BrightScript-Javascript Objects" to fetch SN of BS player, like:
