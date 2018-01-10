@@ -17,7 +17,7 @@ https://cridevteam.visualstudio.com/_git/Ryder?path=%2Fpublish&version=GBdevelop
 1. Kiosk app expects 1 parameter, and need to be configured in BS CMS.
 
 | Param | Possible Value | Mandatory | Desc |
-| ------ | ------ | ------ | ------ | ------ |
+| ------ | ------ | ------ | ------ |
 | lang | 'en-us', 'en-ca', 'fr-ca' | yes | locale for app |
 
 
