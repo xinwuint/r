@@ -3,9 +3,9 @@
 ## Prepare contents
 
 1. Provide all videos/thumbnails, and also the menifest file to development team, they will integrate contents with code.
-** Note:
-- An video could be bilingual as long as 2 physical files are provided;
-- If secound language version is provided, the primary language version is MANDATORY.**
+  **Note**:
+  - An video could be bilingual as long as 2 physical files are provided;
+  - If secound language version is provided, the primary language version is **mandatory**.
 
 2. Get publish folders from dev team. Usually they are at here:
 
@@ -15,6 +15,7 @@ https://cridevteam.visualstudio.com/_git/Ryder?path=%2Fpublish&version=GBdevelop
 ## Deploy kiosk app to production
 
 1. Kiosk app expects 1 parameter, and need to be configured in BS CMS.
+
 | Param | Possible Value | Mandatory | Desc |
 | ------ | ------ | ------ | ------ | ------ |
 | lang | 'en-us', 'en-ca', 'fr-ca' | yes | locale for app |
@@ -33,3 +34,6 @@ http://docs.brightsign.biz/display/DOC/Enabling+BrightScript-JavaScript+Objects
 
 Copy `publish/videosite/*` to proper www folder lacated on desired HTTP server.
 
+## QA with Google Chrome
+
+Refer to `Launching` section of `Ryder Development`.
