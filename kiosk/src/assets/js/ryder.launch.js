@@ -16,21 +16,25 @@
         // locale:      Could be calculated by zip or some other info.
         var locale, locationId;
 
-        // 1 US (English [default]/Spanish)
-        // 2 Canada – (English [default]/French)
-        // 3 Canada – (French [default]/English)
-        var lang = Pn.util.getParameterByName('lang');
-        if(lang === '3') locale = 'fr-ca';
-        else if(lang === '2') locale = 'en-ca';
+        var lang = Pn.util.getParameterByName('lang').toLowerCase();
+        lang = Pn.util.trim(lang);
+        if(lang === 'fr-ca') locale = 'fr-ca';
+        else if(lang === 'en-ca') locale = 'en-ca';
         else locale = 'en-us';
 
-        try {
-            locationId = (new BSDeviceInfo()).deviceUniqueId;
-        } catch(ex) {
-            // nothing
+        var locationId = Pn.util.getParameterByName('location');
+        locationId = Pn.util.trim(locationId);
+        if(!locationId) {
+            try {
+                // get SN of device
+                locationId = (new BSDeviceInfo()).deviceUniqueId;
+            } catch(ex) {
+                // nothing
+            }
         }
         if(!locationId) {
-            locationId = Pn.util.getParameterByName('sn') || 'test-location';
+            // fall to default
+            locationId = 'test-location';
         }
 
         et.init(locale, locationId, true);      //tracking

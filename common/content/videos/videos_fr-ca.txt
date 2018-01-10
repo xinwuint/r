@@ -1,0 +1,76 @@
+{
+	"safety": [
+		{
+			"thumbnailFile": 		"1a.png",
+			"title": 				"Carrier Supra Final",
+			"title2": 				"Carrier Supra Final ",
+			"videoFile": 			"CarrierSupraFInal6-24-14_720p-ff.mp4",
+			"videoFile2": 			"FRECAN_Carrier Supra FInal.mp4"
+		},
+		{
+			"thumbnailFile": 		"1b.png",
+			"title": 				"DPF – DEF Regeneration",
+			"title2": 				"es 1world",
+			"videoFile": 			"DPF-DEF_Regeneration_FINAL-SHORT-MASTER_James_720p-ff.mp4",
+			"videoFile2": 			"FRECAN_RVS 13-075 DPF-DEF Regeneration FINAL SHORT MASTER-Apple ProRes 422 (HQ)_James MP4.mp4"
+		},
+		{
+			"thumbnailFile": 		"1c.png",
+			"title": 				"Volvo Automated Manual",
+			"title2": 				"Volvo Automated Manual",
+			"videoFile": 			"Volvo_Automated-Manual-Transmission-Operation-NewLimelight_720p-ff.mp4",
+			"videoFile2": 			"FRECAN_Volvo Automated Manual Transmission Operation.mp4"
+		},
+		{
+			"thumbnailFile": 		"1c.png",
+			"title": 				"Training Video Safe Lift gate",
+			"title2": 				"Training Video Safe Lift gate",
+			"videoFile": 			"TrainingVideo_SafeLiftgateOperations-High_720p-ff.mp4",
+			"videoFile2": 			"Liftgate Operationsa_FR_720p-ff.mp4"
+		},
+		{
+			"thumbnailFile": 		"1c.png",
+			"title": 				"Training video save vehicle operations",
+			"title2": 				"Training video save vehicle operations",
+			"videoFile": 			"TrainingVideo_SafeVehicleOperations_James_720p-ff.mp4",
+			"videoFile2": 			"FRECAN_Training Video Automatic Transmission Detroit.mp4"
+		}
+	],
+	"whyryder": [
+		{
+			"thumbnailFile": 		"1d.png",
+			"title": 				"Fuel Receipt",
+			"title2": 				"",
+			"videoFile": 			"RyderFuelReceiptApp07_12_2016_720p-ff.mp4",
+			"videoFile2": 			""
+		},
+		{
+			"thumbnailFile": 		"1e.png",
+			"title": 				"ODM",
+			"title2": 				"",
+			"videoFile": 			"ODMVideo_2min_720p-ff.mp4",
+			"videoFile2": 			""
+		},
+		{
+			"thumbnailFile": 		"1f.png",
+			"title": 				"Customer Experience 1 MIN",
+			"title2": 				"",
+			"videoFile": 			"Ryder_Customer_Experience_1MIN_720p-ff.mp4",
+			"videoFile2": 			""
+		},
+		{
+			"thumbnailFile": 		"1d.png",
+			"title": 				"RedZone",
+			"title2": 				"",
+			"videoFile": 			"REDZONEvideofinal_720p-ff.mp4",
+			"videoFile2": 			""
+		},
+		{
+			"thumbnailFile": 		"1e.png",
+			"title": 				"Ryder Truck Rental",
+			"title2": 				"Ryder Truck Rental",
+			"videoFile": 			"Ryder_Truck_rental_James.mp4",
+			"videoFile2": 			"ryder truck rental french.mp4"
+		}
+	]
+}

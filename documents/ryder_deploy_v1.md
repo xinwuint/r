@@ -2,10 +2,10 @@
 
 ## Prepare contents
 
-1. Provide all videos/thumbnails, and also the menifest file to development team, they will integrate contents with code.
+1. Provide all videos/thumbnails, and also the manifest file to development team, they will integrate contents with code.
   **Note**:
   - An video could be bilingual as long as 2 physical files are provided;
-  - If secound language version is provided, the primary language version is **mandatory**.
+  - If second language version is provided, the primary language version is **mandatory**.
 
 2. Get publish folders from dev team. Usually they are at here:
 
@@ -32,7 +32,7 @@ http://docs.brightsign.biz/display/DOC/Enabling+BrightScript-JavaScript+Objects
 
 ## Deploy video site to production
 
-Copy `publish/videosite/*` to proper www folder lacated on desired HTTP server.
+Copy `publish/videosite/*` to proper www folder located on desired HTTP server.
 
 ## QA with Google Chrome
 

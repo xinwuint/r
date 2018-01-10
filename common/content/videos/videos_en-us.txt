@@ -1,132 +1,104 @@
-﻿{
+{
 	"safety": [
 		{
-			"thumbnailFile": 		"1a.png",
-			"title": 				"1hello",
+			"thumbnailFile": 		"CarrierSupraFInal6-24-14_720p-ff.png",
+			"title": 				"Carrier Supra Final",
 			"title2": 				"es 1hello",
-			"videoFile": 			"video1.mp4",
+			"videoFile": 			"CarrierSupraFInal6-24-14_720p-ff.mp4",
 			"videoFile2": 			"tutorial.mp4"
 		},
 		{
-			"thumbnailFile": 		"1b.png",
-			"title": 				"1world",
+			"thumbnailFile": 		"DPF-DEF_Regeneration_FINAL-SHORT-MASTER_James_720p-ff.png",
+			"title": 				"DPF – DEF Regeneration",
 			"title2": 				"es 1world",
-			"videoFile": 			"1b_en.mp4",
+			"videoFile": 			"DPF-DEF_Regeneration_FINAL-SHORT-MASTER_James_720p-ff.mp4",
 			"videoFile2": 			"1b_es.mp4"
 		},
 		{
-			"thumbnailFile": 		"1c.png",
-			"title": 				"1sunday",
+			"thumbnailFile": 		"TrainingVideo_DPF-DEF-Regeneration-RentalVersion-Spanish_720p-ff.png",
+			"title": 				"",
+			"title2": 				"Training video DPF DEF regeneration",
+			"videoFile": 			"",
+			"videoFile2": 			"TrainingVideo_DPF-DEF-Regeneration-RentalVersion-Spanish_720p-ff.mp4"
+		},
+		{
+			"thumbnailFile": 		"Volvo_Automated-Manual-Transmission-Operation-NewLimelight_720p-ff.png",
+			"title": 				"Volvo Automated Manual",
 			"title2": 				"",
-			"videoFile": 			"1c_en.mp4",
+			"videoFile": 			"Volvo_Automated-Manual-Transmission-Operation-NewLimelight_720p-ff.mp4",
+			"videoFile2": 			""
+		},
+		{
+			"thumbnailFile": 		"TrainingVideo_LiftgateOperations-Rental-Spanish_720p-ff.png",
+			"title": 				"",
+			"title2": 				"Training Video Lift gate",
+			"videoFile": 			"",
+			"videoFile2": 			"TrainingVideo_LiftgateOperations-Rental-Spanish_720p-ff.mp4"
+		},
+		{
+			"thumbnailFile": 		"TrainingVideo_SafeLiftgateOperations-High_720p-ff.png",
+			"title": 				"Training Video Safe Lift gate",
+			"title2": 				"",
+			"videoFile": 			"TrainingVideo_SafeLiftgateOperations-High_720p-ff.mp4",
+			"videoFile2": 			""
+		},
+		{
+			"thumbnailFile": 		"TrainingVideo_AutomaticTransmission_newhighres_720p-ff.png",
+			"title": 				"Training video – automatic transmission Detroit",
+			"title2": 				"",
+			"videoFile": 			"TrainingVideo_AutomaticTransmission_newhighres_720p-ff.mp4",
+			"videoFile2": 			""
+		},
+		{
+			"thumbnailFile": 		"TrainingVideo_RyderSafeTruckOperationProcedures-Spanish_720p-ff.png",
+			"title": 				"",
+			"title2": 				"Training video safe truck operations",
+			"videoFile": 			"",
+			"videoFile2": 			"TrainingVideo_RyderSafeTruckOperationProcedures-Spanish_720p-ff.mp4"
+		},
+		{
+			"thumbnailFile": 		"TrainingVideo_SafeVehicleOperations_James_720p-ff.png",
+			"title": 				"Training video save vehicle operations",
+			"title2": 				"",
+			"videoFile": 			"TrainingVideo_SafeVehicleOperations_James_720p-ff.mp4",
 			"videoFile2": 			""
 		}
 	],
 	"whyryder": [
 		{
-			"thumbnailFile": 		"1d.png",
-			"title": 				"1what is ryder",
-			"title2": 				"es 1what is ryder",
-			"videoFile": 			"1d_en.mp4",
-			"videoFile2": 			"1d_es.mp4"
-		},
-		{
-			"thumbnailFile": 		"1e.png",
-			"title": 				"1love ryder",
+			"thumbnailFile": 		"RyderFuelReceiptApp07_12_2016_720p-ff.png",
+			"title": 				"Fuel Receipt",
 			"title2": 				"",
-			"videoFile": 			"1e_en.mp4",
+			"videoFile": 			"RyderFuelReceiptApp07_12_2016_720p-ff.mp4",
 			"videoFile2": 			""
 		},
 		{
-			"thumbnailFile": 		"1f.png",
-			"title": 				"1nature gas",
-			"title2": 				"es 1nature gas",
-			"videoFile": 			"1f_en.mp4",
-			"videoFile2": 			"1f_es.mp4"
-		},
-		{
-			"thumbnailFile": 		"1d.png",
-			"title": 				"1what is ryder",
-			"title2": 				"es 1what is ryder",
-			"videoFile": 			"1d_en.mp4",
-			"videoFile2": 			"1d_es.mp4"
-		},
-		{
-			"thumbnailFile": 		"1e.png",
-			"title": 				"1love ryder",
+			"thumbnailFile": 		"ODMVideo_2min_720p-ff.png",
+			"title": 				"ODM",
 			"title2": 				"",
-			"videoFile": 			"1e_en.mp4",
+			"videoFile": 			"ODMVideo_2min_720p-ff.mp4",
 			"videoFile2": 			""
 		},
 		{
-			"thumbnailFile": 		"1f.png",
-			"title": 				"1nature gas",
-			"title2": 				"es 1nature gas",
-			"videoFile": 			"1f_en.mp4",
-			"videoFile2": 			"1f_es.mp4"
-		},
-		{
-			"thumbnailFile": 		"1d.png",
-			"title": 				"1what is ryder",
-			"title2": 				"es 1what is ryder",
-			"videoFile": 			"1d_en.mp4",
-			"videoFile2": 			"1d_es.mp4"
-		},
-		{
-			"thumbnailFile": 		"1e.png",
-			"title": 				"1love ryderlove ryderlove ryder",
+			"thumbnailFile": 		"Ryder_Customer_Experience_1MIN_720p-ff.png",
+			"title": 				"Customer Experience 1 MIN",
 			"title2": 				"",
-			"videoFile": 			"1e_en.mp4",
+			"videoFile": 			"Ryder_Customer_Experience_1MIN_720p-ff.mp4",
 			"videoFile2": 			""
 		},
 		{
-			"thumbnailFile": 		"1f.png",
-			"title": 				"1nature gas",
-			"title2": 				"es 1nature gas",
-			"videoFile": 			"1f_en.mp4",
-			"videoFile2": 			"1f_es.mp4"
-		},
-		{
-			"thumbnailFile": 		"1d.png",
-			"title": 				"1what is ryder",
-			"title2": 				"es 1what is ryder",
-			"videoFile": 			"1d_en.mp4",
-			"videoFile2": 			"1d_es.mp4"
-		},
-		{
-			"thumbnailFile": 		"1e.png",
-			"title": 				"1love ryder",
+			"thumbnailFile": 		"REDZONEvideofinal_720p-ff.png",
+			"title": 				"RedZone",
 			"title2": 				"",
-			"videoFile": 			"1e_en.mp4",
+			"videoFile": 			"REDZONEvideofinal_720p-ff.mp4",
 			"videoFile2": 			""
 		},
 		{
-			"thumbnailFile": 		"1f.png",
-			"title": 				"1nature gas",
-			"title2": 				"es 1nature gas",
-			"videoFile": 			"1f_en.mp4",
-			"videoFile2": 			"1f_es.mp4"
-		},
-		{
-			"thumbnailFile": 		"1d.png",
-			"title": 				"1what is ryder",
-			"title2": 				"es 1what is ryder",
-			"videoFile": 			"1d_en.mp4",
-			"videoFile2": 			"1d_es.mp4"
-		},
-		{
-			"thumbnailFile": 		"1e.png",
-			"title": 				"1love ryder",
+			"thumbnailFile": 		"Ryder_Truck_rental_James.png",
+			"title": 				"Ryder Truck Rental",
 			"title2": 				"",
-			"videoFile": 			"1e_en.mp4",
+			"videoFile": 			"Ryder_Truck_rental_James.mp4",
 			"videoFile2": 			""
-		},
-		{
-			"thumbnailFile": 		"1f.png",
-			"title": 				"1nature gasnature gasnature gasnature gas",
-			"title2": 				"es 1nature gasnature gasnature gasnature gas",
-			"videoFile": 			"1f_en.mp4",
-			"videoFile2": 			"1f_es.mp4"
 		}
 	]
 }

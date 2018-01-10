@@ -28,16 +28,13 @@
     "use strict";
 
     // const =====================================================================================
-    var _dateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
-        //_timeFormat = { hour: 'numeric', minute: 'numeric', hour12: true }, //not compatible with old browser
-        _confDefault = {
+    var _confDefault = {
             locationId: 'test-location',        // default locationid
             locale: 'en-us',                    // default locale
             idleTimeout: 2*60,                  // 2 min
             rssUpdateInterval: 3600,            // 1h
             rssDisplayInterval: 20,             // 20 sec
             rssStoryLen: 120,                   // 120 characters
-            videoRootUrl: 'assets/video/',
             videoManifestFile: 'videos_{locale}.txt',
             emailApiUrl: '',
             emailApiAuthCode: '',
@@ -217,7 +214,7 @@
     }
 
     // in json, videoFile has no path. So add it.
-    function _adjustUrl(data, rootUrl) {
+    function _adjustUrl(data, vRootUrl, tRootUrl) {
         if(data) {
             for(var cat in data) {
                 if(!data.hasOwnProperty(cat)) continue;
@@ -226,9 +223,9 @@
                     for(var i=0; i<l.length; i++) {
                         var v = l[i];
                         if(v) {
-                            if(v.thumbnailFile) v.thumbnailFile = rootUrl + v.thumbnailFile;
-                            if(v.videoFile) v.videoFile = rootUrl + v.videoFile;
-                            if(v.videoFile2) v.videoFile2 = rootUrl + v.videoFile2;
+                            if(v.thumbnailFile) v.thumbnailFile = tRootUrl + v.thumbnailFile;
+                            if(v.videoFile) v.videoFile = vRootUrl + v.videoFile;
+                            if(v.videoFile2) v.videoFile2 = vRootUrl + v.videoFile2;
                         }
                     }
                 }
@@ -245,7 +242,7 @@
             if(!okSafety && !okWhyryder) return;
 
             // adjust url
-            _adjustUrl(data, _config.videoRootUrl);
+            _adjustUrl(data, _config.videoRootUrl,  _config.thumbnailRootUrl);
 
             // template
             var template = Handlebars.compile($('#template-videolist').html());
@@ -340,29 +337,38 @@
     }
     //=========================== infra end ==============================
 
-    function _getTimeString(date) {
+    function _getTimeString(date, langCode) {
+        // here, langCode is not used. Since all lang will give same output.
         var h = date.getHours(),
             m = date.getMinutes(),
             ap = h < 12 ? 'AM' : 'PM';
+
         if(h === 0) h = 12;
         else if(h > 12) h -= 12;
 
+        // such as: '10:50 PM'
         return h + ':' + (m < 10 ? '0' : '') + m + ' ' + ap;
+    }
+
+    function _getDateString(date, langCode) {
+        var y = date.getFullYear(),
+            m = date.getMonth() + 1,
+            d = date.getDate(),
+            wd = date.getDay();
+
+        var month = Pn.l10n.get('month.' + m),
+            weekday = Pn.l10n.get('weekday.' + wd);
+
+        // fr: samedi 11 novembre 2017
+        // en: Saturday, November 11, 2017
+        if(langCode === 'fr') return weekday + ' ' + d + ' ' + month + ' ' + y;
+        else return weekday + ', ' + month + ' ' + d + ', ' + y;
     }
 
     function biz_populateDateTime() {
         var date = new Date();
-
-        //not compatible with old browser
-        // https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
-        //$('header .aTime').text(date.toLocaleTimeString(_langCode, _timeFormat));    // fr and fr-CA have different output
-
-        $('header .aTime').text(_getTimeString(date));
-
-        // https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date
-        // en: Saturday, November 11, 2017
-        // fr: samedi 11 novembre 2017
-        $('header .aDate').text(date.toLocaleDateString(_langCode, _dateFormat));
+        $('header .aTime').text(_getTimeString(date, _langCode));
+        $('header .aDate').text(_getDateString(date, _langCode));
     }
 
     function biz_sendEmail(addr) {
@@ -646,10 +652,12 @@
             // popup
             var is1stLang = $this.attr('data-lang-idx') === '0';
             var videoUrl = $this.attr(is1stLang ? 'data-video-src' : 'data-video-src-2');
-            biz_playVideo(videoUrl);
 
-            // tracking
-            et.playVideo(_getFilename(videoUrl), is1stLang);
+            if(videoUrl) {
+                biz_playVideo(videoUrl);
+                // tracking
+                et.playVideo(_getFilename(videoUrl), is1stLang);
+            }
         });
     }
 
