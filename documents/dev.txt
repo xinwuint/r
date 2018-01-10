@@ -1,0 +1,23 @@
+
+=================================
+JavaScript Date/Time Formatting
+
+Below approach is working with morden browsers, but not working with BS browser.
+Put it here for future reference.
+
+Time
+
+    // https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
+    _timeFormat = { hour: 'numeric', minute: 'numeric', hour12: true };
+    // output looks like: '10:50 PM'
+    $('header .aTime').text(date.toLocaleTimeString(_langCode, _timeFormat));    // fr and fr-CA have different output
+
+Date
+
+    // https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date
+    _dateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    // output looks like: en: 'Saturday, November 11, 2017', fr: 'samedi 11 novembre 2017'
+    $('header .aDate').text(date.toLocaleDateString(_langCode, _dateFormat));
+
+
+=================================
