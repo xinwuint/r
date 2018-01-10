@@ -36,10 +36,12 @@
 2. Goto project folder and run `npm install`
 3. Build kiosk app by `cd kiosk && gulp build`
 4. Build videosite by `cd videosite && gulp build`
-5. Runnable build will be in `kiosk/build` and `videosite/build`
+5. Output will be in `kiosk/build` and `videosite/build`
 
 ## Launching
 The launching url of kiosk is
-```index.html?lang=<locale>&location=<locationid>```
+```
+index.html?lang=<locale>&location=<locationid>
+```
 where `<locale>` is `en-us`, or `en-ca`, or `fr-ca`.
 
